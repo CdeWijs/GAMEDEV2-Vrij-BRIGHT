@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Level01.unity
+- path: Assets/Scene Enemy Chaser.unity
   isLoaded: 1
   isActive: 1

@@ -9,6 +9,7 @@ public class Camera2DFollow : MonoBehaviour
     public float lookAheadMoveThreshold = 0.1f;
 
     private float offsetZ;
+    public float offsetY;
     private Vector3 lastTargetPosition;
     private Vector3 currentVelocity;
     private Vector3 lookAheadPos;
@@ -24,7 +25,6 @@ public class Camera2DFollow : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         // only update lookahead pos if accelerating or changed direction
         float xMoveDelta = ((targets[0].position + targets[1].position) / 2 - lastTargetPosition).x;
 
@@ -43,6 +43,10 @@ public class Camera2DFollow : MonoBehaviour
         Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref currentVelocity, damping);
 
         transform.position = newPos;
+        if (transform.position.y < 1.5)
+        {
+            transform.position = new Vector3(transform.position.x, offsetY, transform.position.z);
+        }
 
         lastTargetPosition = (targets[0].position + targets[1].position) / 2;
     }

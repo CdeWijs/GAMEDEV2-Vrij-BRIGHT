@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// class for the lurker type enemy: enemy is invincible while in shadows, but can be attacked when it comes out of hiding by using bait
 /// </summary>
-public class Enemy_Lurer : EnemyBaseClass {
+public class Enemy_Lurker : EnemyBaseClass {
 
     public GameObject bait;
     public bool baitOnGround = false;
@@ -19,13 +19,11 @@ public class Enemy_Lurer : EnemyBaseClass {
 
     new private void Start()
     {
-        
         base.Start();
         bait = GameObject.FindGameObjectWithTag("Bait");
         enemyState = LurkerStates.idle;
     }
     
-
     //does not call base update because of statemachine
     new private void Update()
     {
@@ -35,17 +33,14 @@ public class Enemy_Lurer : EnemyBaseClass {
         StateMachine(enemyState);
     }
 
-
     //enemy moves towards target 
     public override void EnemyMovement()
     {
-
         Vector3 moveToPos = new Vector3(targetTransform.transform.position.x, transform.position.y, 0);
         transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
        // enemyState = LurkerStates.idle;
 
     }
-
 
     private void AttackTarget()
     {
@@ -75,15 +70,14 @@ public class Enemy_Lurer : EnemyBaseClass {
     //checks if bait is on the ground and if enemy should come out of hiding
     private void FindBait()
     {
-
-        if (bait.gameObject != null)
+        if (bait.gameObject == null)
         {
             return;
         }
       
         if (Mathf.RoundToInt(bait.transform.position.y) == Mathf.RoundToInt(transform.position.y)) 
         {  
-                enemyState = LurkerStates.chaseBait;
+            enemyState = LurkerStates.chaseBait;
        }
     }
 
@@ -97,11 +91,8 @@ public class Enemy_Lurer : EnemyBaseClass {
             isInShadows = false;
             enemyState = LurkerStates.idle;
         }
-
-       
     }
-
-
+    
     //state machine for lurker enemy
     private void StateMachine (LurkerStates state)
     {
@@ -130,8 +121,4 @@ public class Enemy_Lurer : EnemyBaseClass {
 
         }
     }
-
-
-
-
 }
