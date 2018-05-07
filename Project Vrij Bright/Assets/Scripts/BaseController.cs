@@ -38,7 +38,8 @@ public class BaseController : MonoBehaviour
 
     private void GetInput()
     {
-        if (connectedController != null)
+        Debug.Log(connectedController);
+        if (connectedController != null) // Check if Joystick exists
         {
             inputHorizontal = (Input.GetAxis(connectedController.GetHorizontal()));
             inputVertical = (Input.GetAxis(connectedController.GetVertical()));
@@ -48,12 +49,21 @@ public class BaseController : MonoBehaviour
             b_active = connectedController.B_CheckInput();
             x_active = connectedController.X_CheckInput();
             y_active = connectedController.Y_CheckInput();
+            
+            if (a_active && grounded)
+            {
+                Jump();
+            }
         }
-
-        // If player is grounded, player can jump
-        if (a_active && grounded)
+        else // else use keyboard input
         {
-            Jump();
+            inputHorizontal = Input.GetAxis("Horizontal");
+            inputVertical = Input.GetAxis("Vertical");
+            
+            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            {
+                Jump();
+            }
         }
     }
 

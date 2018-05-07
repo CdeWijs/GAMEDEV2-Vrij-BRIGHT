@@ -10,7 +10,12 @@ public class GuardianController : BaseController
     {
         base.Start();
 
-        connectedController = new Joystick2();
+        // Check if Joystick exists
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            connectedController = new Joystick2();
+        }
+
         startGravityScale = rigidBody2D.gravityScale;
     }
 
@@ -18,14 +23,29 @@ public class GuardianController : BaseController
     {
         base.Update();
 
-        if (Input.GetKey(KeyCode.Space))
+        if (connectedController != null)
         {
-            rigidBody2D.gravityScale = 0;
-            transform.position = new Vector2(transform.position.x, transform.position.y + 3f * Time.deltaTime);
+            if (trig_active)
+            {
+                rigidBody2D.gravityScale = 0;
+                transform.position = new Vector2(transform.position.x, transform.position.y + 3f * Time.deltaTime);
+            }
+            else if (rigidBody2D.gravityScale == 0)
+            {
+                rigidBody2D.gravityScale = startGravityScale;
+            }
         }
-        else if (rigidBody2D.gravityScale == 0)
+        else
         {
-            rigidBody2D.gravityScale = startGravityScale;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rigidBody2D.gravityScale = 0;
+                transform.position = new Vector2(transform.position.x, transform.position.y + 3f * Time.deltaTime);
+            }
+            else if (rigidBody2D.gravityScale == 0)
+            {
+                rigidBody2D.gravityScale = startGravityScale;
+            }
         }
     }
 }

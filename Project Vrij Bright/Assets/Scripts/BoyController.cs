@@ -8,6 +8,10 @@ public class BoyController : BaseController
     {
         base.Start();
 
-        connectedController = new Joystick1();
+        // Check if Joystick exists
+        if (Input.GetJoystickNames().Length > 0)
+        {
+            connectedController = new Joystick1();
+        }
     }
 }
