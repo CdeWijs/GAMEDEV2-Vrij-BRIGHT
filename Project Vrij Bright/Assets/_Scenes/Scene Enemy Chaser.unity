@@ -520,7 +520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1294767251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.14, y: -3.24, z: 0}
+  m_LocalPosition: {x: 4.52, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -539,6 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 10
   moveSpeed: 5
+  rb2d: {fileID: 0}
   playerObject: {fileID: 0}
   bait: {fileID: 0}
   baitOnGround: 0

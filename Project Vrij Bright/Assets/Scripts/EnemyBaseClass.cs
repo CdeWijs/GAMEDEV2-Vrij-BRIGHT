@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// baseclass for enemies to derrive from
 /// </summary>
@@ -11,10 +10,8 @@ public class EnemyBaseClass : MonoBehaviour {
     public int enemyHealth;
     public float moveSpeed;
 
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     public GameObject playerObject;
-
-    
 
     public void Start()
     {
@@ -29,17 +26,20 @@ public class EnemyBaseClass : MonoBehaviour {
         CheckHealth();
     }
 
-    
+    public virtual void TakeDamage()
+    {
+        //add behaviour on derriving enemy
+    }
+
     public virtual void EnemyMovement()
     {
-
+        //add behaviour on derriving enemy
     }
 
     public virtual void FindPlayer()
     {
-
+        //add behaviour on derriving enemy
     }
-
 
     public virtual void CheckHealth()
     {
@@ -48,9 +48,5 @@ public class EnemyBaseClass : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
-   
-
-
 
 }

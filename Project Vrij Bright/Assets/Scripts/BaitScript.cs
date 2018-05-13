@@ -29,7 +29,6 @@ public class BaitScript : MonoBehaviour
         {
             rb2d.gravityScale = 1;
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

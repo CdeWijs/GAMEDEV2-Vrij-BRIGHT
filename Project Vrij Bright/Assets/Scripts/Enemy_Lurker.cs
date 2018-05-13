@@ -38,32 +38,35 @@ public class Enemy_Lurker : EnemyBaseClass {
     {
         Vector3 moveToPos = new Vector3(targetTransform.transform.position.x, transform.position.y, 0);
         transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
-       // enemyState = LurkerStates.idle;
-
-    }
-
-    private void AttackTarget()
-    {
-        
     }
 
     //checks if player is in range for chasing or attacking
     public override void FindPlayer()
     {
         base.FindPlayer();
+
+        //sets enemy back to idle when player is killed, can be used if we decide to add some sort of player revival 
+        if (playerObject == null)
+        {
+            enemyState = LurkerStates.idle;
+            return;
+        }
+
         float distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
        
         if (distanceToPlayer < attackRadius)
         {
-
             enemyState = LurkerStates.attack;
         }
 
-         else if (distanceToPlayer < chaseRadius)
+        else if (distanceToPlayer < chaseRadius)
         {
             enemyState = LurkerStates.chasePlayer;
-          
+        }
 
+        else
+        {
+            enemyState = LurkerStates.idle;
         }
     }
 
@@ -81,33 +84,44 @@ public class Enemy_Lurker : EnemyBaseClass {
        }
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Bait")
         {
-            Destroy(collision.gameObject);
-            baitOnGround = false;
-            isInShadows = false;
-            enemyState = LurkerStates.idle;
+            EatBait(collision.gameObject);
         }
     }
-    
+
+    //enemy eats bait and returns to idle state
+    private void EatBait(GameObject bait)
+    { 
+        baitOnGround = false;
+        isInShadows = false;
+        enemyState = LurkerStates.idle;
+        transform.position = bait.transform.position;
+        Destroy(bait);
+    }
+
+    //direct reference to boy's health, needs to be replace for actual attacking
+    private void Attack()
+    {
+        playerObject.GetComponent<BoyClass>().health -= 1;
+    }
+
     //state machine for lurker enemy
     private void StateMachine (LurkerStates state)
     {
-        Debug.Log(state);
         switch (state)
         {
             case LurkerStates.idle:
-
+                //perhaps Idle animation
                 break;
 
             case LurkerStates.chaseBait:
                 targetTransform = bait.transform;
                 EnemyMovement();
-
                 break;
+
             case LurkerStates.chasePlayer:
                 targetTransform = playerObject.transform;
                 EnemyMovement();
@@ -115,10 +129,11 @@ public class Enemy_Lurker : EnemyBaseClass {
 
             case LurkerStates.attack:
                 targetTransform = null;
-                break;
-            default:
+                Attack();
                 break;
 
+            default:
+                break;
         }
     }
 }

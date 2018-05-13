@@ -38,7 +38,7 @@ public class BaseController : MonoBehaviour
 
     private void GetInput()
     {
-        Debug.Log(connectedController);
+       // Debug.Log(connectedController);
         if (connectedController != null) // Check if Joystick exists
         {
             inputHorizontal = (Input.GetAxis(connectedController.GetHorizontal()));

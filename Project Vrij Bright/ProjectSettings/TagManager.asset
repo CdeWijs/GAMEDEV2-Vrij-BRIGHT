@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Bait
   - Guardian
+  - Shadow
   layers:
   - Default
   - TransparentFX
