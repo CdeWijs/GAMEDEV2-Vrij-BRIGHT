@@ -8,6 +8,7 @@ TagManager:
   - Bait
   - Guardian
   - Shadow
+  - Monster
   layers:
   - Default
   - TransparentFX

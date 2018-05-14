@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// baseclass for enemies to derrive from
@@ -13,38 +14,35 @@ public class EnemyBaseClass : MonoBehaviour {
     public Rigidbody2D rb2d;
     public GameObject playerObject;
 
-    public void Start()
-    {
+    public Slider enemyHealthSlider;
+
+    public void Start() {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        enemyHealthSlider.maxValue = enemyHealth;
+        enemyHealthSlider.value = enemyHealth;
     }
 
-    public void Update()
-    {
+    public void Update() {
         EnemyMovement();
         FindPlayer();
         CheckHealth();
     }
 
-    public virtual void TakeDamage()
-    {
+    public virtual void TakeDamage(int amount) {
+        enemyHealthSlider.value -= amount;
+    }
+
+    public virtual void EnemyMovement() {
         //add behaviour on derriving enemy
     }
 
-    public virtual void EnemyMovement()
-    {
+    public virtual void FindPlayer() {
         //add behaviour on derriving enemy
     }
 
-    public virtual void FindPlayer()
-    {
-        //add behaviour on derriving enemy
-    }
-
-    public virtual void CheckHealth()
-    {
-        if (enemyHealth <= 0)
-        {
+    public virtual void CheckHealth() {
+        if (enemyHealth <= 0) {
             Destroy(this.gameObject);
         }
     }

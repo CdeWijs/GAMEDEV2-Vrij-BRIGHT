@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BoyClass : MonoBehaviour {
 
     public int health;
-    public int attackDamage;
+    public int attackDamage = 5;
     public int moveSpeed;
 
     //temporary slider ui
@@ -19,39 +19,30 @@ public class BoyClass : MonoBehaviour {
 
     private BoyController controllerScript;
 
-    private void Start()
-    {
+    private void Start() {
         controllerScript = this.gameObject.GetComponent<BoyController>();
         playerHealthSlider.value = 100;
     }
 
-    private void Update()
-    {
+    private void Update() {
         playerHealthSlider.value = health;
 
-        if (health <= 0)
-        {
+        if (health <= 0) {
             Destroy(this.gameObject);
         }
     }
-
     
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerEnter2D(Collider2D collision) {
         //behaviour for when player is scared
-        if (collision.tag == "Shadow")
-        boyIsScared = true;
-        controllerScript.speed = 2;
+        if (collision.tag == "Shadow") {
+            boyIsScared = true;
+        }
     }
-
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
+    
+    private void OnTriggerExit2D(Collider2D collision) {
         //behaviour to restore player
-        if (collision.transform.tag == "Shadow")
-        {
+        if (collision.transform.tag == "Shadow") {
             boyIsScared = false;
-            controllerScript.speed = 8;
         }
     }
 }
