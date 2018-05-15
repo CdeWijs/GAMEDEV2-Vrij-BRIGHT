@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 1143230410}
   m_Layer: 0
   m_Name: ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1663,7 +1663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   attackDamage: 5
-  moveSpeed: 0
   playerHealthSlider: {fileID: 708378269}
 --- !u!95 &2008314730
 Animator:

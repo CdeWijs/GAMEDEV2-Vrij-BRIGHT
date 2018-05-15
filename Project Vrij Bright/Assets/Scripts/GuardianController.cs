@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GuardianController : BaseController {
-    private float startGravityScale;
+
+    public const float NormalSpeed = 8;
+    public const float JumpForce = 4;
+
+    private int flutterAmount = 5;
 
     public override void Start() {
         base.Start();
@@ -12,26 +16,34 @@ public class GuardianController : BaseController {
         if (Input.GetJoystickNames().Length > 0) {
             connectedController = new Joystick2();
         }
-
-        startGravityScale = rigidBody2D.gravityScale;
     }
 
     public override void Update() {
         base.Update();
 
+        if (flutterAmount < 5 && grounded) {
+            flutterAmount = 5;
+        }
+    }
+
+    public override void FixedUpdate() {
+        base.FixedUpdate();
+
+        MoveHorizontally(NormalSpeed);
+    }
+
+    public override void GetInput() {
+        base.GetInput();
+
         if (connectedController != null) {
-            if (trig_active) {
-                rigidBody2D.gravityScale = 0;
-                transform.position = new Vector2(transform.position.x, transform.position.y + 3f * Time.deltaTime);
-            } else if (rigidBody2D.gravityScale == 0) {
-                rigidBody2D.gravityScale = startGravityScale;
+            if (a_active && flutterAmount > 0) {
+                Jump(JumpForce);
+                flutterAmount--;
             }
         } else {
-            if (Input.GetKey(KeyCode.Space)) {
-                rigidBody2D.gravityScale = 0;
-                transform.position = new Vector2(transform.position.x, transform.position.y + 3f * Time.deltaTime);
-            } else if (rigidBody2D.gravityScale == 0) {
-                rigidBody2D.gravityScale = startGravityScale;
+            if (Input.GetKeyDown(KeyCode.Space) && flutterAmount > 0) {
+                Jump(JumpForce);
+                flutterAmount--;
             }
         }
     }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -10,17 +8,13 @@ public class BoyClass : MonoBehaviour {
 
     public int health;
     public int attackDamage = 5;
-    public int moveSpeed;
 
     //temporary slider ui
     public Slider playerHealthSlider;
 
     public static bool boyIsScared = false;
 
-    private BoyController controllerScript;
-
     private void Start() {
-        controllerScript = this.gameObject.GetComponent<BoyController>();
         playerHealthSlider.value = 100;
     }
 
@@ -28,7 +22,7 @@ public class BoyClass : MonoBehaviour {
         playerHealthSlider.value = health;
 
         if (health <= 0) {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
     
