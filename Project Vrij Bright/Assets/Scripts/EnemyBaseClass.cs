@@ -31,6 +31,9 @@ public class EnemyBaseClass : MonoBehaviour {
 
     public virtual void TakeDamage(int amount) {
         enemyHealthSlider.value -= amount;
+        if (enemyHealthSlider.value <= 0){
+            Destroy(gameObject);
+        }
     }
 
     public virtual void EnemyMovement() {
