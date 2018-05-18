@@ -11,9 +11,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
-  MasterBankRef: {fileID: 0}
-  StringsBankRef: {fileID: 0}
-  stringsBankWriteTime: 0
+  EditorBanks:
+  - {fileID: 114823559523720400}
+  - {fileID: 114426809936835712}
+  EditorEvents:
+  - {fileID: 114062255288203542}
+  MasterBankRef: {fileID: 114426809936835712}
+  StringsBankRef: {fileID: 114823559523720400}
+  stringsBankWriteTime: 636622420680000000
   cacheVersion: 2
+--- !u!114 &114062255288203542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Bright Soundtrack
+  guid: bf036c28b8381f458b614761bfa6f035
+  Banks:
+  - {fileID: 114426809936835712}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 118383
+--- !u!114 &114426809936835712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/FMOD/Bright Audio Test v2/Build/Desktop/Master
+    Bank.bank
+  lastModified: 636622420680000000
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1450464
+  Exists: 1
+--- !u!114 &114823559523720400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/FMOD/Bright Audio Test v2/Build/Desktop/Master
+    Bank.strings.bank
+  lastModified: 636622420680000000
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 728
+  Exists: 1
