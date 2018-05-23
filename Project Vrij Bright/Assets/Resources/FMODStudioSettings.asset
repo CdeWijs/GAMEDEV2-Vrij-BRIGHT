@@ -15,7 +15,7 @@ MonoBehaviour:
   HasPlatforms: 0
   sourceProjectPath: 
   SourceProjectPathUnformatted: 
-  SourceBankPathUnformatted: D:\celin\projects\ProjectVrij_Bright\FMOD Build\Desktop
+  SourceBankPathUnformatted: Assets/FMOD/Desktop
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
