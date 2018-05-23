@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuardianController : BaseController {
 
     public const float NormalSpeed = 8;
-    public const float JumpForce = 4;
+    public const float JumpForce = 5;
 
     private int flutterAmount = 5;
 

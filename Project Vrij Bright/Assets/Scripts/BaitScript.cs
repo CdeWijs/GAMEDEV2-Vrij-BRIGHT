@@ -21,15 +21,15 @@ public class BaitScript : MonoBehaviour {
         rb2d.gravityScale = 0;
     }
 
-    private void Update() {
-        if (guardianController.x_active) {
-            rb2d.gravityScale = 1;
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Ground") {
             Destroy(this.gameObject.GetComponent<Rigidbody2D>());
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E)) {
+            rb2d.gravityScale = 1;
         }
     }
 }
