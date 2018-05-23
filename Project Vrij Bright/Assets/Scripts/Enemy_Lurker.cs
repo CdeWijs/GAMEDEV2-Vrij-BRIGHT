@@ -16,7 +16,7 @@ public class Enemy_Lurker : EnemyBaseClass {
 
     new private void Start() {
         base.Start();
-        bait = GameObject.FindGameObjectWithTag("Bait");
+       // bait = GameObject.FindGameObjectWithTag("Bait");
         enemyState = LurkerStates.idle;
     }
 
@@ -28,6 +28,15 @@ public class Enemy_Lurker : EnemyBaseClass {
         StateMachine(enemyState);
     }
 
+
+    //enemy is invulnerable in shadows
+    public override void CheckHealth(){
+        if (isInShadows){
+            if (enemyHealth <= 0){
+                Destroy(this.gameObject);
+            }
+        }
+    }
     //enemy moves towards target 
     public override void EnemyMovement() {
         Vector3 moveToPos = new Vector3(targetTransform.transform.position.x, transform.position.y, 0);
@@ -48,7 +57,7 @@ public class Enemy_Lurker : EnemyBaseClass {
 
         if (distanceToPlayer < attackRadius) {
             enemyState = LurkerStates.attack;
-        } else if (distanceToPlayer < chaseRadius) {
+        } else if (distanceToPlayer < chaseRadius && !isInShadows) {
             enemyState = LurkerStates.chasePlayer;
         } else {
             enemyState = LurkerStates.idle;
@@ -69,6 +78,19 @@ public class Enemy_Lurker : EnemyBaseClass {
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Bait") {
             EatBait(collision.gameObject);
+        }
+    }
+
+    //check if enemy is in shadows 
+    private void OnTriggerExit2D(Collider2D collision){
+        if (collision.tag == "Shadow"){
+            isInShadows = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if (collision.tag == "Shadow"){
+            isInShadows = false;
         }
     }
 

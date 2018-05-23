@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114206524402925454}
-  - {fileID: 114497425886190684}
+  - {fileID: 114412453246365986}
   EditorEvents:
   - {fileID: 114375121372832264}
-  MasterBankRef: {fileID: 114497425886190684}
+  MasterBankRef: {fileID: 114412453246365986}
   StringsBankRef: {fileID: 114206524402925454}
-  stringsBankWriteTime: 636626785630000000
+  stringsBankWriteTime: 636627088190772264
   cacheVersion: 2
 --- !u!114 &114062255288203542
 MonoBehaviour:
@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: Assets/FMOD/Desktop/Master Bank.strings.bank
-  lastModified: 636626785630000000
+  Path: Assets\FMOD\Desktop\Master Bank.strings.bank
+  lastModified: 636627088190772264
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -74,7 +74,7 @@ MonoBehaviour:
   Path: event:/Bright Soundtrack
   guid: bf036c28b8381f458b614761bfa6f035
   Banks:
-  - {fileID: 114497425886190684}
+  - {fileID: 114412453246365986}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -82,6 +82,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 136000
+--- !u!114 &114412453246365986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\gamef\Documents\GitHub\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Master
+    Bank.bank
+  lastModified: 636627088190747199
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2242880
+  Exists: 1
 --- !u!114 &114426809936835712
 MonoBehaviour:
   m_ObjectHideFlags: 0

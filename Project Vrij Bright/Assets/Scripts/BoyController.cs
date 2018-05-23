@@ -1,58 +1,57 @@
 ﻿using UnityEngine;
+public class BoyController : BaseController
+{
 
-public class BoyController : BaseController {
+    //basevalues for resetting physics
+    public static float NormalSpeed = 8;
+    public static float normalJump = 5;
 
-    public const float NormalSpeed = 8;
-    public const float ScaredSpeed = 2;
-    public const float JumpForce = 5;
+    public float currentSpeed = 8;
+    public float currentJump = 5;
 
-    public override void Start() {
+    public override void Start(){
         base.Start();
 
         // Check if Joystick exists
-        if (Input.GetJoystickNames().Length > 0) {
+        if (Input.GetJoystickNames().Length > 0){
             connectedController = new Joystick1();
         }
     }
 
-    public override void Update() {
+    public override void Update(){
         base.Update();
     }
 
-    public override void FixedUpdate() {
+    public override void FixedUpdate(){
         base.FixedUpdate();
 
-        if (BoyClass.boyIsScared == true) {
-            MoveHorizontally(ScaredSpeed);
-        } else {
-            MoveHorizontally(NormalSpeed);
-        }
+        MoveHorizontally(currentSpeed);
     }
 
-    public override void GetInput() {
+    public override void GetInput(){
         base.GetInput();
 
-        if (connectedController != null) {
-            if (a_active && grounded) {
-                Jump(JumpForce);
+        if (connectedController != null){
+            if (a_active && grounded){
+                Jump(normalJump);
             }
         }
-        else {
-            if (Input.GetKeyDown(KeyCode.Space) && grounded) {
-                Jump(JumpForce);
+        else{
+            if (Input.GetKeyDown(KeyCode.Space) && grounded){
+                Jump(normalJump);
             }
         }
     }
 
-    private void BasicAttack(Collider2D collision) {
+    private void BasicAttack(Collider2D collision){
         EnemyBaseClass _enemyScript = collision.GetComponent<EnemyBaseClass>();
         int _damage = GetComponent<BoyClass>().attackDamage;
         _enemyScript.TakeDamage(_damage);
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (x_active || Input.GetKeyDown(KeyCode.E)) {
-            if (collision.tag == "Monster") {
+    private void OnTriggerStay2D(Collider2D collision){
+        if (x_active || Input.GetKeyDown(KeyCode.E)){
+            if (collision.tag == "Monster"){
                 Debug.Log("attack");
                 BasicAttack(collision);
             }

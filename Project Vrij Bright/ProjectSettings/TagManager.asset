@@ -9,6 +9,7 @@ TagManager:
   - Guardian
   - Shadow
   - Monster
+  - GravityWell
   layers:
   - Default
   - TransparentFX
