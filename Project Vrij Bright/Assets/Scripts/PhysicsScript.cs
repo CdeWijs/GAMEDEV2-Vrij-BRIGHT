@@ -21,14 +21,14 @@ public class PhysicsScript : MonoBehaviour{
         _player.GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
-    //change speed of BOY
-    public static void ChangeSpeedBoy(GameObject _player, float _speed){
-        BoyController _bC = _player.GetComponent<BoyController>();
-        _bC.currentSpeed = _speed;
-    }
-
     //w.i.p. 
     public static void LaunchPlayer(GameObject _player, float _force, Vector3 _dir){
         _player.GetComponent<Rigidbody2D>().AddForce(_dir * _force);
+    }
+
+    //use this to change jumpForce, speed, gravity etc
+    public static float EffectedFloat(float _value, float _multiplier = 1)
+    {
+        return _value * _multiplier;
     }
 }

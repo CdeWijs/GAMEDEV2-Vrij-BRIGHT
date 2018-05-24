@@ -31,10 +31,17 @@ public class Enemy_Lurker : EnemyBaseClass {
 
     //enemy is invulnerable in shadows
     public override void CheckHealth(){
-        if (isInShadows){
+        if (!isInShadows){
             if (enemyHealth <= 0){
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+
+    public override void TakeDamage(int amount){
+        if (!isInShadows){
+            base.TakeDamage(amount);
         }
     }
     //enemy moves towards target 
@@ -90,7 +97,7 @@ public class Enemy_Lurker : EnemyBaseClass {
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.tag == "Shadow"){
-            isInShadows = false;
+            isInShadows = true;
         }
     }
 

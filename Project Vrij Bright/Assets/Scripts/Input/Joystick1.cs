@@ -10,7 +10,7 @@ public class Joystick1 : ControllerInput {
             return false;
     }
     public override bool A_CheckInput() {
-        if (Input.GetButton("A_ButtonJ1") == true) {
+        if (Input.GetButtonDown("A_ButtonJ1") == true) {
             return true;
         } else
             return false;

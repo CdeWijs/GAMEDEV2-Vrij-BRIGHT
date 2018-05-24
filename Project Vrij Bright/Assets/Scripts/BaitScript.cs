@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class BaitScript : MonoBehaviour {
     private Rigidbody2D rb2d;
+    
     private GameObject player;
 
 
@@ -17,19 +18,24 @@ public class BaitScript : MonoBehaviour {
         guardianController = player.GetComponent<GuardianController>();
         Debug.Log(guardianController);
 
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        rb2d.gravityScale = 0;
+        
+       // rb2d.gravityScale = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Ground") {
-            Destroy(this.gameObject.GetComponent<Rigidbody2D>());
+//            Destroy(this.gameObject.GetComponent<Rigidbody2D>());
         }
+
+        Debug.Log(collision.gameObject.name);
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
-        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E)) {
-            rb2d.gravityScale = 1;
+        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E))
+        {
+            rb2d = gameObject.AddComponent<Rigidbody2D>();
+            gameObject.AddComponent<BoxCollider2D>();
+
         }
     }
 }

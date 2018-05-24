@@ -22,35 +22,9 @@ public class BoyClass : MonoBehaviour {
         playerHealthSlider.value = health;
 
         if (health <= 0) {
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 
-    //Change player properties on trigger enter
-    private void OnTriggerEnter2D(Collider2D collision){
-        //behaviour for when player is scared
-        if (collision.tag == "Shadow"){
-            boyIsScared = true;
-            PhysicsScript.ChangeSpeedBoy(this.gameObject, BoyController.NormalSpeed * 0.25f);
-        }
-
-
-        else if (collision.tag == "GravityWell"){
-            PhysicsScript.GravityIncrease(this.gameObject, 0.5f, 2f);
-            PhysicsScript.ChangeSpeedBoy(this.gameObject, BoyController.NormalSpeed * 0.45f);
-        }
-    }
-
-    //Restore player properties on trigger exit 
-    private void OnTriggerExit2D(Collider2D collision){
-        if (collision.transform.tag == "Shadow"){
-            boyIsScared = false;
-            PhysicsScript.ChangeSpeedBoy(this.gameObject, BoyController.NormalSpeed);
-        }
-
-        else if (collision.tag == "GravityWell"){
-            PhysicsScript.ResetGravity(this.gameObject);
-            PhysicsScript.ChangeSpeedBoy(this.gameObject, BoyController.NormalSpeed);
-        }
-    }
+   
 }
