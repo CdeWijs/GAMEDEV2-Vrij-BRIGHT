@@ -13,12 +13,14 @@ public class PhysicsScript : MonoBehaviour{
         newSize = new Vector3(newSize.x, newSize.y * _scaleMultiplier, newSize.z);
         _player.transform.localScale = newSize;
         _player.GetComponent<Rigidbody2D>().gravityScale *= _gravityMultiplier;
+        ScreenTearer._Instance.ChangeSettingsChromaticAberration(1);
     }
 
     //resets gravity and scale of the BOY
     public static void ResetGravity(GameObject _player){
         _player.transform.localScale = new Vector3(1, 1, 1);
         _player.GetComponent<Rigidbody2D>().gravityScale = 1;
+        ScreenTearer._Instance.ChangeSettingsChromaticAberration(0);
     }
 
     //w.i.p. 
