@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseController : MonoBehaviour {
     
     public ControllerInput connectedController;
+    public SpriteRenderer sprR;
     public bool a_active;
     public bool b_active;
     public bool x_active;
@@ -17,6 +19,7 @@ public class BaseController : MonoBehaviour {
     protected bool grounded;
     protected Rigidbody2D rigidBody2D;
 
+
     public virtual void Start() {
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
@@ -26,6 +29,7 @@ public class BaseController : MonoBehaviour {
     }
 
     public virtual void FixedUpdate() {
+        FlipSprite();
     }
 
     public virtual void Jump(float force) {
@@ -63,4 +67,15 @@ public class BaseController : MonoBehaviour {
             grounded = false;
         }
     }
+
+    public void FlipSprite(){
+        if (inputHorizontal < 0){
+            sprR.flipX = true;
+        }
+
+        else if (inputHorizontal > 0) { 
+            sprR.flipX = false;
+        }
+    }
+
 }

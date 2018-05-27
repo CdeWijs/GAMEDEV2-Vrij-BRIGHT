@@ -10,6 +10,10 @@ TagManager:
   - Shadow
   - Monster
   - GravityWell
+  - Treecamera
+  - Mirror entrance
+  - Mirror exit
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -21,11 +25,11 @@ TagManager:
   - 
   - Bait
   - Guardian
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Monster
+  - Background
+  - trees
+  - Obstacles
+  - MirrorWorld
   - 
   - 
   - 

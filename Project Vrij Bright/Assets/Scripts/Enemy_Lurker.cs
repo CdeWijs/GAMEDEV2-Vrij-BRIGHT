@@ -9,6 +9,7 @@ public class Enemy_Lurker : EnemyBaseClass {
     public bool baitOnGround = false;
     public bool isInShadows = true;
     public float attackRadius, chaseRadius;
+    public GameObject lt;
 
     private Transform targetTransform;
     private enum LurkerStates { idle, chasePlayer, attack, chaseBait };
@@ -26,9 +27,20 @@ public class Enemy_Lurker : EnemyBaseClass {
         FindPlayer();
         FindBait();
         StateMachine(enemyState);
+        SetLight();
     }
 
-
+    public void SetLight()
+    {
+        if (isInShadows)
+        {
+            lt.SetActive(true);
+        }
+        else
+        {
+            lt.SetActive(false);
+        }
+    }
     //enemy is invulnerable in shadows
     public override void CheckHealth(){
         if (!isInShadows){

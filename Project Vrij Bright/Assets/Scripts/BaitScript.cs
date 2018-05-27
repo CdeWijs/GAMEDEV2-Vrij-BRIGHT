@@ -26,8 +26,8 @@ public class BaitScript : MonoBehaviour {
         if (guardianController.x_active || Input.GetKeyDown(KeyCode.E))
         {
             rb2d = gameObject.AddComponent<Rigidbody2D>();
-            //rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
             gameObject.AddComponent<BoxCollider2D>();
+            rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
     }
