@@ -69,11 +69,13 @@ public class BaseController : MonoBehaviour {
     }
 
     public void FlipSprite(){
-        if (inputHorizontal < 0){
+        var dir = Mathf.Sign(Input.GetAxis(connectedController.GetHorizontal()));
+        if (dir == -1) {
+
             sprR.flipX = true;
         }
 
-        else if (inputHorizontal > 0) { 
+        else if (dir == 1) { 
             sprR.flipX = false;
         }
     }

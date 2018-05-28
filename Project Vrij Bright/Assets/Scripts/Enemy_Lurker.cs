@@ -30,14 +30,11 @@ public class Enemy_Lurker : EnemyBaseClass {
         SetLight();
     }
 
-    public void SetLight()
-    {
-        if (isInShadows)
-        {
+    public void SetLight(){
+        if (isInShadows){
             lt.SetActive(true);
         }
-        else
-        {
+        else{
             lt.SetActive(false);
         }
     }
