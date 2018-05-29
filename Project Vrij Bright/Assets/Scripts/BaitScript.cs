@@ -23,12 +23,10 @@ public class BaitScript : MonoBehaviour {
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
-        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E))
-        {
+        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E)){
             rb2d = gameObject.AddComponent<Rigidbody2D>();
             gameObject.AddComponent<BoxCollider2D>();
             rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-
         }
     }
 }

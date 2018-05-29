@@ -28,9 +28,6 @@ public class Enemy_Simple : EnemyBaseClass {
         //base.Update();
         EnemyMovement();
     }
-
-
-
     //enemy moves towards target 
     public override void EnemyMovement() {
 
@@ -45,22 +42,18 @@ public class Enemy_Simple : EnemyBaseClass {
             transform.localPosition = new Vector3(x, transform.position.y, 0);
         }
 
-        else
-        {
+        else{
             Vector3 moveToPos = new Vector3(playerObject.transform.position.x, transform.position.y, 0);
             transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
         }
     }
 
-    private void FlipSprite(float _x)
-    {
-        if (_x < -4f)
-        {
+    private void FlipSprite(float _x){
+        if (_x < -4f){
             sprR.flipX = true;
         }
 
-        else if (_x > 4f)
-        {
+        else if (_x > 4f){
             sprR.flipX = false;
         }
     }

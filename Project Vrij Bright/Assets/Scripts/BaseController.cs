@@ -12,9 +12,10 @@ public class BaseController : MonoBehaviour {
     public bool x_active;
     public bool y_active;
     public bool trig_active;
-
+    
     protected float inputHorizontal;
     protected float inputVertical;
+    protected float walkSpeed;
     [SerializeField]
     protected bool grounded;
     protected Rigidbody2D rigidBody2D;
@@ -29,7 +30,7 @@ public class BaseController : MonoBehaviour {
     }
 
     public virtual void FixedUpdate() {
-        FlipSprite();
+       // FlipSprite();
     }
 
     public virtual void Jump(float force) {
@@ -38,38 +39,34 @@ public class BaseController : MonoBehaviour {
 
     protected void MoveHorizontally(float speed) {
         rigidBody2D.velocity = new Vector2(inputHorizontal * speed, rigidBody2D.velocity.y);
+        walkSpeed = rigidBody2D.velocity.x;
     }
 
     public virtual void GetInput() {
         if (connectedController != null) {
-            inputHorizontal = (Input.GetAxis(connectedController.GetHorizontal()));
-            inputVertical = (Input.GetAxis(connectedController.GetVertical()));
+            inputHorizontal = (Input.GetAxisRaw(connectedController.GetHorizontal()));
+            inputVertical = (Input.GetAxisRaw(connectedController.GetVertical()));
 
             trig_active = connectedController.Trig_CheckInput();
             a_active = connectedController.A_CheckInput();
             b_active = connectedController.B_CheckInput();
             x_active = connectedController.X_CheckInput();
             y_active = connectedController.Y_CheckInput();
+
+            if (inputHorizontal != 0)
+                FlipSprite(connectedController.GetHorizontal());
+           
         } else {
             inputHorizontal = Input.GetAxis("Horizontal");
             inputVertical = Input.GetAxis("Vertical");
+           
+            FlipSprite("Horizontal");
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.tag == "Ground") {
-            grounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) {
-        if (collision.transform.tag == "Ground") {
-            grounded = false;
-        }
-    }
-
-    public void FlipSprite(){
-        var dir = Mathf.Sign(Input.GetAxis(connectedController.GetHorizontal()));
+    public void FlipSprite(string _input){
+        var dir = Mathf.Sign(Input.GetAxis(_input));
+        Debug.Log(dir);
         if (dir == -1) {
 
             sprR.flipX = true;
@@ -77,6 +74,18 @@ public class BaseController : MonoBehaviour {
 
         else if (dir == 1) { 
             sprR.flipX = false;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision){
+        if (collision.transform.tag == "Ground"){
+            grounded = true;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision){
+        if (collision.transform.tag == "Ground"){
+            grounded = false;
         }
     }
 

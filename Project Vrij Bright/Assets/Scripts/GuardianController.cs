@@ -32,6 +32,21 @@ public class GuardianController : BaseController {
         MoveHorizontally(NormalSpeed);
     }
 
+    //override collision check so players can jump on eachothers head
+    new public void OnCollisionEnter2D(Collision2D collision){
+        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player"){
+            grounded = true;
+        }
+    }
+
+
+    //override collision check so players can jump on eachothers head
+    new public void OnCollisionExit2D(Collision2D collision){
+        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player"){
+            grounded = false;
+        }
+    }
+
     public override void GetInput() {
         base.GetInput();
 
