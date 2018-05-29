@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &348509742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Bright Soundtrack
+  Event: event:/Soundtrack/Bright Soundtrack
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -1265,12 +1265,12 @@ Prefab:
     - target: {fileID: 224903005801278326, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224903005801278326, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1669159002374444, guid: e2bfefccadc50924fac0cebfa9a0659a, type: 2}
       propertyPath: m_Layer
@@ -1897,12 +1897,17 @@ Prefab:
     - target: {fileID: 224720905211890802, guid: b74d8d0af05e64a208fed364e3307096,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224720905211890802, guid: b74d8d0af05e64a208fed364e3307096,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114910840719132486, guid: b74d8d0af05e64a208fed364e3307096,
+        type: 2}
+      propertyPath: eventRef
+      value: event:/Monsters/Monster 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b74d8d0af05e64a208fed364e3307096, type: 2}
