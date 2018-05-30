@@ -15,10 +15,29 @@ public class Enemy_Lurker : EnemyBaseClass {
     private enum LurkerStates { idle, chasePlayer, attack, chaseBait };
     private LurkerStates enemyState;
 
+	// FMOD
+	[FMODUnity.EventRef] 
+	public string eventRef;
+	private FMOD.Studio.EventInstance instance;
+	private FMOD.Studio.ParameterInstance monsterStatus;
+	private float dwalen = 0;
+	private float verschrikt = 20;
+	private float aanvallen = 30;
+	private float dood = 50;
+
+	private void Awake(){
+		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
+		instance.getParameter ("MonsterStatus", out monsterStatus);
+	}
+
     new private void Start() {
         base.Start();
        // bait = GameObject.FindGameObjectWithTag("Bait");
         enemyState = LurkerStates.idle;
+
+		// FMOD
+		instance.start ();
+		monsterStatus.setValue (dwalen);
     }
 
     //does not call base update because of statemachine
@@ -42,6 +61,7 @@ public class Enemy_Lurker : EnemyBaseClass {
     public override void CheckHealth(){
         if (!isInShadows){
             if (enemyHealth <= 0){
+				monsterStatus.setValue (dood);
                 Destroy(this.gameObject);
             }
         }
@@ -73,10 +93,13 @@ public class Enemy_Lurker : EnemyBaseClass {
 
         if (distanceToPlayer < attackRadius) {
             enemyState = LurkerStates.attack;
+			monsterStatus.setValue (aanvallen);
         } else if (distanceToPlayer < chaseRadius && !isInShadows) {
             enemyState = LurkerStates.chasePlayer;
+			monsterStatus.setValue (verschrikt);
         } else {
             enemyState = LurkerStates.idle;
+			monsterStatus.setValue (dwalen);
         }
     }
 

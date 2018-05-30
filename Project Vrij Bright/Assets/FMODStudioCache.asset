@@ -13,12 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114206524402925454}
-  - {fileID: 114412453246365986}
+  - {fileID: 114834333279421896}
+  - {fileID: 114444707019715444}
   EditorEvents:
-  - {fileID: 114375121372832264}
-  MasterBankRef: {fileID: 114412453246365986}
+  - {fileID: 114508980572715706}
+  - {fileID: 114343159354431504}
+  MasterBankRef: {fileID: 114444707019715444}
   StringsBankRef: {fileID: 114206524402925454}
-  stringsBankWriteTime: 636627088190772264
+  stringsBankWriteTime: 636632352605425059
   cacheVersion: 2
 --- !u!114 &114062255288203542
 MonoBehaviour:
@@ -54,12 +56,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Desktop\Master Bank.strings.bank
-  lastModified: 636627088190772264
+  lastModified: 636632352605425059
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 728
+    Value: 854
   Exists: 1
+--- !u!114 &114241299954351446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/ProjectVrij_Bright/Project Vrij
+    Bright/Assets/FMOD/Desktop/Monsters Bank.bank
+  lastModified: 636632036730000000
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1836640
+  Exists: 1
+--- !u!114 &114343159354431504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtrack/Bright Soundtrack
+  guid: bf036c28b8381f458b614761bfa6f035
+  Banks:
+  - {fileID: 114444707019715444}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 136000
 --- !u!114 &114375121372832264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +163,25 @@ MonoBehaviour:
   - Name: 
     Value: 1450464
   Exists: 1
+--- !u!114 &114444707019715444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\gamef\Documents\GitHub\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Master
+    Bank.bank
+  lastModified: 636632352605404315
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2242880
+  Exists: 1
 --- !u!114 &114462641733906098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +219,44 @@ MonoBehaviour:
   - Name: 
     Value: 2242880
   Exists: 1
+--- !u!114 &114508980572715706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Monsters/Monster 5
+  guid: 4b658cc995f7c34e9fbeb4c947fb45e3
+  Banks:
+  - {fileID: 114834333279421896}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114685547224759112}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 115265
+--- !u!114 &114685547224759112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterStatus
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114823559523720400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,4 +315,57 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 1450464
+  Exists: 1
+--- !u!114 &114834333279421896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\gamef\Documents\GitHub\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Monsters
+    Bank.bank
+  lastModified: 636632352605549487
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1044384
+  Exists: 1
+--- !u!114 &114849567012874346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterStatus
+  Min: 0
+  Max: 100
+  Default: 0
+--- !u!114 &114923797553682034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/ProjectVrij_Bright/Project Vrij
+    Bright/Assets/FMOD/Desktop/Master Bank.bank
+  lastModified: 636632036710000000
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2242880
   Exists: 1

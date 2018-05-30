@@ -5,7 +5,7 @@ public class BoyController : BaseController
 
     //basevalues for resetting physics
     public static float NormalSpeed = 8;
-    public static float normalJump = 5;
+    public static float normalJump = 8;
 
     public float currentSpeed = 8;
     public float currentJump = 5;
@@ -111,7 +111,7 @@ public class BoyController : BaseController
         else if (collision.tag == "GravityWell" && this.gameObject.layer != 14)
         {
             SetAllInputFalse();
-            PhysicsScript.GravityIncrease(this.gameObject, 0.5f, 2f);
+            PhysicsScript.GravityIncrease(this.gameObject, 0.5f, 1.5f);
             currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.45f);
         }
 
