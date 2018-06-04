@@ -25,18 +25,17 @@ public class Enemy_Lurker : EnemyBaseClass {
 	private float aanvallen = 30;
 	private float dood = 50;
 
-	private void Awake(){
-		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
-		instance.getParameter ("MonsterStatus", out monsterStatus);
-	}
-
     new private void Start() {
         base.Start();
        // bait = GameObject.FindGameObjectWithTag("Bait");
         enemyState = LurkerStates.idle;
 
 		// FMOD
-		instance.start ();
+		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
+		FMODUnity.RuntimeManager.PlayOneShotAttached (eventRef, this.gameObject);
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (instance, this.gameObject.transform, rb2d);
+		instance.start ();;
+		instance.getParameter ("MonsterStatus", out monsterStatus);
 		monsterStatus.setValue (dwalen);
     }
 
