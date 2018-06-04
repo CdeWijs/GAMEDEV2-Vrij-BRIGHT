@@ -42,6 +42,15 @@ public class BaseController : MonoBehaviour {
         walkSpeed = rigidBody2D.velocity.x;
     }
 
+    public GameObject RayCaster(Vector2 _position, Vector2 _direction, float _distance) {
+        RaycastHit2D hit = Physics2D.Raycast(_position, _direction, _distance);
+        if (hit) {
+            return hit.transform.gameObject;
+        }
+        return null;
+        
+    }
+
     public virtual void GetInput() {
         if (connectedController != null) {
             inputHorizontal = (Input.GetAxisRaw(connectedController.GetHorizontal()));

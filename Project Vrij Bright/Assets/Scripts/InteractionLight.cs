@@ -8,6 +8,6 @@ public class InteractionLight : MonoBehaviour {
     public float multiplier;
 
     private void Update(){
-        lt.cookieSize = multiplier *  Mathf.Abs(Mathf.Cos(Time.time * 2.5f));
+        lt.intensity = multiplier *  Mathf.Abs(Mathf.Cos(Time.time * 2.5f));
     }
 }

@@ -5,23 +5,20 @@ using UnityEngine;
 public class Interaction : MonoBehaviour {
 
     public GameObject buttonImage;
-    public string tag;
+    public GameObject other;
+    public string _tag;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == tag)
-        {
-            buttonImage.SetActive(true);
-        }
+    public void SetButtonActive(bool _bool) {
+        buttonImage.SetActive(_bool);
+
     }
 
-    
+    public void Teleport(GameObject _player) {
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == tag)
-        {
-            buttonImage.SetActive(false);
-        }
+        _player.transform.position = new Vector3(
+             other.transform.position.x,
+            _player.transform.position.y,
+            _player.transform.position.z);
     }
 }
+
