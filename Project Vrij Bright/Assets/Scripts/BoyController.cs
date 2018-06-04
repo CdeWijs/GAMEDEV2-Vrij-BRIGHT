@@ -12,6 +12,11 @@ public class BoyController : BaseController {
     public float currentJump = 5;
     //private string[] jumpableLayers;
 
+    public float jumpHeight = 4;
+    public float jumpVelocity;
+    public float timeToJumpApex = .4f;
+    public float gravity = 4f;
+
     //animator settings
     public Animator boyAnimator;
     private bool Scared = false;
@@ -19,12 +24,9 @@ public class BoyController : BaseController {
     private bool Walking = false;
     private bool Jumping = false;
     public bool coolingDown = false;
-
-
-    public float jumpHeight = 4;
-    public float jumpVelocity;
-    public float timeToJumpApex = .4f;
-    public float gravity = 4f;
+    
+    private float attackRate = 0.8f;
+    private float nextAttack;
 
     public override void Start() {
         base.Start();
@@ -44,9 +46,7 @@ public class BoyController : BaseController {
             transform.Translate(JumpDir() * Time.deltaTime);
         }
     }
-
-  
-
+    
     public Transform raycastpos;
 
     private Vector3 JumpDir() {
@@ -88,8 +88,7 @@ public class BoyController : BaseController {
 
         return null;
     }
-
-
+    
     public override void FixedUpdate() {
         base.FixedUpdate();
 
@@ -101,30 +100,30 @@ public class BoyController : BaseController {
             SetAnimatorBool("Walking", false);
         }
     }
-
+    
     public override void GetInput() {
         base.GetInput();
 
         if (connectedController != null) {
             if (a_active && Grounded()) {
-                           //Jump(normalJump);
-                
+                //Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
-
-            if (x_active) {
+            if (x_active && Time.time > nextAttack) {
                 StartCoroutine(PlayAnim("Attacking"));
                 BasicAttack();
+                nextAttack = Time.time + attackRate;
             }
-
         } else {
             if (Input.GetKeyDown(KeyCode.Space) && Grounded()) {
                 Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
-
-            if (Input.GetKeyDown(KeyCode.E)) {
+            if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack) {
                 StartCoroutine(PlayAnim("Attacking"));
+                BasicAttack();
+                nextAttack = Time.time + attackRate;
+                Debug.Log("attack!");
             }
         }
     }

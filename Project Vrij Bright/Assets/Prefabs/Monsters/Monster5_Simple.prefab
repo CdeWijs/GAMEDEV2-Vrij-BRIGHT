@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 212929967580001756}
   - component: {fileID: 58085535085202348}
   m_Layer: 0
-  m_Name: Simple enemy
+  m_Name: Monster5_Simple
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,9 +182,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1104489343266900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.02, y: -0.36567008, z: -3.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.152206, y: -10.0617075, z: 0.63699454}
+  m_LocalScale: {x: 1.3122286, y: 1.3122286, z: 1.3122286}
   m_Children:
   - {fileID: 4067255307272370}
   - {fileID: 224326683348984238}
@@ -210,7 +210,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 1
 --- !u!58 &58085535085202348
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -327,19 +327,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab1883810d95ec4f860d186a60ec837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
-  moveSpeed: 10
+  enemyHealth: 50
+  moveSpeed: 0
   rb2d: {fileID: 0}
   playerObject: {fileID: 0}
   enemyHealthSlider: {fileID: 114384572146038112}
   sprR: {fileID: 212179160557003328}
   healthSlider: {fileID: 114384572146038112}
-  chaseRadius: 2
+  chaseRadius: 0
   attackRadius: 0
-  amplitudeX: 5
-  amplitudeY: 2
-  omegaX: 1
-  omegaY: 2
+  amplitudeX: 0
+  amplitudeY: 0
+  omegaX: 0
+  omegaY: 0
 --- !u!114 &114285781778052230
 MonoBehaviour:
   m_ObjectHideFlags: 1
