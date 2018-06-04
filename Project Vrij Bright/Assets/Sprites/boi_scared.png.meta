@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65a35a2aba54ec24eb428d70f6e78794
-timeCreated: 1527622248
+timeCreated: 1527749311
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -125,20 +125,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: boi_scared_2
-      rect:
-        serializedVersion: 2
-        x: 1049
-        y: 1506
-        width: 186
-        height: 148
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: boi_scared_3
       rect:
         serializedVersion: 2
@@ -160,34 +146,6 @@ TextureImporter:
         y: 849
         width: 443
         height: 783
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boi_scared_5
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 1169
-        width: 168
-        height: 113
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boi_scared_6
-      rect:
-        serializedVersion: 2
-        x: 2366
-        y: 649
-        width: 36
-        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GuardianController : BaseController {
 
-    public const float NormalSpeed = 8;
+    public const float NormalSpeed = 2;
     public const float JumpForce = 5;
 
     private int flutterAmount = 5;
@@ -46,10 +46,6 @@ public class GuardianController : BaseController {
             grounded = false;
         }
     }
-
-
-
-
 
     public override void GetInput() {
         base.GetInput();

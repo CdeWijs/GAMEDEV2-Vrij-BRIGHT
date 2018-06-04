@@ -26,7 +26,7 @@ public class Enemy_Simple : EnemyBaseClass {
     }
     new public void Update(){
         //base.Update();
-        EnemyMovement();
+        //EnemyMovement();
     }
     //enemy moves towards target 
     public override void EnemyMovement() {
@@ -60,7 +60,7 @@ public class Enemy_Simple : EnemyBaseClass {
 
     public void OnCollisionEnter2D(Collision2D collision){
         if (collision.transform.tag == "Player"){
-            playerObject.GetComponent<BoyClass>().health -= 15;
+            playerObject.GetComponent<BoyClass>().health -= 10;
         }
     }
 }
