@@ -8,7 +8,6 @@ public class Enemy_Lurker : EnemyBaseClass {
     public GameObject bait;
     public bool baitOnGround = false;
     public bool isInShadows = true;
-    public float attackRadius, chaseRadius;
     public GameObject lt;
 
     private Transform targetTransform;
@@ -33,7 +32,7 @@ public class Enemy_Lurker : EnemyBaseClass {
 		// FMOD
 		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
 		FMODUnity.RuntimeManager.PlayOneShotAttached (eventRef, this.gameObject);
-		FMODUnity.RuntimeManager.AttachInstanceToGameObject (instance, this.gameObject.transform, rb2d);
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (instance, this.gameObject.transform, rigidBody2D);
 		instance.start ();;
 		instance.getParameter ("MonsterStatus", out monsterStatus);
 		monsterStatus.setValue (dwalen);

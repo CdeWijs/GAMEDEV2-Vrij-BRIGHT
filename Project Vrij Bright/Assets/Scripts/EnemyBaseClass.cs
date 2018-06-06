@@ -9,15 +9,16 @@ using UnityEngine.UI;
 public class EnemyBaseClass : MonoBehaviour {
 
     public int enemyHealth;
-    public float moveSpeed;
+    public float moveSpeed, chaseSpeed;
+    public float alertRadius, chaseRadius, attackRadius;
 
-    public Rigidbody2D rb2d;
+    public Rigidbody2D rigidBody2D;
     public GameObject playerObject;
 
     public Slider enemyHealthSlider;
 
     public void Start() {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
         enemyHealthSlider.maxValue = enemyHealth;
         enemyHealthSlider.value = enemyHealth;
