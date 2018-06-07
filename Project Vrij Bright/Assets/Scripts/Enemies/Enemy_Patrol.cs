@@ -41,28 +41,6 @@ public class Enemy_Patrol : EnemyBaseClass {
 
         StateMachine(state);
     }
-    
-    public override void FindPlayer() {
-        base.FindPlayer();
-        
-        if (playerObject == null) {
-            state = PatrolStates.IDLE;
-            Debug.Log("No player object!");
-            return;
-        }
-
-        float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
-        Debug.Log(state);
-        if (_distanceToPlayer < attackRadius) {
-            state = PatrolStates.ATTACK;
-        } else if (_distanceToPlayer < chaseRadius) {
-            state = PatrolStates.CHASE;
-        } else if (_distanceToPlayer < alertRadius) {
-            state = PatrolStates.ALERT;
-        } else {
-            state = PatrolStates.IDLE;
-        }
-    }
 
     public override void CheckHealth() {
         if (enemyHealth <= 0) {
@@ -133,13 +111,5 @@ public class Enemy_Patrol : EnemyBaseClass {
         } else if (_distanceToPlayer < _temp) {
             state = PatrolStates.CHASE;
         }
-    }
-
-    private void ChaseTarget(Transform _target) {
-        transform.position = Vector2.MoveTowards(transform.position, _target.position, chaseSpeed * Time.deltaTime);
-    }
-
-    private void Attack() {
-        playerObject.GetComponent<BoyClass>().health -= 1;
     }
 }

@@ -79,30 +79,6 @@ public class Enemy_Lurker : EnemyBaseClass {
         transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
     }
 
-    //checks if player is in range for chasing or attacking
-    public override void FindPlayer() {
-        base.FindPlayer();
-
-        //sets enemy back to idle when player is killed, can be used if we decide to add some sort of player revival 
-        if (playerObject == null) {
-            enemyState = LurkerStates.idle;
-            return;
-        }
-
-        float distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
-
-        if (distanceToPlayer < attackRadius) {
-            enemyState = LurkerStates.attack;
-			monsterStatus.setValue (aanvallen);
-        } else if (distanceToPlayer < chaseRadius && !isInShadows) {
-            enemyState = LurkerStates.chasePlayer;
-			monsterStatus.setValue (verschrikt);
-        } else {
-            enemyState = LurkerStates.idle;
-			monsterStatus.setValue (dwalen);
-        }
-    }
-
     //checks if bait is on the ground and if enemy should come out of hiding
     private void FindBait() {
         if (bait.gameObject == null) {
@@ -140,11 +116,6 @@ public class Enemy_Lurker : EnemyBaseClass {
         enemyState = LurkerStates.idle;
         transform.position = bait.transform.position;
         Destroy(bait);
-    }
-
-    //direct reference to boy's health, needs to be replace for actual attacking
-    private void Attack() {
-        playerObject.GetComponent<BoyClass>().health -= 1;
     }
 
     //state machine for lurker enemy

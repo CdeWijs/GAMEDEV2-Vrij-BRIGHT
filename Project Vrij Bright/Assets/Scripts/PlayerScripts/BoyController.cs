@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class BoyController : BaseController {
+
     public Transform raycastPos;
-    Vector3 moveDirection;
+    public Transform raycastpos;
 
     //basevalues for resetting physics
-    public static float NormalSpeed = 0.5f;
+    public static float normalSpeed = 0.5f;
     public static float normalJump = 6;
-
     public float currentSpeed = 0.5f;
     public float currentJump = 5;
     //private string[] jumpableLayers;
@@ -16,14 +17,15 @@ public class BoyController : BaseController {
     public float jumpVelocity;
     public float timeToJumpApex = .4f;
     public float gravity = 4f;
+    private Vector3 moveDirection;
 
     //animator settings
     public Animator boyAnimator;
-    private bool Scared = false;
-    private bool Attacking = false;
-    private bool Walking = false;
-    private bool Jumping = false;
     public bool coolingDown = false;
+    private bool scared = false;
+    private bool attacking = false;
+    private bool walking = false;
+    private bool jumping = false;
     
     private float attackRate = 0.8f;
     private float nextAttack;
@@ -34,6 +36,7 @@ public class BoyController : BaseController {
         gravity = (2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2) * 0.2f;
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         moveDirection.y = -1;
+
         // Check if Joystick exists
         if (Input.GetJoystickNames().Length > 0) {
             connectedController = new Joystick1();
@@ -46,11 +49,19 @@ public class BoyController : BaseController {
             transform.Translate(JumpDir() * Time.deltaTime);
         }
     }
-    
-    public Transform raycastpos;
+
+    public override void FixedUpdate() {
+        base.FixedUpdate();
+        MoveHorizontally(currentSpeed);
+        if (walkSpeed != 0) {
+            SetAnimatorBool("Walking", true);
+        } else {
+            SetAnimatorBool("Walking", false);
+        }
+    }
 
     private Vector3 JumpDir() {
-        if (Grounded()) {
+        if (IsGrounded()) {
             moveDirection = new Vector3(0, 0, 0);
             moveDirection = transform.TransformDirection(moveDirection);
 
@@ -61,22 +72,22 @@ public class BoyController : BaseController {
             }
         }
 
-        if (!Grounded()) {
+        if (!IsGrounded()) {
             moveDirection.y -= gravity * Time.deltaTime;
         }
         return moveDirection;
         //transform.Translate(moveDirection * Time.deltaTime);
     }
 
-    private bool Grounded() {
+    private bool IsGrounded() {
         GameObject hitObject = RayCaster2D(raycastpos.position, Vector2.down, 0.05f);
         if (hitObject != null) {
            if  (hitObject.tag == "Ground") {
-                Debug.Log("grounded");
+                Debug.Log("Boy is grounded.");
                 return true;
             }
         }
-        Debug.Log("not grounded");
+        Debug.Log("Boy is not grounded.");
         return false;
     }
 
@@ -85,27 +96,14 @@ public class BoyController : BaseController {
         if (hit) {
             return hit.transform.gameObject;
         }
-
         return null;
-    }
-    
-    public override void FixedUpdate() {
-        base.FixedUpdate();
-
-        MoveHorizontally(currentSpeed);
-        //set animations if player is walking
-        if (walkSpeed != 0) {
-            SetAnimatorBool("Walking", true);
-        } else {
-            SetAnimatorBool("Walking", false);
-        }
     }
     
     public override void GetInput() {
         base.GetInput();
 
         if (connectedController != null) {
-            if (a_active && Grounded()) {
+            if (a_active && IsGrounded()) {
                 //Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
@@ -115,7 +113,7 @@ public class BoyController : BaseController {
                 nextAttack = Time.time + attackRate;
             }
         } else {
-            if (Input.GetKeyDown(KeyCode.Space) && Grounded()) {
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
                 Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
@@ -154,11 +152,11 @@ public class BoyController : BaseController {
         if (collision.tag == "Shadow" && this.gameObject.layer != 14) {
             SetAnimatorBool("Scared", true);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.25f);
+            currentSpeed = PhysicsScript.EffectedFloat(normalSpeed, 0.25f);
         } else if (collision.tag == "GravityWell" && this.gameObject.layer != 14) {
             SetAllInputFalse();
             PhysicsScript.GravityIncrease(this.gameObject, 0.5f, 1.5f);
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.45f);
+            currentSpeed = PhysicsScript.EffectedFloat(normalSpeed, 0.45f);
         }
 
           //makes player visible when entering mirror in mirrorworld
@@ -172,11 +170,11 @@ public class BoyController : BaseController {
         if (collision.transform.tag == "Shadow") {
             SetAnimatorBool("Scared", false);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+            currentSpeed = PhysicsScript.EffectedFloat(normalSpeed);
         } else if (collision.tag == "GravityWell") {
             SetAllInputFalse();
             PhysicsScript.ResetGravity(this.gameObject);
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+            currentSpeed = PhysicsScript.EffectedFloat(normalSpeed);
         }
 
           //makes player invisible when leaving in mirrorworld

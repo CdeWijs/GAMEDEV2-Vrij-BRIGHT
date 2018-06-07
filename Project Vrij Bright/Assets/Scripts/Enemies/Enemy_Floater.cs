@@ -4,19 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Floater : EnemyBaseClass {
-
-    enum FloaterStates {
-        IDLE,
-        ALERT,
-        CHASE,
-        ATTACK,
-        DEAD
-    }
-
+    
     public float floatindDistanceX;
     public float floatingDistanceY;
-
-    private FloaterStates state;
 
     private float startTimeX;
     private Vector3 currentPositionX;
@@ -31,8 +21,7 @@ public class Enemy_Floater : EnemyBaseClass {
 
     private new void Start() {
         base.Start();
-
-        state = FloaterStates.IDLE;
+        currentState = EnemyStates.IDLE;
         InitFloatVariables();
     }
 
@@ -50,61 +39,38 @@ public class Enemy_Floater : EnemyBaseClass {
 
     private new void Update() {
         base.Update();
-
-        StateMachine(state);
-    }
-
-    public override void FindPlayer() {
-        base.FindPlayer();
-
-        if (playerObject == null) {
-            state = FloaterStates.IDLE;
-            Debug.Log("No player object!");
-            return;
-        }
-
-        float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
-        Debug.Log(state);
-        if (_distanceToPlayer < attackRadius) {
-            state = FloaterStates.ATTACK;
-        } else if (_distanceToPlayer < chaseRadius) {
-            state = FloaterStates.CHASE;
-        } else if (_distanceToPlayer < alertRadius) {
-            state = FloaterStates.ALERT;
-        } else {
-            state = FloaterStates.IDLE;
-        }
+        StateMachine(currentState);
     }
 
     public override void CheckHealth() {
         if (enemyHealth <= 0) {
             Destroy(this.gameObject);
-            state = FloaterStates.DEAD;
+            currentState = EnemyStates.DEAD;
         }
     }
 
-    private void StateMachine(FloaterStates _state) {
+    private void StateMachine(EnemyStates _state) {
         switch (_state) {
-            case FloaterStates.IDLE:
+            case EnemyStates.IDLE:
                 transform.position = FloatHorizontally() + FloatVertically();
                 break;
 
-            case FloaterStates.ALERT:
+            case EnemyStates.ALERT:
                 Alert();
                 isFloating = false;
                 break;
 
-            case FloaterStates.CHASE:
+            case EnemyStates.CHASE:
                 ChaseTarget(playerObject.transform);
                 isFloating = false;
                 break;
 
-            case FloaterStates.ATTACK:
+            case EnemyStates.ATTACK:
                 Attack();
                 isFloating = false;
                 break;
 
-            case FloaterStates.DEAD:
+            case EnemyStates.DEAD:
                 break;
 
             default:
@@ -171,18 +137,11 @@ public class Enemy_Floater : EnemyBaseClass {
         float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
         float _temp = _distanceToPlayer;
 
+        // Check if player comes closer >> CHASE, or walks away >> IDLE
         if (_distanceToPlayer > _temp) {
-            state = FloaterStates.IDLE;
+            currentState = EnemyStates.IDLE;
         } else if (_distanceToPlayer < _temp) {
-            state = FloaterStates.CHASE;
+            currentState = EnemyStates.CHASE;
         }
-    }
-
-    private void ChaseTarget(Transform _target) {
-        transform.position = Vector2.MoveTowards(transform.position, _target.position, chaseSpeed * Time.deltaTime);
-    }
-
-    private void Attack() {
-        playerObject.GetComponent<BoyClass>().health -= 1;
     }
 }

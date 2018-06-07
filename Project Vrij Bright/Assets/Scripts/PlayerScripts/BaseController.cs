@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BaseController : MonoBehaviour {
-    
+
     public ControllerInput connectedController;
     public SpriteRenderer sprR;
     public bool a_active;
@@ -12,7 +12,7 @@ public class BaseController : MonoBehaviour {
     public bool x_active;
     public bool y_active;
     public bool trig_active;
-    
+
     protected float inputHorizontal;
     protected float inputVertical;
     protected float walkSpeed;
@@ -30,7 +30,7 @@ public class BaseController : MonoBehaviour {
     }
 
     public virtual void FixedUpdate() {
-       // FlipSprite();
+        // FlipSprite();
     }
 
     public virtual void Jump(float force) {
@@ -43,12 +43,12 @@ public class BaseController : MonoBehaviour {
     }
 
     public GameObject RayCaster(Vector2 _position, Vector2 _direction, float _distance) {
-        RaycastHit2D hit = Physics2D.Raycast(_position, _direction, _distance);
-        if (hit) {
-            return hit.transform.gameObject;
+        RaycastHit2D _hit = Physics2D.Raycast(_position, _direction, _distance);
+        if (_hit) {
+            return _hit.transform.gameObject;
         }
         return null;
-        
+
     }
 
     public virtual void GetInput() {
@@ -64,36 +64,32 @@ public class BaseController : MonoBehaviour {
 
             if (inputHorizontal != 0)
                 FlipSprite(connectedController.GetHorizontal());
-           
+
         } else {
             inputHorizontal = Input.GetAxis("Horizontal");
             inputVertical = Input.GetAxis("Vertical");
-           
+
             FlipSprite("Horizontal");
         }
     }
 
-    public void FlipSprite(string _input){
-        var dir = Mathf.Sign(Input.GetAxis(_input));
-        Debug.Log(dir);
-        if (dir == -1) {
-
+    public void FlipSprite(string _input) {
+        float _direction = Mathf.Sign(Input.GetAxis(_input));
+        if (_direction == -1) {
             sprR.flipX = true;
-        }
-
-        else if (dir == 1) { 
+        } else if (_direction == 1) {
             sprR.flipX = false;
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision){
-        if (collision.transform.tag == "Ground"){
+    public void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.tag == "Ground") {
             grounded = true;
         }
     }
 
-    public void OnCollisionExit2D(Collision2D collision){
-        if (collision.transform.tag == "Ground"){
+    public void OnCollisionExit2D(Collision2D collision) {
+        if (collision.transform.tag == "Ground") {
             grounded = false;
         }
     }
