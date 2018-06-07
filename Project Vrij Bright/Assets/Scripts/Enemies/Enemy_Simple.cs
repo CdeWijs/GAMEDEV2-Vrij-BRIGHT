@@ -8,10 +8,7 @@ public class Enemy_Simple : EnemyBaseClass {
     private Transform targetTransform;
     public SpriteRenderer sprR;
     public Slider healthSlider;
-
-    public float chaseRadius;
-    public float attackRadius;
-   
+    
     public float amplitudeX = 10.0f;
     public float amplitudeY = 5.0f;
     public float omegaX = 1.0f;
