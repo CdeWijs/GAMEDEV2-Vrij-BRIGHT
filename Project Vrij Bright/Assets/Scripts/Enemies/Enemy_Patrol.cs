@@ -67,6 +67,7 @@ public class Enemy_Patrol : EnemyBaseClass {
     public override void CheckHealth() {
         if (enemyHealth <= 0) {
             Destroy(this.gameObject);
+            state = PatrolStates.DEAD;
         }
     }
 
