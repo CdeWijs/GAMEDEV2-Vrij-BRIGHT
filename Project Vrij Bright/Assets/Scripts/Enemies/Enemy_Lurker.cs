@@ -45,6 +45,8 @@ public class Enemy_Lurker : EnemyBaseClass {
         FindBait();
         StateMachine(enemyState);
         SetLight();
+
+		instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
     }
 
     public void SetLight(){
