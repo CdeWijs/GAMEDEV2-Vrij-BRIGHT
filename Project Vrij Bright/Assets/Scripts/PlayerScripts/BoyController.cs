@@ -17,6 +17,13 @@ public class BoyController : BaseController {
     public float jumpVelocity;
     public float timeToJumpApex = .4f;
     public float gravity = 4f;
+
+	// FMOD
+	[FMODUnity.EventRef]
+	public string eventRef;
+	private FMOD.Studio.EventInstance instance;
+	private bool isPlayingFootsteps = false;
+
     private Vector3 moveDirection;
 
     //animator settings
@@ -41,6 +48,7 @@ public class BoyController : BaseController {
         if (Input.GetJoystickNames().Length > 0) {
             connectedController = new Joystick1();
         }
+		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
     }
 
     public override void Update() {
@@ -54,9 +62,16 @@ public class BoyController : BaseController {
         base.FixedUpdate();
         MoveHorizontally(currentSpeed);
         if (walkSpeed != 0) {
+			if (!isPlayingFootsteps) {
+				instance.start ();
+				isPlayingFootsteps = true;
+			}
             SetAnimatorBool("Walking", true);
+
         } else {
             SetAnimatorBool("Walking", false);
+			instance.stop (FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			isPlayingFootsteps = false;
         }
     }
 

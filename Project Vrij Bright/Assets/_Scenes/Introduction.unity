@@ -893,12 +893,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0be67d781a9cf42a1368473281d512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   enemyHealth: 0
   moveSpeed: 0
   chaseSpeed: 0
   alertRadius: 0
   chaseRadius: 0
   attackRadius: 0
+  attackRate: 1
+  nextAttack: 0
   rigidBody2D: {fileID: 0}
   playerObject: {fileID: 0}
   enemyHealthSlider: {fileID: 0}
@@ -1956,6 +1959,11 @@ Prefab:
       propertyPath: raycastpos
       value: 
       objectReference: {fileID: 840365043}
+    - target: {fileID: 114476163156686302, guid: e2bfefccadc50924fac0cebfa9a0659a,
+        type: 2}
+      propertyPath: eventRef
+      value: event:/Boy/Boy Voetstappen
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bfefccadc50924fac0cebfa9a0659a, type: 2}
   m_IsPrefabParent: 0
