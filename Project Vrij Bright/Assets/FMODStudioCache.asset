@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 114589699464292710}
   MasterBankRef: {fileID: 114700654050460106}
   StringsBankRef: {fileID: 114206524402925454}
-  stringsBankWriteTime: 636639897910000000
+  stringsBankWriteTime: 636641487290000000
   cacheVersion: 2
 --- !u!114 &114027199938712558
 MonoBehaviour:
@@ -246,6 +246,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114150253526095174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114178818853063438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +280,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114403861711042780}
+  - {fileID: 114862897201540698}
   MinDistance: 0
   MaxDistance: 0
   Length: 122400
@@ -296,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets/FMOD/Desktop/Master Bank.strings.bank
-  lastModified: 636639897910000000
+  lastModified: 636641487290000000
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -393,6 +408,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
+--- !u!114 &114248877616390244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterStatus
   Min: 0
   Max: 100
   Default: 0
@@ -916,6 +946,21 @@ MonoBehaviour:
   - Name: 
     Value: 728
   Exists: 1
+--- !u!114 &114484467382850020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterStatus
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114487062926039322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,7 +1033,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114587446941219774}
+  - {fileID: 114484467382850020}
   MinDistance: 1.2
   MaxDistance: 20
   Length: 115265
@@ -1005,7 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/ProjectVrij_Bright/Project Vrij
     Bright/Assets/FMOD/Desktop/Monsters Bank.bank
-  lastModified: 636639897910000000
+  lastModified: 636641487290000000
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -1071,6 +1116,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114572034133312600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 100
 --- !u!114 &114587446941219774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,7 +1406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: /Users/Bastiaan/Desktop/Blok 2d/Project Vrij/ProjectVrij_Bright/Project Vrij
     Bright/Assets/FMOD/Desktop/Master Bank.bank
-  lastModified: 636639897910000000
+  lastModified: 636641487290000000
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -1371,7 +1431,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114596994872324334}
+  - {fileID: 114572034133312600}
   MinDistance: 0
   MaxDistance: 0
   Length: 118961
@@ -1439,6 +1499,21 @@ MonoBehaviour:
   - Name: 
     Value: 1044384
   Exists: 0
+--- !u!114 &114770148337987306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114773022827652876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,6 +1746,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114862897201540698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 100
 --- !u!114 &114864474286514350
 MonoBehaviour:
   m_ObjectHideFlags: 0
