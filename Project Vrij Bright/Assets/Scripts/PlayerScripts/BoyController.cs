@@ -17,6 +17,17 @@ public class BoyController : BaseController {
     public float timeToJumpApex = .4f;
     public float gravity = 4f;
 
+<<<<<<< HEAD
+=======
+    // FMOD
+    [FMODUnity.EventRef]
+    public string eventRef;
+    private FMOD.Studio.EventInstance instance;
+    private bool isPlayingFootsteps = false;
+
+    private Vector3 moveDirection;
+
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
     //animator settings
     public Animator boyAnimator;
     private bool Scared = false;
@@ -24,6 +35,13 @@ public class BoyController : BaseController {
     private bool Walking = false;
     private bool Jumping = false;
     public bool coolingDown = false;
+<<<<<<< HEAD
+=======
+    private bool scared = false;
+    private bool attacking = false;
+    private bool walking = false;
+    private bool jumping = false;
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
 
     private float attackRate = 0.8f;
     private float nextAttack;
@@ -51,6 +69,11 @@ public class BoyController : BaseController {
 
         instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
         }
+<<<<<<< HEAD
+=======
+        instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
+    }
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
 
     public override void Update() {
         base.Update();
@@ -63,13 +86,66 @@ public class BoyController : BaseController {
         MoveHorizontally(currentSpeed);
         //set animations if player is walking
         if (walkSpeed != 0) {
+<<<<<<< HEAD
             SetAnimatorBool("Walking", true);
             } else {
             SetAnimatorBool("Walking", false);
+=======
+            if (!isPlayingFootsteps && IsGrounded()) {
+                instance.start();
+                isPlayingFootsteps = true;
+            }
+            SetAnimatorBool("Walking", true);
+        } else {
+            SetAnimatorBool("Walking", false);
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isPlayingFootsteps = false;
+        }
+
+        if (!IsGrounded()) {
+            SetAnimatorBool("Walking", false);
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isPlayingFootsteps = false;
+        }
+    }
+
+    private Vector3 JumpDir() {
+        if (IsGrounded()) {
+            moveDirection = new Vector3(0, 0, 0);
+            moveDirection = transform.TransformDirection(moveDirection);
+
+            moveDirection *= 1.5f;
+
+            if (b_active) {
+                moveDirection.y = jumpHeight;
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
             }
         }
 
 
+<<<<<<< HEAD
+=======
+    private bool IsGrounded() {
+        GameObject hitObject = RayCaster2D(raycastpos.position, Vector2.down, 0.05f);
+        if (hitObject != null) {
+            if (hitObject.tag == "Ground") {
+                Debug.Log("Boy is grounded.");
+                return true;
+            }
+        }
+        Debug.Log("Boy is not grounded.");
+        return false;
+    }
+
+    private GameObject RayCaster2D(Vector2 _origin, Vector2 _dir, float _dist) {
+        RaycastHit2D hit = Physics2D.Raycast(_origin, _dir, _dist);
+        if (hit) {
+            return hit.transform.gameObject;
+        }
+        return null;
+    }
+
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
     public override void GetInput() {
         base.GetInput();
 

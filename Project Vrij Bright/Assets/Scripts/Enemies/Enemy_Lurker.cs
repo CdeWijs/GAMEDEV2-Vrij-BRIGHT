@@ -29,6 +29,7 @@ public class Enemy_Lurker : EnemyBaseClass {
         // bait = GameObject.FindGameObjectWithTag("Bait");
         enemyState = LurkerStates.idle;
 
+<<<<<<< HEAD
         // FMOD
         instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
         FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
@@ -37,6 +38,16 @@ public class Enemy_Lurker : EnemyBaseClass {
         instance.getParameter("MonsterStatus", out monsterStatus);
         monsterStatus.setValue(dwalen);
         }
+=======
+		// FMOD
+		instance = FMODUnity.RuntimeManager.CreateInstance (eventRef);
+		FMODUnity.RuntimeManager.PlayOneShotAttached (eventRef, this.gameObject);
+		FMODUnity.RuntimeManager.AttachInstanceToGameObject (instance, this.gameObject.transform, rigidBody2D);
+		instance.start ();
+		instance.getParameter ("MonsterStatus", out monsterStatus);
+		monsterStatus.setValue (dwalen);
+    }
+>>>>>>> 47d618df75f2a5558a5a7259d4df0b9bcc3c35bb
 
     //does not call base update because of statemachine
     new private void Update() {
