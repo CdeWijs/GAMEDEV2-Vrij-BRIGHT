@@ -14,7 +14,7 @@ public class EnemyBaseClass : MonoBehaviour {
         CHASE,
         ATTACK,
         DEAD
-    }
+        }
 
     public EnemyStates currentState;
     public int enemyHealth;
@@ -26,65 +26,65 @@ public class EnemyBaseClass : MonoBehaviour {
     public Rigidbody2D rigidBody2D;
     public GameObject playerObject;
     public Slider enemyHealthSlider;
-    
+
     public void Start() {
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        enemyHealthSlider.maxValue = enemyHealth;
-        enemyHealthSlider.value = enemyHealth;
-    }
+        // enemyHealthSlider.maxValue = enemyHealth;
+        // enemyHealthSlider.value = enemyHealth;
+        }
 
     public void Update() {
         EnemyMovement();
         FindPlayer();
         CheckHealth();
-    }
+        }
 
     public virtual void TakeDamage(int amount) {
         enemyHealthSlider.value -= amount;
-        if (enemyHealthSlider.value <= 0){
+        if (enemyHealthSlider.value <= 0) {
             Destroy(gameObject);
+            }
         }
-    }
 
     public virtual void EnemyMovement() {
         //add behaviour on derriving enemy
-    }
+        }
 
     public virtual void FindPlayer() {
         if (playerObject == null) {
             currentState = EnemyStates.IDLE;
-        } else {
+            } else {
             float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
             if (_distanceToPlayer < attackRadius) {
                 currentState = EnemyStates.ATTACK;
-            } else if (_distanceToPlayer < chaseRadius) {
+                } else if (_distanceToPlayer < chaseRadius) {
                 currentState = EnemyStates.CHASE;
-            } else if (_distanceToPlayer < alertRadius) {
+                } else if (_distanceToPlayer < alertRadius) {
                 currentState = EnemyStates.ALERT;
-            } else {
+                } else {
                 currentState = EnemyStates.IDLE;
+                }
             }
         }
-    }
 
     public virtual void CheckHealth() {
         if (enemyHealth <= 0) {
             Destroy(this.gameObject);
-            
+
+            }
         }
-    }
 
     public virtual void ChaseTarget(Transform _target) {
         transform.position = Vector2.MoveTowards(transform.position, _target.position, chaseSpeed * Time.deltaTime);
-    }
+        }
 
     public virtual void Attack() {
         if (Time.time > nextAttack) {
             playerObject.GetComponent<BoyClass>().health -= 1;
             nextAttack = Time.time + attackRate;
             Debug.Log("attack!");
+            }
         }
-    }
 
-}
+    }

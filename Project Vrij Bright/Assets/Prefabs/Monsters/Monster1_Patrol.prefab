@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4695555125074860
 Transform:
   m_ObjectHideFlags: 1
@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912301876098234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.27, y: -1.93, z: 0}
+  m_LocalPosition: {x: 4.88, y: -1.09, z: 0}
   m_LocalScale: {x: 0.31170335, y: 0.31170335, z: 0.31170335}
   m_Children:
   - {fileID: 224304791303436694}
@@ -372,12 +372,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f4b45ab86f78344a32542dacea5289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   enemyHealth: 100
   moveSpeed: 3
   chaseSpeed: 5
   alertRadius: 12
   chaseRadius: 10
   attackRadius: 3
+  attackRate: 1
+  nextAttack: 0
   rigidBody2D: {fileID: 0}
   playerObject: {fileID: 0}
   enemyHealthSlider: {fileID: 114455197140547834}
@@ -577,7 +580,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -594,8 +597,8 @@ RectTransform:
   m_Father: {fileID: 224242140994753782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -14,6 +14,8 @@ TagManager:
   - Mirror entrance
   - Mirror exit
   - Mirror
+  - Hint
+  - Rope
   layers:
   - Default
   - TransparentFX
@@ -34,10 +36,10 @@ TagManager:
   - Shadow
   - Camerabound
   - MirrorBound
-  - 
-  - 
-  - 
-  - 
+  - Hint
+  - Captured
+  - Background
+  - Puzzle
   - 
   - 
   - 
