@@ -44,3 +44,10 @@ fmod_editor.log
 /FMOD/**.unsaved
 /FMOD/**.cache
 /FMOD/**.restore
+
+
+Buildv01_Data/
+Buildv01.exe
+mac build.app
+UnityPlayer.dll
+
