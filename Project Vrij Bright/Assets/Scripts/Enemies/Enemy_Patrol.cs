@@ -44,8 +44,13 @@ public class Enemy_Patrol : EnemyBaseClass {
 
     public override void CheckHealth() {
         if (enemyHealth <= 0) {
-            Destroy(this.gameObject);
-            state = PatrolStates.DEAD;
+            Enemy_Respawn respawnScript = GetComponent<Enemy_Respawn>();
+            if (respawnScript) {
+                respawnScript.Die();
+            } else {
+                Destroy(this.gameObject);
+                state = PatrolStates.DEAD;
+            }
         }
     }
 
