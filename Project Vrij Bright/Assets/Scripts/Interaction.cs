@@ -13,12 +13,12 @@ public class Interaction : MonoBehaviour {
 
     }
 
-    public void Teleport(GameObject _player) {
+    public void Teleport(GameObject _object) {
 
-        _player.transform.position = new Vector3(
+        _object.transform.position = new Vector3(
              other.transform.position.x,
-            _player.transform.position.y,
-            _player.transform.position.z);
+            _object.transform.position.y,
+            _object.transform.position.z);
     }
 }
 

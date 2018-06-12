@@ -23,8 +23,23 @@ MonoBehaviour:
   - {fileID: 114590332303025050}
   MasterBankRef: {fileID: 114752897111708962}
   StringsBankRef: {fileID: 114431656855813594}
-  stringsBankWriteTime: 636641592838204425
+  stringsBankWriteTime: 636643922862229407
   cacheVersion: 2
+--- !u!114 &114012397030160396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114040582676747570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +78,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114159639166862680}
+  - {fileID: 114760087782334566}
   MinDistance: 0
   MaxDistance: 0
   Length: 118961
@@ -154,7 +169,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114277923343636296}
+  - {fileID: 114012397030160396}
   MinDistance: 0
   MaxDistance: 0
   Length: 122400
@@ -170,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Desktop\Master Bank.strings.bank
-  lastModified: 636641592838204425
+  lastModified: 636643922862229407
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -301,12 +316,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:\celin\projects\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Master
     Bank.bank
-  lastModified: 636643317595309166
+  lastModified: 636643922862214417
   LoadResult: 0
   FileSizes:
   - Name: 
     Value: 7186400
   Exists: 1
+--- !u!114 &114760087782334566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114929440126260220
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,29 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Patrol : EnemyBaseClass {
-    enum PatrolStates {
-        IDLE,
-        ALERT,
-        CHASE,
-        ATTACK,
-        DEAD
-    }
 
     public float patrollingDistance = 25;
-
-    private PatrolStates state;
 
     private float startTime;
     private Vector3 currentPosition;
     private Vector3 newPosition;
     private bool walkRight;
     private bool isPatrolling;
+    private bool teleported = false;
 
     private new void Start() {
         base.Start();
 
-        state = PatrolStates.IDLE;
+        currentState = EnemyStates.IDLE;
         InitPatrolVariables();
+        Debug.Log(playerObject);
     }
 
     private void InitPatrolVariables() {
@@ -39,7 +32,8 @@ public class Enemy_Patrol : EnemyBaseClass {
     private new void Update() {
         base.Update();
 
-        StateMachine(state);
+        StateMachine(currentState);
+        Debug.Log(currentState);
     }
 
     public override void CheckHealth() {
@@ -49,33 +43,33 @@ public class Enemy_Patrol : EnemyBaseClass {
                 respawnScript.Die();
             } else {
                 Destroy(this.gameObject);
-                state = PatrolStates.DEAD;
+                currentState = EnemyStates.DEAD;
             }
         }
     }
 
-    private void StateMachine(PatrolStates _state) {
+    private void StateMachine(EnemyStates _state) {
         switch (_state) {
-            case PatrolStates.IDLE:
+            case EnemyStates.IDLE:
                 Patrol();
                 break;
 
-            case PatrolStates.ALERT:
+            case EnemyStates.ALERT:
                 Alert();
                 isPatrolling = false;
                 break;
 
-            case PatrolStates.CHASE:
+            case EnemyStates.CHASE:
                 ChaseTarget(playerObject.transform);
                 isPatrolling = false;
                 break;
 
-            case PatrolStates.ATTACK:
+            case EnemyStates.ATTACK:
                 Attack();
                 isPatrolling = false;
                 break;
 
-            case PatrolStates.DEAD:
+            case EnemyStates.DEAD:
                 break;
 
             default:
@@ -100,21 +94,29 @@ public class Enemy_Patrol : EnemyBaseClass {
                 currentPosition = transform.position;
                 newPosition = new Vector2(transform.position.x + patrollingDistance, transform.position.y);
             }
-        }
-        else {
+        } else {
             InitPatrolVariables();
             isPatrolling = true;
         }
     }
-    
+
     private void Alert() {
         float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
         float _temp = _distanceToPlayer;
 
         if (_distanceToPlayer > _temp) {
-            state = PatrolStates.IDLE;
+            currentState = EnemyStates.IDLE;
         } else if (_distanceToPlayer < _temp) {
-            state = PatrolStates.CHASE;
+            currentState = EnemyStates.CHASE;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Mirror") {
+            if (!teleported) {
+                collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
+                teleported = true;
+            }
         }
     }
 }
