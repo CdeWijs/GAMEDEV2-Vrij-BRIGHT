@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class CageDestroy : MonoBehaviour {
 
+    public GuardianController guardianController;
+    public GameObject brokenCage;
+
     // FMOD
     [FMODUnity.EventRef]
     public string eventRef;
@@ -16,8 +19,6 @@ public class CageDestroy : MonoBehaviour {
         instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
     }
 
-    public GuardianController guardianController;
-    public GameObject brokenCage;
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Ground") {
             guardianController.captured = false;
@@ -26,5 +27,10 @@ public class CageDestroy : MonoBehaviour {
             FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
             instance.start();
         }
+
+        if (collision.transform.tag == "Monster") {
+            EnemyBaseClass enemy = collision.gameObject.GetComponent<EnemyBaseClass>();
+
         }
     }
+}
