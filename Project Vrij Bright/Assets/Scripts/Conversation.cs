@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 /// <summary>
 /// class for displaying text on screen
@@ -30,11 +28,13 @@ public class Conversation : MonoBehaviour {
 
     private void Start() {
         //play start text
+        playing = true;
         DisplayHint(lines);
         }
 
     //set playing to true to prevent multiple plays and then display hint
     public void DisplayHint(string[] _hints) {
+        counter = 0;
         playing = true;
         StartCoroutine(UpdateConversation(_hints));
         }
@@ -49,9 +49,9 @@ public class Conversation : MonoBehaviour {
         if (counter < _lines.Length) {
             StartCoroutine(UpdateConversation(_lines));
             } else {
-                playing = false;
-                text.text = "";
-                counter = 0;
+            playing = false;
+            text.text = "";
+
             }
         }
     }
