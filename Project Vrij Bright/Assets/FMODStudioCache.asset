@@ -13,18 +13,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114431656855813594}
-  - {fileID: 114703250233995258}
-  - {fileID: 114520362055419990}
+  - {fileID: 114040582676747570}
+  - {fileID: 114752897111708962}
   EditorEvents:
   - {fileID: 114213111989144610}
   - {fileID: 114344375785351330}
   - {fileID: 114742524302549012}
   - {fileID: 114048333497867646}
   - {fileID: 114590332303025050}
-  MasterBankRef: {fileID: 114520362055419990}
+  MasterBankRef: {fileID: 114752897111708962}
   StringsBankRef: {fileID: 114431656855813594}
-  stringsBankWriteTime: 636640746598537222
+  stringsBankWriteTime: 636643922862229407
   cacheVersion: 2
+--- !u!114 &114012397030160396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
+--- !u!114 &114040582676747570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\celin\projects\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Monsters
+    Bank.bank
+  lastModified: 636639834374841103
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 1044576
+  Exists: 1
 --- !u!114 &114048333497867646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,16 +73,31 @@ MonoBehaviour:
   Path: event:/Bright Soundtrack
   guid: bf036c28b8381f458b614761bfa6f035
   Banks:
-  - {fileID: 114520362055419990}
+  - {fileID: 114752897111708962}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114072131213739486}
+  - {fileID: 114760087782334566}
   MinDistance: 0
   MaxDistance: 0
   Length: 118961
 --- !u!114 &114072131213739486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
+--- !u!114 &114159639166862680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -77,15 +126,30 @@ MonoBehaviour:
   Path: event:/Monsters/Monster 5
   guid: 4b658cc995f7c34e9fbeb4c947fb45e3
   Banks:
-  - {fileID: 114703250233995258}
+  - {fileID: 114040582676747570}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114682222970102496}
+  - {fileID: 114568672097343642}
   MinDistance: 1.2
   MaxDistance: 20
   Length: 115265
+--- !u!114 &114277923343636296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114344375785351330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,12 +164,12 @@ MonoBehaviour:
   Path: event:/Ambience
   guid: 48e45751a2c7544fb9c41df7b41f3f2b
   Banks:
-  - {fileID: 114520362055419990}
+  - {fileID: 114752897111708962}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114929440126260220}
+  - {fileID: 114012397030160396}
   MinDistance: 0
   MaxDistance: 0
   Length: 122400
@@ -121,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Desktop\Master Bank.strings.bank
-  lastModified: 636640746598537222
+  lastModified: 636643922862229407
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -146,6 +210,21 @@ MonoBehaviour:
   - Name: 
     Value: 7186400
   Exists: 1
+--- !u!114 &114568672097343642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterStatus
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114590332303025050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +239,7 @@ MonoBehaviour:
   Path: event:/Boy/Boy Voetstappen
   guid: e5db66a17bb0cc4c8b108e5e8153e39a
   Banks:
-  - {fileID: 114520362055419990}
+  - {fileID: 114752897111708962}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -216,7 +295,7 @@ MonoBehaviour:
   Path: event:/Boy/Bang
   guid: 6f5fe5d1e44bad49954e7a3f3b38e493
   Banks:
-  - {fileID: 114520362055419990}
+  - {fileID: 114752897111708962}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -224,6 +303,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &114752897111708962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\celin\projects\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Master
+    Bank.bank
+  lastModified: 636643922862214417
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 7186400
+  Exists: 1
+--- !u!114 &114760087782334566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114929440126260220
 MonoBehaviour:
   m_ObjectHideFlags: 0
