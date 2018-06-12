@@ -63,7 +63,7 @@ public class BoyController : BaseController {
         MoveHorizontally(currentSpeed);
         //set animations if player is walking
         if (walkSpeed != 0) {
-            if (!isPlayingFootsteps && grounded) {
+            if (!isPlayingFootsteps && Grounded()) {
                 instance.start();
                 isPlayingFootsteps = true;
             }
