@@ -63,8 +63,14 @@ public class BoyController : BaseController {
         MoveHorizontally(currentSpeed);
         //set animations if player is walking
         if (walkSpeed != 0) {
+            if (!isPlayingFootsteps && grounded) {
+                instance.start();
+                isPlayingFootsteps = true;
+            }
             SetAnimatorBool("Walking", true);
-        } else {
+            } else {
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isPlayingFootsteps = false;
             SetAnimatorBool("Walking", false);
         }
     }
