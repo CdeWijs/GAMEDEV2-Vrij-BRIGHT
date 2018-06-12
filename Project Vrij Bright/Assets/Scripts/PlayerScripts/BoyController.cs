@@ -170,21 +170,7 @@ public class BoyController : BaseController {
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.tag == "Mirror") {
-<<<<<<< HEAD
-            if (connectedController != null && b_active) {
-                collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
-            } else if (Input.GetKeyDown(KeyCode.F)) {
-                collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
-            } else {
-                collision.gameObject.GetComponent<Interaction>().SetButtonActive(true);
-            }
-        } else if (collision.tag == "Rope") {
-            if (connectedController != null && x_active) {
-                collision.gameObject.GetComponent<CageScript>().DropCage();
-            }
-            else if (Input.GetKeyDown(KeyCode.E)) {
-                collision.gameObject.GetComponent<CageScript>().DropCage();
-=======
+
             if (connectedController != null) {
                 if (b_active) {
                     collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
@@ -197,7 +183,6 @@ public class BoyController : BaseController {
                 } else {
                     collision.gameObject.GetComponent<Interaction>().SetButtonActive(true);
                 }
->>>>>>> 797210943f460241c1723dae0e1b025144f21641
             }
         } else if (collision.tag == "Rope") {
             if (connectedController != null && x_active) {
