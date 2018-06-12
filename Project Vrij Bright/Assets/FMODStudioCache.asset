@@ -44,9 +44,13 @@ MonoBehaviour:
   - {fileID: 114795653505739812}
   - {fileID: 114826704075826750}
   - {fileID: 114937952475914546}
+  - {fileID: 114450432658460254}
+  - {fileID: 114618903662180808}
+  - {fileID: 114946447073334174}
+  - {fileID: 114573803096986642}
   MasterBankRef: {fileID: 114752897111708962}
   StringsBankRef: {fileID: 114431656855813594}
-  stringsBankWriteTime: 636644002421725493
+  stringsBankWriteTime: 636644381790502739
   cacheVersion: 2
 --- !u!114 &114001340043832488
 MonoBehaviour:
@@ -85,6 +89,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114025633298345900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Hit or Mis
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114040582676747570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:\celin\projects\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Monsters
     Bank.bank
-  lastModified: 636644002421830649
+  lastModified: 636644381790612920
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -123,8 +142,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114460283454700390}
-  - {fileID: 114218585795586744}
+  - {fileID: 114365537510379910}
+  - {fileID: 114286278818544236}
   MinDistance: 0
   MaxDistance: 0
   Length: 118961
@@ -165,6 +184,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4467
+--- !u!114 &114100516410246072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: M3 Status
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114141197109141368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +258,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114158332630748128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: M1 Status
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114159639166862680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +322,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114350353003559902}
+  - {fileID: 114701678481070092}
   MinDistance: 1.2
   MaxDistance: 20
   Length: 115265
@@ -350,6 +399,21 @@ MonoBehaviour:
   Name: Positie Level
   Min: 0
   Max: 100
+  Default: 0
+--- !u!114 &114286278818544236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
   Default: 0
 --- !u!114 &114309744197865304
 MonoBehaviour:
@@ -429,8 +493,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114165742648446360}
-  - {fileID: 114694586980410912}
+  - {fileID: 114919137035684988}
+  - {fileID: 114376708937495376}
   MinDistance: 0
   MaxDistance: 0
   Length: 122400
@@ -449,6 +513,36 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114365537510379910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 100
+--- !u!114 &114376708937495376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Positie Level
+  Min: 0
+  Max: 100
+  Default: 100
 --- !u!114 &114431656855813594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,12 +555,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD\Desktop\Master Bank.strings.bank
-  lastModified: 636644002421725493
+  lastModified: 636644381790502739
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2054
+    Value: 2210
   Exists: 1
+--- !u!114 &114450432658460254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Monsters/Monster 3
+  guid: 41e5e09fbd67bb44a541aae0e2f94428
+  Banks:
+  - {fileID: 114752897111708962}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114100516410246072}
+  MinDistance: 1.2
+  MaxDistance: 20
+  Length: 115251
 --- !u!114 &114450841713494308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +722,28 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114573803096986642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Interactie/Big Door OPEN
+  guid: ddb2aa1ffdaa5f49b42d9c519d515fe7
+  Banks:
+  - {fileID: 114752897111708962}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3707
 --- !u!114 &114588647932878868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,7 +785,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114152742039924842}
+  - {fileID: 114158332630748128}
   MinDistance: 1.2
   MaxDistance: 20
   Length: 115251
@@ -672,6 +811,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 330
+--- !u!114 &114618903662180808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Interactie/Big Door CLOSE
+  guid: aa83429b7bfbf64bb17002797b0deb69
+  Banks:
+  - {fileID: 114752897111708962}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1385
 --- !u!114 &114671758962309248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +907,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 100
+--- !u!114 &114701678481070092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: M5 Status
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114703250233995258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,11 +976,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: D:\celin\projects\ProjectVrij_Bright\Project Vrij Bright\Assets\FMOD\Desktop\Master
     Bank.bank
-  lastModified: 636644002421710569
+  lastModified: 636644381790487878
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 10751296
+    Value: 12135456
   Exists: 1
 --- !u!114 &114760087782334566
 MonoBehaviour:
@@ -928,10 +1104,40 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114342156532710584}
+  - {fileID: 114025633298345900}
   MinDistance: 0
   MaxDistance: 0
   Length: 3600
+--- !u!114 &114875419839330058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: M2 Status
+  Min: 0
+  Max: 100
+  Default: 0
+--- !u!114 &114919137035684988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pause Menu
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114929440126260220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,6 +1175,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2972
+--- !u!114 &114946447073334174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Monsters/Monster 2
+  guid: d06ce44e94258b4a99ca2fe748015a59
+  Banks:
+  - {fileID: 114752897111708962}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114875419839330058}
+  MinDistance: 1.2
+  MaxDistance: 20
+  Length: 115251
 --- !u!114 &114996708283850760
 MonoBehaviour:
   m_ObjectHideFlags: 0

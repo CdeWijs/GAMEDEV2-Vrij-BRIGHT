@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1462900756056620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.4522, y: 6.337, z: 2.8141}
+  m_LocalPosition: {x: -25.92, y: 11.83, z: 2.8141}
   m_LocalScale: {x: 1.7156618, y: 1.7156618, z: 1.7156618}
   m_Children:
   - {fileID: 4934296603018702}
@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guardianController: {fileID: 0}
   brokenCage: {fileID: 1826123010601870}
+  eventRef: event:/Interactie/Kooi DROP
 --- !u!212 &212137746154789670
 SpriteRenderer:
   m_ObjectHideFlags: 1

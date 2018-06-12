@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  enemyHealth: 100
+  enemyHealth: 20
   moveSpeed: 3
   chaseSpeed: 6
   alertRadius: 20
@@ -385,6 +385,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   enemyHealthSlider: {fileID: 114455197140547834}
   patrollingDistance: 25
+  eventRef: event:/Monsters/Monster 1
 --- !u!114 &114884018362836812
 MonoBehaviour:
   m_ObjectHideFlags: 1
