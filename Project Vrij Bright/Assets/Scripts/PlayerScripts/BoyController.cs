@@ -84,22 +84,21 @@ public class BoyController : BaseController {
                 //Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
-            if (x_active && Time.time > nextAttack) {
-                StartCoroutine(PlayAnim("Attacking"));
-                BasicAttack();
-                nextAttack = Time.time + attackRate;
-            }
+            //if (x_active && Time.time > nextAttack) {
+            //    StartCoroutine(PlayAnim("Attacking"));
+            //    BasicAttack();
+            //    nextAttack = Time.time + attackRate;
+            //}
         } else {
             if (Input.GetKeyDown(KeyCode.Space) && Grounded()) {
                 Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
-            if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack) {
-                StartCoroutine(PlayAnim("Attacking"));
-                BasicAttack();
-                nextAttack = Time.time + attackRate;
-                Debug.Log("attack!");
-            }
+            //if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack) {
+            //    StartCoroutine(PlayAnim("Attacking"));
+            //    BasicAttack();
+            //    nextAttack = Time.time + attackRate;
+            //}
         }
     }
     //sets all active false for a brief moment to reset velocity and physics
@@ -111,8 +110,9 @@ public class BoyController : BaseController {
         trig_active = false;
     }
 
-    private void BasicAttack() {
-        GameObject attackObject = RayCaster(raycastPos.transform.position, Vector2.right, 0.2f);
+    private void BasicAttack(GameObject attackObject) {
+        //GameObject attackObject = RayCaster(raycastPos.transform.position, Vector2.right, 8f);
+        Debug.Log(attackObject);
         if (attackObject != null) {
             if (attackObject.tag == "Monster") {
                 EnemyBaseClass _enemyScript = attackObject.GetComponent<EnemyBaseClass>();
@@ -189,6 +189,21 @@ public class BoyController : BaseController {
                 collision.gameObject.GetComponent<CageScript>().DropCage();
             } else if (Input.GetKeyDown(KeyCode.E)) {
                 collision.gameObject.GetComponent<CageScript>().DropCage();
+            }
+        }
+        else if (collision.tag == "Monster") {
+            if (connectedController != null) {
+                if (x_active && Time.time > nextAttack) {
+                    StartCoroutine(PlayAnim("Attacking"));
+                    BasicAttack(collision.gameObject);
+                    nextAttack = Time.time + attackRate;
+                }
+            } else {
+                if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack) {
+                    StartCoroutine(PlayAnim("Attacking"));
+                    BasicAttack(collision.gameObject);
+                    nextAttack = Time.time + attackRate;
+                }
             }
         }
     }

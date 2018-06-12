@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223206092100038350}
   - component: {fileID: 114383471818267766}
   - component: {fileID: 114932125802542872}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224876130259554514}
   - component: {fileID: 114455197140547834}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 224157497965436404}
   - component: {fileID: 222638542276568880}
   - component: {fileID: 114884018362836812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224030498818924170}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 224262482287699066}
   - component: {fileID: 222041400645305904}
   - component: {fileID: 114466790485833736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 224272114680574772}
   - component: {fileID: 222738036854983846}
   - component: {fileID: 114590814809365838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224242140994753782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,13 +140,13 @@ GameObject:
   - component: {fileID: 61121570085038998}
   - component: {fileID: 114624381845949504}
   - component: {fileID: 58739249148593454}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Monster1_Patrol
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4695555125074860
 Transform:
   m_ObjectHideFlags: 1
@@ -154,8 +154,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912301876098234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88, y: -1.09, z: 0}
-  m_LocalScale: {x: 0.31170335, y: 0.31170335, z: 0.31170335}
+  m_LocalPosition: {x: 53.13, y: -2.56, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 224304791303436694}
   m_Father: {fileID: 0}
@@ -190,12 +190,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 10
 --- !u!61 &61121570085038998
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -375,10 +375,10 @@ MonoBehaviour:
   currentState: 0
   enemyHealth: 100
   moveSpeed: 3
-  chaseSpeed: 5
-  alertRadius: 12
-  chaseRadius: 10
-  attackRadius: 3
+  chaseSpeed: 6
+  alertRadius: 20
+  chaseRadius: 18
+  attackRadius: 6
   attackRate: 1
   nextAttack: 0
   rigidBody2D: {fileID: 0}
@@ -580,7 +580,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -597,8 +597,8 @@ RectTransform:
   m_Father: {fileID: 224242140994753782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

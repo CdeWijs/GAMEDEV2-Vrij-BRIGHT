@@ -21,42 +21,42 @@ public class GuardianController : BaseController {
         // Check if Joystick exists
         if (Input.GetJoystickNames().Length > 0) {
             connectedController = new Joystick2();
-            }
         }
+    }
 
     public override void Update() {
         base.Update();
 
         if (flutterAmount < 5 && grounded) {
             flutterAmount = 5;
-            }
+        }
 
         //keeps guardian trapped in cage while imprisoned 
         if (captured) {
             this.gameObject.layer = 20;
-            } else { this.gameObject.layer = 9; }
-        }
+        } else { this.gameObject.layer = 9; }
+    }
 
     public override void FixedUpdate() {
         base.FixedUpdate();
 
         MoveHorizontally(NormalSpeed);
-        }
+    }
 
     //override collision check so players can jump on eachothers head
     new public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.tag == "Ground" || collision.transform.tag == "Player") {
             grounded = true;
-            }
         }
+    }
 
 
     //override collision check so players can jump on eachothers head
     new public void OnCollisionExit2D(Collision2D collision) {
         if (collision.transform.tag == "Ground" || collision.transform.tag == "Player") {
             grounded = false;
-            }
         }
+    }
 
     public void OnTriggerStay2D(Collider2D col) {
         if (col.tag == "Hint") {
@@ -64,23 +64,40 @@ public class GuardianController : BaseController {
             if (x_active) {
                 if (!Conversation._Instance.playing) {
                     col.gameObject.GetComponent<Hint>().SetHintActive();
-                    }
                 }
             }
         }
+
+        if (col.tag == "Bait") {
+            Interaction interaction = col.GetComponent<Interaction>();
+            interaction.SetButtonActive(true);
+            if (connectedController != null && x_active) {
+                interaction.Teleport(col.gameObject);
+            }
+            else if (Input.GetKeyDown(KeyCode.E)) {
+                interaction.Teleport(col.gameObject);
+            }
+        }
+    }
+
 
     public void OnTriggerExit2D(Collider2D col) {
         if (col.tag == "Hint") {
             lightSource.SetActive(false);
             if (col.gameObject.GetComponent<Hint>() != null) {
                 col.gameObject.GetComponent<Hint>().SetHintActive();
-                }
             }
         }
 
+        if (col.tag == "Bait") {
+            Interaction interaction = col.GetComponent<Interaction>();
+            interaction.SetButtonActive(false);
+        }
+    }
+
     public void UseLight() {
         lt.intensity -= decrease;
-        }
+    }
 
     public override void GetInput() {
         base.GetInput();
@@ -89,12 +106,12 @@ public class GuardianController : BaseController {
             if (a_active && flutterAmount > 0) {
                 Jump(JumpForce);
                 flutterAmount--;
-                }
-            } else {
+            }
+        } else {
             if (Input.GetKeyDown(KeyCode.Space) && flutterAmount > 0) {
                 Jump(JumpForce);
                 flutterAmount--;
-                }
             }
         }
     }
+}

@@ -6,7 +6,7 @@ public class Interaction : MonoBehaviour {
 
     public GameObject buttonImage;
     public GameObject other;
-    public string _tag;
+    //public string _tag;
 
     public void SetButtonActive(bool _bool) {
         buttonImage.SetActive(_bool);

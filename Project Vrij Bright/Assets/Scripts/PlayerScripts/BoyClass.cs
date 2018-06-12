@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BoyClass : MonoBehaviour {
 
     public int health;
-    public int attackDamage = 5;
+    public int attackDamage = 50;
 
     //temporary slider ui
     public Slider playerHealthSlider;

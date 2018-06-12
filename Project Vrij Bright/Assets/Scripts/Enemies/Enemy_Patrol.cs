@@ -12,7 +12,6 @@ public class Enemy_Patrol : EnemyBaseClass {
     private Vector3 newPosition;
     private bool walkRight;
     private bool isPatrolling;
-    private bool teleported = false;
 
     private new void Start() {
         base.Start();
@@ -33,7 +32,6 @@ public class Enemy_Patrol : EnemyBaseClass {
         base.Update();
 
         StateMachine(currentState);
-        Debug.Log(currentState);
     }
 
     public override void CheckHealth() {
@@ -108,15 +106,6 @@ public class Enemy_Patrol : EnemyBaseClass {
             currentState = EnemyStates.IDLE;
         } else if (_distanceToPlayer < _temp) {
             currentState = EnemyStates.CHASE;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Mirror") {
-            if (!teleported) {
-                collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
-                teleported = true;
-            }
         }
     }
 }
