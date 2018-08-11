@@ -16,6 +16,7 @@ TagManager:
   - Mirror
   - Hint
   - Rope
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,15 @@ public class GuardianController : BaseController {
     public float decrease;
 
     public bool captured;
+
+    // FMOD
+    [FMODUnity.EventRef]
+    public string doorOpen;
+    private FMOD.Studio.EventInstance instanceOpen;
+    [FMODUnity.EventRef]
+    public string doorClose;
+    private FMOD.Studio.EventInstance instanceClose;
+    
     public override void Start() {
         base.Start();
 
@@ -22,6 +31,9 @@ public class GuardianController : BaseController {
         if (Input.GetJoystickNames().Length > 0) {
             connectedController = new Joystick2();
         }
+
+        instanceOpen = FMODUnity.RuntimeManager.CreateInstance(doorOpen);
+        instanceClose = FMODUnity.RuntimeManager.CreateInstance(doorClose);
     }
 
     public override void Update() {

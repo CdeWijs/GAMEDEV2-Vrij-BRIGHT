@@ -7,12 +7,13 @@ public class AnimationScript : MonoBehaviour {
 
     public AnimationClip aC;
     public Animator an;
-    public int scene;
+  
     private float time;
     private bool playing = false;
     private Fade fader;
     public bool fadeInOrOut;
-
+    public string scene;
+    public Color loadToColor = Color.black;
     private void Start() {
         fader = GetComponent<Fade>();
         time = aC.length / an.speed;
@@ -21,7 +22,7 @@ public class AnimationScript : MonoBehaviour {
     private void Update() {
         if (!Conversation._Instance.playing) {
             an.SetBool("Ready", true);
-            StartCoroutine(SetNextScene(time, scene));
+            StartCoroutine(SetNextScene(time,1));
 
             }
         }
@@ -29,7 +30,7 @@ public class AnimationScript : MonoBehaviour {
     private IEnumerator SetNextScene(float _time, int _scene) {
         Fader();
         yield return new WaitForSeconds(_time);
-        SceneManager.LoadScene(_scene);
+        Initiate.Fade(scene, loadToColor, 0.5f);
         }
     // the image you want to fade, assign in inspector
     public Image img;

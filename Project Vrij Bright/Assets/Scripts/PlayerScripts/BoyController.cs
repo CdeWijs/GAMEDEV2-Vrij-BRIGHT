@@ -34,8 +34,8 @@ public class BoyController : BaseController {
 
     // FMOD
     [FMODUnity.EventRef]
-    public string eventRef;
-    private FMOD.Studio.EventInstance instance;
+    public string footStepEvent;
+    private FMOD.Studio.EventInstance footStepInstance;
     private bool isPlayingFootsteps = false;
 
     public override void Start() {
@@ -49,12 +49,12 @@ public class BoyController : BaseController {
             connectedController = new Joystick1();
         }
 
-        instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
+        footStepInstance = FMODUnity.RuntimeManager.CreateInstance(footStepEvent);
     }
 
     public override void Update() {
         base.Update();
-        transform.Translate(JumpDir() * Time.deltaTime);
+        //transform.Translate(JumpDir() * Time.deltaTime);
     }
 
     public override void FixedUpdate() {
@@ -64,12 +64,12 @@ public class BoyController : BaseController {
         //set animations if player is walking
         if (walkSpeed != 0) {
             if (!isPlayingFootsteps && Grounded()) {
-                instance.start();
+                footStepInstance.start();
                 isPlayingFootsteps = true;
             }
             SetAnimatorBool("Walking", true);
         } else {
-            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            footStepInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             isPlayingFootsteps = false;
             SetAnimatorBool("Walking", false);
         }
@@ -80,15 +80,15 @@ public class BoyController : BaseController {
         base.GetInput();
 
         if (connectedController != null) {
-            if (a_active && Grounded()) {
-                //Jump(normalJump);
+            if (a_active && grounded) {
+                Jump(normalJump);
                 StartCoroutine(PlayAnim("Jumping"));
             }
-            //if (x_active && Time.time > nextAttack) {
-            //    StartCoroutine(PlayAnim("Attacking"));
+            if (x_active && Time.time > nextAttack) {
+              StartCoroutine(PlayAnim("Attacking"));
             //    BasicAttack();
-            //    nextAttack = Time.time + attackRate;
-            //}
+               nextAttack = Time.time + attackRate;
+            }
         } else {
             if (Input.GetKeyDown(KeyCode.Space) && Grounded()) {
                 Jump(normalJump);
@@ -121,6 +121,7 @@ public class BoyController : BaseController {
             }
         }
     }
+
 
     //Change player properties on trigger enter
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -228,7 +229,7 @@ public class BoyController : BaseController {
             moveDirection *= 1.5f;
 
             if (a_active) {
-                moveDirection.y = jumpHeight;
+               // moveDirection.y = jumpHeight;
             }
         }
 

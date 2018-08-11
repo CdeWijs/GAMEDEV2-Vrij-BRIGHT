@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class EnemyBaseClass : MonoBehaviour {
 
     public enum EnemyStates {
+        NULL,
         IDLE,
+        CHASEBAIT,
         ALERT,
         CHASE,
         ATTACK,
@@ -28,6 +30,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public Slider enemyHealthSlider;
 
     public void Start() {
+        currentState = EnemyStates.IDLE;
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
         // enemyHealthSlider.maxValue = enemyHealth;
@@ -69,9 +72,9 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public virtual void CheckHealth() {
+        Debug.Log(enemyHealth);
         if (enemyHealth <= 0) {
             Destroy(this.gameObject);
-
         }
     }
 
@@ -81,10 +84,8 @@ public class EnemyBaseClass : MonoBehaviour {
 
     public virtual void Attack() {
         if (Time.time > nextAttack) {
-            playerObject.GetComponent<BoyClass>().health -= 1;
+            playerObject.GetComponent<BoyClass>().health -= 8;
             nextAttack = Time.time + attackRate;
-            Debug.Log("attack!");
         }
     }
-
 }

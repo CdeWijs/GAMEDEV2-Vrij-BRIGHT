@@ -8,6 +8,9 @@ public class BoyClass : MonoBehaviour {
 
     public int health;
     public int attackDamage = 50;
+    public string reloadScene;
+    public string nextScene;
+    public Color loadToColor = Color.black;
 
     //temporary slider ui
     public Slider playerHealthSlider;
@@ -22,9 +25,13 @@ public class BoyClass : MonoBehaviour {
         playerHealthSlider.value = health;
 
         if (health <= 0) {
-            Destroy(this.gameObject);
-        }
+            Initiate.Fade(reloadScene, loadToColor, 0.5f);
+            }
     }
 
-   
-}
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Door") {
+            Initiate.Fade(nextScene, loadToColor, 0.5f);
+            }
+        }
+    }

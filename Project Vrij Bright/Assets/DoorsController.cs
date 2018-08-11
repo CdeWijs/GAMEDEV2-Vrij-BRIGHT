@@ -30,11 +30,13 @@ public class DoorsController : MonoBehaviour {
         if (_open) {
             openDoors.SetActive(true);
             closedDoors.SetActive(false);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(doorOpen, this.gameObject);
             instanceOpen.start();
         }
         else {
             openDoors.SetActive(false);
             closedDoors.SetActive(true);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(doorClose, this.gameObject);
             instanceClose.start();
         }
     }
