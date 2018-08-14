@@ -272,6 +272,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114876212719652580, guid: b74d8d0af05e64a208fed364e3307096,
+        type: 2}
+      propertyPath: chaseRadius
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b74d8d0af05e64a208fed364e3307096, type: 2}
   m_IsPrefabParent: 0
@@ -1080,6 +1085,16 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
+        type: 2}
+      propertyPath: reloadScene
+      value: Level02
+      objectReference: {fileID: 0}
+    - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
+        type: 2}
+      propertyPath: attackDamage
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bfefccadc50924fac0cebfa9a0659a, type: 2}
   m_IsPrefabParent: 0
@@ -1541,15 +1556,6 @@ Prefab:
     - target: {fileID: 4977015243720186, guid: 697d19a6c2bb5d645af017a2444be16a, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114552372633612794, guid: 697d19a6c2bb5d645af017a2444be16a,
-        type: 2}
-      propertyPath: other
-      value: 
-      objectReference: {fileID: 1141638339}
-    - target: {fileID: 1313883989412776, guid: 697d19a6c2bb5d645af017a2444be16a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 697d19a6c2bb5d645af017a2444be16a, type: 2}
@@ -2025,6 +2031,10 @@ Prefab:
     - target: {fileID: 4760114376337090, guid: 9ce1b71a8868a27438cd946349fc509c, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448706797187090, guid: 9ce1b71a8868a27438cd946349fc509c, type: 2}
+      propertyPath: m_TagString
+      value: Guardian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ce1b71a8868a27438cd946349fc509c, type: 2}

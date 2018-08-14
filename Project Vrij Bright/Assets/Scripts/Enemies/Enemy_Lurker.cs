@@ -157,6 +157,7 @@ public class Enemy_Lurker : EnemyBaseClass
     //enemy eats bait and returns to idle state
     private void EatBait(GameObject bait)
     {
+        chaseRadius = 0;
         bait.GetComponent<BaitScript>().baitOnGround = false;
         isInShadows = false;
         currentState = EnemyStates.IDLE;

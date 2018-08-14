@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonController : MonoBehaviour {
+public class ButtonController : MonoBehaviour
+{
 
     public DoorsController doorScript;
 
     private GameObject buttonUnpressed;
     private GameObject buttonPressed;
+    private bool monsterOnButton;
 
     // FMOD
     [FMODUnity.EventRef]
@@ -17,7 +19,8 @@ public class ButtonController : MonoBehaviour {
     public string buttonUnpress;
     private FMOD.Studio.EventInstance instanceUnpress;
 
-    private void Start() {
+    private void Start()
+    {
         buttonUnpressed = transform.GetChild(0).gameObject;
         buttonUnpressed.SetActive(true);
         buttonPressed = transform.GetChild(1).gameObject;
@@ -27,8 +30,15 @@ public class ButtonController : MonoBehaviour {
         instanceUnpress = FMODUnity.RuntimeManager.CreateInstance(buttonUnpress);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag != "Hint" && collision.tag != "Bait" && collision.tag != "Guardian") {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag != "Hint" && collision.tag != "Bait" && collision.tag != "Guardian" && !monsterOnButton)
+        {
+            if (collision.tag == "Monster")
+            {
+                monsterOnButton = true;
+            }
+
             buttonUnpressed.SetActive(false);
             buttonPressed.SetActive(true);
             doorScript.HandleDoors(true);
@@ -37,11 +47,25 @@ public class ButtonController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) {
-        buttonUnpressed.SetActive(true);
-        buttonPressed.SetActive(false);
-        doorScript.HandleDoors(false);
-        FMODUnity.RuntimeManager.PlayOneShotAttached(buttonUnpress, this.gameObject);
-        instanceUnpress.start();
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Monster")
+        {
+            monsterOnButton = false;
+            buttonUnpressed.SetActive(true);
+            buttonPressed.SetActive(false);
+            doorScript.HandleDoors(false);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(buttonUnpress, this.gameObject);
+            instanceUnpress.start();
+            return;
+        }
+        else if (collision.tag != "Hint" && collision.tag != "Bait" && collision.tag != "Guardian")
+        {
+            buttonUnpressed.SetActive(true);
+            buttonPressed.SetActive(false);
+            doorScript.HandleDoors(false);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(buttonUnpress, this.gameObject);
+            instanceUnpress.start();
+        }
     }
 }
