@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.222}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -697,6 +697,9 @@ MonoBehaviour:
   y_active: 0
   trig_active: 0
   grounded: 0
+  attackLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   raycastPos: {fileID: 4699446186039592}
   currentSpeed: 8
   currentJump: 5
@@ -711,7 +714,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   raycastpos: {fileID: 4941200765432858}
-  footStepEvent: 
+  footStepEvent: event:/Boy/Boy Voetstappen
 --- !u!114 &114551446398634050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -869,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  attackDamage: 5
+  attackDamage: 10
   reloadScene: Level01
   nextScene: Menu
   loadToColor: {r: 0, g: 0, b: 0, a: 1}
