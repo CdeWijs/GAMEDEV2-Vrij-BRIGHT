@@ -1,32 +1,60 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// script for bait: Player cotroller needs to be referenced in Update
-/// </summary>
-public class BaitScript : MonoBehaviour {
-    private Rigidbody2D rb2d;
-    
+public class BaitScript : MonoBehaviour
+{
+    public GameObject buttonImage;
+    public bool baitOnGround;
+
+    private Rigidbody2D rigidBody2D;
     private GameObject player;
-
-
     private GuardianController guardianController;
 
-    private void Start() {
+    // FMOD
+    [FMODUnity.EventRef]
+    public string cutBaitRef;
+    private FMOD.Studio.EventInstance cutBaitInstance;
+    [FMODUnity.EventRef]
+    public string dropBaitRef;
+    private FMOD.Studio.EventInstance dropBaitInstance;
+
+    private void Start()
+    {
+        baitOnGround = false;
         player = GameObject.FindGameObjectWithTag("Guardian");
         guardianController = player.GetComponent<GuardianController>();
         Debug.Log(guardianController);
-
-        
-       // rb2d.gravityScale = 0;
+        cutBaitInstance = FMODUnity.RuntimeManager.CreateInstance(cutBaitRef);
+        dropBaitInstance = FMODUnity.RuntimeManager.CreateInstance(dropBaitRef);
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (guardianController.x_active || Input.GetKeyDown(KeyCode.E)){
-            rb2d = gameObject.AddComponent<Rigidbody2D>();
-            gameObject.AddComponent<BoxCollider2D>();
-			rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+    public IEnumerator DropBait()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(cutBaitRef, this.gameObject);
+        if (GetComponent<Rigidbody2D>() == null)
+        {
+            rigidBody2D = gameObject.AddComponent<Rigidbody2D>();
         }
+        else
+        {
+            rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
+        }
+        if (GetComponent<BoxCollider2D>() == null)
+        {
+            gameObject.AddComponent<BoxCollider2D>();
+        }
+        rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        yield return new WaitForSeconds(1);
+
+        FMODUnity.RuntimeManager.PlayOneShotAttached(dropBaitRef, this.gameObject);
+        baitOnGround = true;
+
+        yield return null;
+    }
+
+    public void SetButtonActive(bool isActive)
+    {
+        buttonImage.SetActive(isActive);
     }
 }

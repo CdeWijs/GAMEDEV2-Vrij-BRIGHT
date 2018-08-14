@@ -4,8 +4,8 @@ using UnityEngine.UI;
 /// <summary>
 /// script checks player health and  
 /// </summary>
-public class BoyClass : MonoBehaviour {
-
+public class BoyClass : MonoBehaviour
+{
     public int health;
     public int attackDamage = 50;
     public string reloadScene;
@@ -17,21 +17,26 @@ public class BoyClass : MonoBehaviour {
 
     public static bool boyIsScared = false;
 
-    private void Start() {
+    private void Start()
+    {
         playerHealthSlider.value = 100;
     }
 
-    private void Update() {
+    private void Update()
+    {
         playerHealthSlider.value = health;
 
-        if (health <= 0) {
+        if (health <= 0)
+        {
             Initiate.Fade(reloadScene, loadToColor, 0.5f);
-            }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Door") {
-            Initiate.Fade(nextScene, loadToColor, 0.5f);
-            }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Door")
+        {
+            Initiate.Fade(nextScene, loadToColor, 0.5f);
+        }
+    }
+}

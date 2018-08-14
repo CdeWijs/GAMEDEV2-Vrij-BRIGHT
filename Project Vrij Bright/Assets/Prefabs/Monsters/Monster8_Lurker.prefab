@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 50589310376821822}
   - component: {fileID: 114876212719652580}
   - component: {fileID: 61856495646136324}
-  - component: {fileID: 58341127774729570}
+  - component: {fileID: 114321902861652384}
   m_Layer: 10
   m_Name: Monster8_Lurker
   m_TagString: Monster
@@ -225,9 +225,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1011260372864426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 113.14755, y: -0.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 134.2, y: -3.2954426, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 224207856125217230}
   - {fileID: 4256866793499988}
@@ -269,21 +269,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!58 &58341127774729570
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1011260372864426}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3
 --- !u!61 &61856495646136324
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -416,6 +401,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114321902861652384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1011260372864426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b895f8dcfc0f994eb50fe7506708264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  respawnRadius: 5
 --- !u!114 &114378379552776686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -512,18 +510,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0be67d781a9cf42a1368473281d512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   enemyHealth: 50
-  moveSpeed: 2
+  moveSpeed: 5
+  chaseSpeed: 7
+  alertRadius: 15
+  chaseRadius: 0
+  attackRadius: 4
+  attackRate: 1
+  nextAttack: 0
   rigidBody2D: {fileID: 0}
   playerObject: {fileID: 0}
   enemyHealthSlider: {fileID: 114587549254831238}
   bait: {fileID: 0}
   baitOnGround: 0
   isInShadows: 1
-  attackRadius: 2
-  chaseRadius: 5
   lt: {fileID: 1476704340421586}
-  eventRef: event:/Monsters/Monster 5
+  canTeleport: 0
+  eventRef: event:/Monsters/Monster 2
 --- !u!114 &114983915993949114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,7 +588,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: e820efe6a7f864528aa19b9431b4fbdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

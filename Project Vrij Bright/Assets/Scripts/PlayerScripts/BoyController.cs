@@ -62,10 +62,8 @@ public class BoyController : BaseController
         //transform.Translate(JumpDir() * Time.deltaTime);
     }
 
-    public override void FixedUpdate()
+    public void FixedUpdate()
     {
-        base.FixedUpdate();
-
         MoveHorizontally(currentSpeed);
         //set animations if player is walking
         if (walkSpeed != 0)
@@ -186,7 +184,7 @@ public class BoyController : BaseController
         //makes player visible when entering mirror in mirrorworld
         else if (collision.tag == "Mirror" && this.gameObject.layer == 14)
         {
-            sprR.enabled = true;
+            spriteRenderer.enabled = true;
         }
     }
 
@@ -208,7 +206,7 @@ public class BoyController : BaseController
         //makes player invisible when leaving in mirrorworld
         else if (collision.tag == "Mirror" && this.gameObject.layer == 14)
         {
-            sprR.enabled = false;
+            spriteRenderer.enabled = false;
         }
     }
 
@@ -229,6 +227,8 @@ public class BoyController : BaseController
                 if (b_active)
                 {
                     collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
+                    Jump(normalJump);
+                    StartCoroutine(PlayAnim("Jumping"));
                 }
                 else
                 {
@@ -240,6 +240,8 @@ public class BoyController : BaseController
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
+                    Jump(normalJump);
+                    StartCoroutine(PlayAnim("Jumping"));
                 }
                 else
                 {

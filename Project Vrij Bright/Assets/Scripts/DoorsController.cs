@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DoorsController : MonoBehaviour {
+public class DoorsController : MonoBehaviour
+{
 
     private GameObject openDoors;
     private GameObject closedDoors;
@@ -16,7 +15,8 @@ public class DoorsController : MonoBehaviour {
     private FMOD.Studio.EventInstance instanceClose;
 
 
-    private void Start () {
+    private void Start()
+    {
         openDoors = transform.GetChild(0).gameObject;
         openDoors.SetActive(false);
         closedDoors = transform.GetChild(1).gameObject;
@@ -26,19 +26,21 @@ public class DoorsController : MonoBehaviour {
         instanceClose = FMODUnity.RuntimeManager.CreateInstance(doorClose);
     }
 
-    public void HandleDoors(bool _open) {
-        if (_open) {
+    public void HandleDoors(bool _open)
+    {
+        if (_open)
+        {
             openDoors.SetActive(true);
             closedDoors.SetActive(false);
             FMODUnity.RuntimeManager.PlayOneShotAttached(doorOpen, this.gameObject);
             instanceOpen.start();
         }
-        else {
+        else
+        {
             openDoors.SetActive(false);
             closedDoors.SetActive(true);
             FMODUnity.RuntimeManager.PlayOneShotAttached(doorClose, this.gameObject);
             instanceClose.start();
         }
     }
-
 }

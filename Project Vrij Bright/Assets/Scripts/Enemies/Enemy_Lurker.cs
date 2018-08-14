@@ -3,12 +3,12 @@
 /// <summary>
 /// class for the lurker type enemy: enemy is invincible while in shadows, but can be attacked when it comes out of hiding by using bait
 /// </summary>
-public class Enemy_Lurker : EnemyBaseClass {
-
+public class Enemy_Lurker : EnemyBaseClass
+{
     public GameObject bait;
-    public bool baitOnGround = false;
     public bool isInShadows = true;
     public GameObject lt;
+    public bool canTeleport = false;
 
     private Transform targetTransform;
     private float baitRadius = 30f;
@@ -25,7 +25,8 @@ public class Enemy_Lurker : EnemyBaseClass {
 
     private bool teleported = false;
 
-    new private void Start() {
+    new private void Start()
+    {
         base.Start();
         // bait = GameObject.FindGameObjectWithTag("Bait");
         currentState = EnemyStates.IDLE;
@@ -40,7 +41,8 @@ public class Enemy_Lurker : EnemyBaseClass {
     }
 
     //does not call base update because of statemachine
-    new private void Update() {
+    new private void Update()
+    {
         //base.Update();
         FindPlayer();
         FindBait();
@@ -50,17 +52,24 @@ public class Enemy_Lurker : EnemyBaseClass {
         instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
     }
 
-    public void SetLight() {
-        if (isInShadows) {
+    public void SetLight()
+    {
+        if (isInShadows)
+        {
             // lt.SetActive(true);
-        } else {
+        }
+        else
+        {
             lt.SetActive(false);
         }
     }
     //enemy is invulnerable in shadows
-    public override void CheckHealth() {
-        if (!isInShadows) {
-            if (enemyHealth <= 0) {
+    public override void CheckHealth()
+    {
+        if (!isInShadows)
+        {
+            if (enemyHealth <= 0)
+            {
                 monsterStatus.setValue(dead);
                 Destroy(this.gameObject);
             }
@@ -68,44 +77,68 @@ public class Enemy_Lurker : EnemyBaseClass {
     }
 
 
-    public override void TakeDamage(int amount) {
-        if (!isInShadows) {
+    public override void TakeDamage(int amount)
+    {
+        if (!isInShadows)
+        {
             base.TakeDamage(amount);
         }
     }
     //enemy moves towards target 
-    public override void EnemyMovement() {
+    public override void EnemyMovement()
+    {
         Vector3 moveToPos = new Vector3(targetTransform.transform.position.x, transform.position.y, 0);
         transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
     }
 
     //checks if bait is on the ground and if enemy should come out of hiding
-    private void FindBait() {
-        if (bait.gameObject == null) {
+    private void FindBait()
+    {
+        if (bait.gameObject == null)
+        {
             return;
         }
 
-        float _distanceToBait = Mathf.Abs((bait.transform.position.x - transform.position.x));
-        if (Mathf.RoundToInt(bait.transform.position.y) == Mathf.RoundToInt(transform.position.y)) {
-            currentState = EnemyStates.CHASEBAIT;
+        if (bait.transform.position.y < 1.0f)
+        {
+            bait.GetComponent<BaitScript>().baitOnGround = true;
         }
-        else if (_distanceToBait < baitRadius) {
-            currentState = EnemyStates.CHASEBAIT;
+
+        float _distanceToBait = Mathf.Abs((bait.transform.position.x - transform.position.x));
+        if (Mathf.RoundToInt(bait.transform.position.y) == Mathf.RoundToInt(transform.position.y))
+        {
+            if (bait.GetComponent<BaitScript>().baitOnGround)
+            {
+                currentState = EnemyStates.CHASEBAIT;
+            }
+        }
+        else if (_distanceToBait < baitRadius)
+        {
+            if (bait.GetComponent<BaitScript>().baitOnGround)
+            {
+                currentState = EnemyStates.CHASEBAIT;
+            }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.tag == "Bait") {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Bait")
+        {
             EatBait(collision.gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Shadow") {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Shadow")
+        {
             isInShadows = true;
         }
-        if (collision.gameObject.tag == "Mirror") {
-            if (!teleported) {
+        if (collision.gameObject.tag == "Mirror" && canTeleport)
+        {
+            if (!teleported)
+            {
                 collision.gameObject.GetComponent<Interaction>().Teleport(this.gameObject);
                 teleported = true;
             }
@@ -113,15 +146,18 @@ public class Enemy_Lurker : EnemyBaseClass {
     }
 
     //check if enemy is in shadows 
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Shadow") {
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Shadow")
+        {
             isInShadows = false;
         }
     }
 
     //enemy eats bait and returns to idle state
-    private void EatBait(GameObject bait) {
-        baitOnGround = false;
+    private void EatBait(GameObject bait)
+    {
+        bait.GetComponent<BaitScript>().baitOnGround = false;
         isInShadows = false;
         currentState = EnemyStates.IDLE;
         transform.position = bait.transform.position;
@@ -129,8 +165,10 @@ public class Enemy_Lurker : EnemyBaseClass {
     }
 
     //state machine for lurker enemy
-    private void StateMachine(EnemyStates state) {
-        switch (state) {
+    private void StateMachine(EnemyStates state)
+    {
+        switch (state)
+        {
             case EnemyStates.NULL:
                 monsterStatus.setValue(idle);
                 break;

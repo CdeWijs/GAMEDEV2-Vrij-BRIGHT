@@ -1,34 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Interaction : MonoBehaviour {
-
+public class Interaction : MonoBehaviour
+{
     public GameObject buttonImage;
     public GameObject other;
-    //public string _tag;
 
     // FMOD
     [FMODUnity.EventRef]
     public string eventRef;
     private FMOD.Studio.EventInstance instance;
 
-    private void Start() {
+    private void Start()
+    {
         instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
     }
 
-    public void SetButtonActive(bool _bool) {
-        buttonImage.SetActive(_bool);
+    public void SetButtonActive(bool isActive)
+    {
+        buttonImage.SetActive(isActive);
 
     }
 
-    public void Teleport(GameObject _object) {
+    public void Teleport(GameObject other)
+    {
         FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
         instance.start();
-        _object.transform.position = new Vector3(
-             other.transform.position.x,
-            _object.transform.position.y,
-            _object.transform.position.z);
+        Debug.Log(other);
+        other.transform.position = new Vector3(
+             this.other.transform.position.x,
+            other.transform.position.y,
+            other.transform.position.z);
+    }
+
+    public void Teleport()
+    {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
+        instance.start();
+        Debug.Log(other);
+        other.transform.position = new Vector3(
+             this.other.transform.position.x,
+            other.transform.position.y,
+            other.transform.position.z);
     }
 }
 

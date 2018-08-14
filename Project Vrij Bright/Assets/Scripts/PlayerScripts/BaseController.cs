@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class BaseController : MonoBehaviour {
-
+public class BaseController : MonoBehaviour
+{
     public ControllerInput connectedController;
-    public SpriteRenderer sprR;
+    public SpriteRenderer spriteRenderer;
     public bool a_active;
     public bool b_active;
     public bool x_active;
@@ -21,38 +18,41 @@ public class BaseController : MonoBehaviour {
     protected Rigidbody2D rigidBody2D;
 
 
-    public virtual void Start() {
+    public virtual void Start()
+    {
         rigidBody2D = GetComponent<Rigidbody2D>();
-        }
+    }
 
-    public virtual void Update() {
+    public virtual void Update()
+    {
         GetInput();
-        }
+    }
 
-    public virtual void FixedUpdate() {
-        // FlipSprite();
-        }
-
-    public virtual void Jump(float force) {
+    public virtual void Jump(float force)
+    {
         rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, force);
-        }
+    }
 
-    protected void MoveHorizontally(float speed) {
+    protected void MoveHorizontally(float speed)
+    {
         rigidBody2D.velocity = new Vector2(inputHorizontal * speed, rigidBody2D.velocity.y);
         walkSpeed = rigidBody2D.velocity.x;
-        }
+    }
 
-    public GameObject RayCaster(Vector2 _position, Vector2 _direction, float _distance) {
+    public GameObject RayCaster(Vector2 _position, Vector2 _direction, float _distance)
+    {
         RaycastHit2D _hit = Physics2D.Raycast(_position, _direction, _distance);
-        if (_hit) {
+        if (_hit)
+        {
             return _hit.transform.gameObject;
-            }
-        return null;
-
         }
+        return null;
+    }
 
-    public virtual void GetInput() {
-        if (connectedController != null) {
+    public virtual void GetInput()
+    {
+        if (connectedController != null)
+        {
             inputHorizontal = (Input.GetAxisRaw(connectedController.GetHorizontal()));
             inputVertical = (Input.GetAxisRaw(connectedController.GetVertical()));
 
@@ -64,34 +64,43 @@ public class BaseController : MonoBehaviour {
 
             if (inputHorizontal != 0)
                 FlipSprite(connectedController.GetHorizontal());
-
-            } else {
+        }
+        else
+        {
             inputHorizontal = Input.GetAxis("Horizontal");
             inputVertical = Input.GetAxis("Vertical");
 
             FlipSprite("Horizontal");
-            }
         }
-
-    public void FlipSprite(string _input) {
-        float _direction = Mathf.Sign(Input.GetAxis(_input));
-        if (_direction == -1) {
-            sprR.flipX = true;
-            } else if (_direction == 1) {
-            sprR.flipX = false;
-            }
-        }
-
-    public void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.transform.tag == "Ground") {
-            grounded = true;
-            }
-        }
-
-    public void OnCollisionExit2D(Collision2D collision) {
-        if (collision.transform.tag == "Ground") {
-            grounded = false;
-            }
-        }
-
     }
+
+    public void FlipSprite(string _input)
+    {
+        float _direction = Mathf.Sign(Input.GetAxis(_input));
+        if (_direction == -1)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (_direction == 1)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Ground")
+        {
+            grounded = true;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Ground")
+        {
+            grounded = false;
+        }
+    }
+
+}
