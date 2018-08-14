@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +14,7 @@ public class MenuNextScene : MonoBehaviour
         // StartCoroutine(FadeImage(fadeBool, sceneIndex));
         Initiate.Fade(scene, loadToColor, 0.5f);
     }
+
     IEnumerator FadeImage(bool fadeAway, int sceneIndex)
     {
         // fade from opaque to transparent
