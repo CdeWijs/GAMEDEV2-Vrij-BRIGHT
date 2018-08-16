@@ -6,9 +6,11 @@ using UnityEngine.UI;
 /// <summary>
 /// baseclass for enemies to derrive from
 /// </summary>
-public class EnemyBaseClass : MonoBehaviour {
+public class EnemyBaseClass : MonoBehaviour
+{
 
-    public enum EnemyStates {
+    public enum EnemyStates
+    {
         NULL,
         IDLE,
         CHASEBAIT,
@@ -30,7 +32,10 @@ public class EnemyBaseClass : MonoBehaviour {
     public GameObject playerObject;
     public Slider enemyHealthSlider;
 
-    public void Start() {
+    protected bool findPlayer = true;
+
+    public void Start()
+    {
         currentState = EnemyStates.IDLE;
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -38,53 +43,74 @@ public class EnemyBaseClass : MonoBehaviour {
         // enemyHealthSlider.value = enemyHealth;
     }
 
-    public void Update() {
+    public void Update()
+    {
         EnemyMovement();
-        FindPlayer();
-        CheckHealth();
-    }
-
-    public virtual void TakeDamage(int amount) {
-        enemyHealthSlider.value -= amount;
-        if (enemyHealthSlider.value <= 0) {
-            Destroy(gameObject);
+        if (findPlayer)
+        {
+            FindPlayer();
         }
+        CheckHealth();
+        enemyHealthSlider.value = enemyHealth;
     }
 
-    public virtual void EnemyMovement() {
+    public virtual void TakeDamage(int amount)
+    {
+        enemyHealth -= amount;
+    }
+
+    public virtual void EnemyMovement()
+    {
         //add behaviour on derriving enemy
     }
 
-    public virtual void FindPlayer() {
-        if (playerObject == null) {
+    public virtual void FindPlayer()
+    {
+        if (playerObject == null)
+        {
             currentState = EnemyStates.IDLE;
-        } else {
+        }
+        else
+        {
             float _distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
-            if (_distanceToPlayer < attackRadius) {
+            if (_distanceToPlayer < attackRadius)
+            {
                 currentState = EnemyStates.ATTACK;
-            } else if (_distanceToPlayer < chaseRadius) {
+            }
+            else if (_distanceToPlayer < chaseRadius)
+            {
                 currentState = EnemyStates.CHASE;
-            } else if (_distanceToPlayer < alertRadius) {
+            }
+            else if (_distanceToPlayer < alertRadius)
+            {
                 currentState = EnemyStates.ALERT;
-            } else {
+            }
+            else
+            {
                 currentState = EnemyStates.IDLE;
             }
         }
     }
 
-    public virtual void CheckHealth() {
+    public virtual void CheckHealth()
+    {
         Debug.Log(enemyHealth);
-        if (enemyHealth <= 0) {
+        if (enemyHealth <= 0)
+        {
+            currentState = EnemyStates.DEAD;
             Destroy(this.gameObject);
         }
     }
 
-    public virtual void ChaseTarget(Transform _target) {
+    public virtual void ChaseTarget(Transform _target)
+    {
         transform.position = Vector2.MoveTowards(transform.position, _target.position, chaseSpeed * Time.deltaTime);
     }
 
-    public virtual void Attack() {
-        if (Time.time > nextAttack) {
+    public virtual void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
             playerObject.GetComponent<BoyClass>().health -= 8;
             nextAttack = Time.time + attackRate;
         }

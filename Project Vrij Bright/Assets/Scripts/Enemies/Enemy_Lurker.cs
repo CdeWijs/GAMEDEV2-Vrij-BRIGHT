@@ -26,7 +26,6 @@ public class Enemy_Lurker : EnemyBaseClass
     private float dead = 50;
 
     private bool teleported = false;
-    private bool findPlayer = true;
     private bool isContent = false;
 
     new private void Start()
@@ -48,10 +47,6 @@ public class Enemy_Lurker : EnemyBaseClass
     new private void Update()
     {
         Debug.Log(currentState);
-        if (findPlayer)
-        {
-            FindPlayer();
-        }
         FindBait();
         StateMachine(currentState);
         SetLight();
