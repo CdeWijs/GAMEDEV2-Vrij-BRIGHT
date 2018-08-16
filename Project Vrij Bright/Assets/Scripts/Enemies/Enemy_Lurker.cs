@@ -13,6 +13,8 @@ public class Enemy_Lurker : EnemyBaseClass
     private Transform targetTransform;
     private float baitRadius = 30f;
 
+    private Animator anim;
+
     // FMOD
     [FMODUnity.EventRef]
     public string eventRef;
@@ -24,12 +26,14 @@ public class Enemy_Lurker : EnemyBaseClass
     private float dead = 50;
 
     private bool teleported = false;
+    private bool findPlayer = true;
+    private bool isContent = false;
 
     new private void Start()
     {
         base.Start();
-        // bait = GameObject.FindGameObjectWithTag("Bait");
         currentState = EnemyStates.IDLE;
+        anim = GetComponentInChildren<Animator>();
 
         // FMOD
         instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
@@ -43,8 +47,11 @@ public class Enemy_Lurker : EnemyBaseClass
     //does not call base update because of statemachine
     new private void Update()
     {
-        //base.Update();
-        FindPlayer();
+        Debug.Log(currentState);
+        if (findPlayer)
+        {
+            FindPlayer();
+        }
         FindBait();
         StateMachine(currentState);
         SetLight();
@@ -121,21 +128,18 @@ public class Enemy_Lurker : EnemyBaseClass
         }
     }
 
+    #region Triggers
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Bait")
         {
             EatBait(collision.gameObject);
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Shadow")
+        else if (collision.gameObject.tag == "Shadow")
         {
             isInShadows = true;
         }
-        if (collision.gameObject.tag == "Mirror" && canTeleport)
+        else if (collision.gameObject.tag == "Mirror" && canTeleport)
         {
             if (!teleported)
             {
@@ -153,6 +157,7 @@ public class Enemy_Lurker : EnemyBaseClass
             isInShadows = false;
         }
     }
+    #endregion
 
     //enemy eats bait and returns to idle state
     private void EatBait(GameObject bait)
@@ -160,7 +165,8 @@ public class Enemy_Lurker : EnemyBaseClass
         chaseRadius = 0;
         bait.GetComponent<BaitScript>().baitOnGround = false;
         isInShadows = false;
-        currentState = EnemyStates.IDLE;
+        findPlayer = false;
+        currentState = EnemyStates.CONTENT;
         transform.position = bait.transform.position;
         Destroy(bait);
     }
@@ -197,6 +203,14 @@ public class Enemy_Lurker : EnemyBaseClass
                 targetTransform = null;
                 Attack();
                 monsterStatus.setValue(attack);
+                break;
+
+            case EnemyStates.CONTENT:
+                if (!isContent)
+                {
+                    isContent = true;
+                    anim.SetBool("isContent", true);
+                }
                 break;
 
             default:

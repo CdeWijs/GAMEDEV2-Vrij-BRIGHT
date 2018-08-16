@@ -15,6 +15,7 @@ public class EnemyBaseClass : MonoBehaviour {
         ALERT,
         CHASE,
         ATTACK,
+        CONTENT,
         DEAD
     }
 
