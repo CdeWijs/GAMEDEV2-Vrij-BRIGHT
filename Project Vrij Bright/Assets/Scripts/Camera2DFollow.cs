@@ -4,7 +4,7 @@ public class Camera2DFollow : MonoBehaviour {
     public Transform[] targets;
 
     public float damping = 1;
-    public float lookAheadFactor = 8;
+    public float lookAheadFactor = 6;
     public float lookAheadReturnSpeed = 0.5f;
     public float lookAheadMoveThreshold = 0.1f;
 
