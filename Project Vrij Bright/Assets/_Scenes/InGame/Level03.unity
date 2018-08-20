@@ -1211,11 +1211,6 @@ Prefab:
       propertyPath: attackDamage
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
-        type: 2}
-      propertyPath: nextScene
-      value: Level03
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bfefccadc50924fac0cebfa9a0659a, type: 2}
   m_IsPrefabParent: 0

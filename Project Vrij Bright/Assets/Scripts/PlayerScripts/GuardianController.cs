@@ -23,7 +23,14 @@ public class GuardianController : BaseController
         // Check if Joystick exists
         if (Input.GetJoystickNames().Length > 0)
         {
-            connectedController = new Joystick2();
+            if (!switchControls)
+            {
+                connectedController = new Joystick2();
+            }
+            else
+            {
+                connectedController = new Joystick1();
+            }
         }
     }
 

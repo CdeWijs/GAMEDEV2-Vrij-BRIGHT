@@ -20,7 +20,6 @@ public class Enemy_Patrol : EnemyBaseClass
 
         currentState = EnemyStates.IDLE;
         InitPatrolVariables();
-        Debug.Log(playerObject);
     }
 
     private void InitPatrolVariables()

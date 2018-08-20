@@ -7,8 +7,6 @@ public class BaitScript : MonoBehaviour
     public bool baitOnGround;
 
     private Rigidbody2D rigidBody2D;
-    private GameObject player;
-    private GuardianController guardianController;
 
     // FMOD
     [FMODUnity.EventRef]
@@ -21,9 +19,6 @@ public class BaitScript : MonoBehaviour
     private void Start()
     {
         baitOnGround = false;
-        player = GameObject.FindGameObjectWithTag("Guardian");
-        guardianController = player.GetComponent<GuardianController>();
-        Debug.Log(guardianController);
         cutBaitInstance = FMODUnity.RuntimeManager.CreateInstance(cutBaitRef);
         dropBaitInstance = FMODUnity.RuntimeManager.CreateInstance(dropBaitRef);
     }

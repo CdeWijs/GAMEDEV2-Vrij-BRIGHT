@@ -10,6 +10,8 @@ public class BaseController : MonoBehaviour
     public bool y_active;
     public bool trig_active;
 
+    public bool switchControls;
+
     protected float inputHorizontal;
     protected float inputVertical;
     protected float walkSpeed;
@@ -20,6 +22,7 @@ public class BaseController : MonoBehaviour
 
     public virtual void Start()
     {
+        GameManager.AddController(this);
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
 

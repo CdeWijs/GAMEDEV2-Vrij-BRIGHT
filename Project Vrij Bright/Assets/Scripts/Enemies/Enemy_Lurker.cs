@@ -46,7 +46,6 @@ public class Enemy_Lurker : EnemyBaseClass
     //does not call base update because of statemachine
     new private void Update()
     {
-        Debug.Log(currentState);
         FindBait();
         StateMachine(currentState);
         SetLight();

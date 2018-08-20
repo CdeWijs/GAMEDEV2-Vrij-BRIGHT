@@ -50,7 +50,14 @@ public class BoyController : BaseController
         // Check if Joystick exists
         if (Input.GetJoystickNames().Length > 0)
         {
-            connectedController = new Joystick1();
+            if (!switchControls)
+            {
+                connectedController = new Joystick1();
+            }
+            else
+            {
+                connectedController = new Joystick2();
+            }
         }
 
         footStepInstance = FMODUnity.RuntimeManager.CreateInstance(footStepEvent);
@@ -149,7 +156,7 @@ public class BoyController : BaseController
             }
         }
     }
-    
+
     private void SetAnimatorBool(string _boolName, bool _bool)
     {
         boyAnimator.SetBool(_boolName, _bool);
