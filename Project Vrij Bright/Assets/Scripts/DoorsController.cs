@@ -2,7 +2,6 @@
 
 public class DoorsController : MonoBehaviour
 {
-
     private GameObject openDoors;
     private GameObject closedDoors;
 

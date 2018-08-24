@@ -18,7 +18,6 @@ public class Interaction : MonoBehaviour
     public void SetButtonActive(bool isActive)
     {
         buttonImage.SetActive(isActive);
-
     }
 
     public void Teleport(GameObject other)

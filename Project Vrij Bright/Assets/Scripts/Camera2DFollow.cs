@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Camera2DFollow : MonoBehaviour {
+public class Camera2DFollow : MonoBehaviour
+{
     public Transform[] targets;
 
     public float damping = 1;
@@ -14,31 +15,37 @@ public class Camera2DFollow : MonoBehaviour {
     private Vector3 lookAheadPos;
 
     // Use this for initialization
-    private void Start() {
+    private void Start()
+    {
         lastTargetPosition = (targets[0].position + targets[1].position) / 2;
         offsetZ = (transform.position - (targets[0].position + targets[1].position) / 2).z;
         transform.parent = null;
     }
 
     // Update is called once per frame
-    private void Update() {
+    private void Update()
+    {
         // only update lookahead pos if accelerating or changed direction
         float xMoveDelta = ((targets[0].position + targets[1].position) / 2 - lastTargetPosition).x;
 
         bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
-        if (updateLookAheadTarget) {
+        if (updateLookAheadTarget)
+        {
             lookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
-        } else {
+        }
+        else
+        {
             lookAheadPos = Vector3.MoveTowards(lookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
         }
 
         Vector3 aheadTargetPos = (targets[0].position + targets[0].position) / 2 + lookAheadPos + Vector3.forward * offsetZ;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref currentVelocity, damping);
 
-        if (newPos.x < 6.5f) {
+        if (newPos.x < 6.5f)
+        {
             newPos.x = 6.5f;
-            }
+        }
         transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
 
         lastTargetPosition = (targets[0].position + targets[1].position) / 2;

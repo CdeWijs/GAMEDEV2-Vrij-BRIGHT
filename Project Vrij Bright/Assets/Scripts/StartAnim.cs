@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StartAnim : MonoBehaviour
@@ -18,7 +17,6 @@ public class StartAnim : MonoBehaviour
             fadePlane.SetActive(true);
             StartCoroutine(Fade(fadeTime));
         }
-
     }
 
     private IEnumerator Fade(float _time)

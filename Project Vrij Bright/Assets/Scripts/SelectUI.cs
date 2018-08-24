@@ -7,7 +7,7 @@ public class SelectUI : MonoBehaviour
     public GameObject selectedObject;
 
     private bool buttonSelected;
-    
+
     void Update()
     {
         if (Input.GetAxis("HorizontalJ1") != 0 && buttonSelected == false || Input.GetAxisRaw("HorizontalJ2") != 0 && buttonSelected == false)

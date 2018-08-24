@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void ResetControllers(Scene scene, LoadSceneMode mode)
     {
-        foreach(BaseController con in controllers)
+        foreach (BaseController con in controllers)
         {
             controllers.Remove(con);
         }
