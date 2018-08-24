@@ -2,6 +2,7 @@
 
 public class DoorsController : MonoBehaviour
 {
+    public bool doorsOpen;
     private GameObject openDoors;
     private GameObject closedDoors;
 
@@ -17,9 +18,9 @@ public class DoorsController : MonoBehaviour
     private void Start()
     {
         openDoors = transform.GetChild(0).gameObject;
-        openDoors.SetActive(false);
+        openDoors.SetActive(doorsOpen);
         closedDoors = transform.GetChild(1).gameObject;
-        closedDoors.SetActive(true);
+        closedDoors.SetActive(!doorsOpen);
 
         instanceOpen = FMODUnity.RuntimeManager.CreateInstance(doorOpen);
         instanceClose = FMODUnity.RuntimeManager.CreateInstance(doorClose);

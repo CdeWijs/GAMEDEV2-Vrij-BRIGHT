@@ -37,13 +37,12 @@ public class EnemyBaseClass : MonoBehaviour
         currentState = EnemyStates.IDLE;
         rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        // enemyHealthSlider.maxValue = enemyHealth;
-        // enemyHealthSlider.value = enemyHealth;
+        enemyHealthSlider.maxValue = enemyHealth;
+        enemyHealthSlider.value = enemyHealth;
     }
 
     public void Update()
     {
-        EnemyMovement();
         if (findPlayer)
         {
             FindPlayer();

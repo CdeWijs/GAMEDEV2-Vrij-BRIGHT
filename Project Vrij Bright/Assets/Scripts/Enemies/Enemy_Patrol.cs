@@ -31,7 +31,6 @@ public class Enemy_Patrol : EnemyBaseClass
     private new void Update()
     {
         base.Update();
-
         StateMachine(currentState);
     }
 

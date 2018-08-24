@@ -2328,7 +2328,7 @@ Prefab:
     - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}
       propertyPath: reloadScene
-      value: Introduction
+      value: IntroLevel
       objectReference: {fileID: 0}
     - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}

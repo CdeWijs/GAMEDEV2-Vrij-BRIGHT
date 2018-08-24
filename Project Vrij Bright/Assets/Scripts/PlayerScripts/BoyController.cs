@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class BoyController : BaseController
 {
     public LayerMask attackLayerMask;
@@ -7,7 +8,7 @@ public class BoyController : BaseController
     private Vector3 moveDirection;
 
     //basevalues for resetting physics
-    public static float NormalSpeed = 0.5f;
+    public static float NormalSpeed = 8f;
     public static float normalJump = 6;
 
     public float currentSpeed = 0.5f;
@@ -28,8 +29,8 @@ public class BoyController : BaseController
     float[] raycastPoints = new float[3];
     public Vector2[] raycastLocations = new Vector2[3];
     public Transform raycastpos;
-
     // FMOD
+
     [FMODUnity.EventRef]
     public string footStepEvent;
     private FMOD.Studio.EventInstance footStepInstance;
@@ -175,7 +176,7 @@ public class BoyController : BaseController
         {
             SetAnimatorBool("Scared", true);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.25f);
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.5f);
         }
         else if (collision.tag == "GravityWell" && this.gameObject.layer != 14)
         {
@@ -195,9 +196,10 @@ public class BoyController : BaseController
     {
         if (collision.transform.tag == "Shadow")
         {
+            Debug.Log("Leaving shadows");
             SetAnimatorBool("Scared", false);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 1);
         }
         else if (collision.tag == "GravityWell")
         {

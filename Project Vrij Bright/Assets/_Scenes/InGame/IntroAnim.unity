@@ -132,7 +132,7 @@ MonoBehaviour:
   aC: {fileID: 7400000, guid: ff7477d29ce47e74593352ec3f305b49, type: 2}
   an: {fileID: 67685138}
   fadeInOrOut: 0
-  scene: Introduction
+  scene: IntroLevel
   loadToColor: {r: 0, g: 0, b: 0, a: 1}
   img: {fileID: 468747950}
 --- !u!95 &67685138 stripped

@@ -16,6 +16,13 @@ public class MenuNextScene : MonoBehaviour
         Initiate.Fade(scene, loadToColor, 0.5f);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)){
+            StartCoroutine(FadeImage(true, 1));
+        }
+    }
+
     IEnumerator FadeImage(bool fadeAway, int sceneIndex)
     {
         // fade from opaque to transparent
