@@ -11,16 +11,16 @@ public class BaitScript : MonoBehaviour
     // FMOD
     [FMODUnity.EventRef]
     public string cutBaitRef;
-    private FMOD.Studio.EventInstance cutBaitInstance;
+    //private FMOD.Studio.EventInstance cutBaitInstance;
     [FMODUnity.EventRef]
     public string dropBaitRef;
-    private FMOD.Studio.EventInstance dropBaitInstance;
+    //private FMOD.Studio.EventInstance dropBaitInstance;
 
     private void Start()
     {
         baitOnGround = false;
-        cutBaitInstance = FMODUnity.RuntimeManager.CreateInstance(cutBaitRef);
-        dropBaitInstance = FMODUnity.RuntimeManager.CreateInstance(dropBaitRef);
+        //cutBaitInstance = FMODUnity.RuntimeManager.CreateInstance(cutBaitRef);
+        //dropBaitInstance = FMODUnity.RuntimeManager.CreateInstance(dropBaitRef);
     }
 
     public IEnumerator DropBait()

@@ -21,11 +21,6 @@ public class BoyController : BaseController
 
     //animator settings
     public Animator boyAnimator;
-    private bool Scared = false;
-    private bool Attacking = false;
-    private bool Walking = false;
-    private bool Jumping = false;
-    public bool coolingDown = false;
 
     private float attackRate = 0.8f;
     private float nextAttack;

@@ -9,13 +9,10 @@ public class AnimationScript : MonoBehaviour {
     public Animator an;
   
     private float time;
-    private bool playing = false;
-    private Fade fader;
     public bool fadeInOrOut;
     public string scene;
     public Color loadToColor = Color.black;
     private void Start() {
-        fader = GetComponent<Fade>();
         time = aC.length / an.speed;
         }
 

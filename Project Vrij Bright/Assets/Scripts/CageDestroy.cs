@@ -27,10 +27,5 @@ public class CageDestroy : MonoBehaviour {
             FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
             instance.start();
         }
-
-        if (collision.transform.tag == "Monster") {
-            EnemyBaseClass enemy = collision.gameObject.GetComponent<EnemyBaseClass>();
-
-        }
     }
 }

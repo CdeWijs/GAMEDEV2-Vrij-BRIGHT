@@ -11,14 +11,6 @@ public class StartAnim : MonoBehaviour
     public int fadeTime;
     public string animatorState;
 
-    private Sprite _sprite;
-
-
-    private void Start()
-    {
-        _sprite = sprR.sprite;
-    }
-
     private void Update()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName(animatorState))

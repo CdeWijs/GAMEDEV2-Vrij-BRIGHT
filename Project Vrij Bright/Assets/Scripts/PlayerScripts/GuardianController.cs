@@ -10,7 +10,6 @@ public class GuardianController : BaseController
     private int flutterAmount = 5;
 
     public GameObject lightSource;
-    private float LightPower = 100f;
     public Light lt;
     public float decrease;
 
