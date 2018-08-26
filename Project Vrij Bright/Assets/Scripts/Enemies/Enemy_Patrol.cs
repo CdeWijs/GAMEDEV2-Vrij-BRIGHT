@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Enemy_Patrol : EnemyBaseClass
 {
-
     public float patrollingDistance = 25;
 
     private float startTime;
@@ -11,6 +10,20 @@ public class Enemy_Patrol : EnemyBaseClass
     private Vector3 newPosition;
     private bool walkRight;
     private bool isPatrolling;
+    private float startY;
+
+    // FMOD
+    [FMODUnity.EventRef]
+    public string alertEvent;
+    private bool playedAlertAudio = false;
+    [FMODUnity.EventRef]
+    public string attackEvent;
+    [FMODUnity.EventRef]
+    public string deathEvent;
+    private bool playedDeathAudio = false;
+    [FMODUnity.EventRef]
+    public string idleEvent;
+    private FMOD.Studio.EventInstance idleInstance;
 
     private new void Start()
     {
@@ -18,6 +31,9 @@ public class Enemy_Patrol : EnemyBaseClass
 
         currentState = EnemyStates.IDLE;
         InitPatrolVariables();
+        startY = transform.position.y;
+
+        idleInstance = FMODUnity.RuntimeManager.CreateInstance(idleEvent);
     }
 
     private void InitPatrolVariables()
@@ -32,15 +48,33 @@ public class Enemy_Patrol : EnemyBaseClass
     {
         base.Update();
         StateMachine(currentState);
+        idleInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
+        if (transform.position.y < -5)
+        {
+            transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+        }
     }
 
     public override void CheckHealth()
     {
         if (enemyHealth <= 0)
         {
-            Destroy(this.gameObject);
-            currentState = EnemyStates.DEAD;
+            StartCoroutine(Die());
         }
+    }
+
+    private IEnumerator Die()
+    {
+        if (!playedDeathAudio)
+        {
+            idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(deathEvent, gameObject);
+            playedDeathAudio = true;
+        }
+        currentState = EnemyStates.DEAD;
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
     }
 
     private void StateMachine(EnemyStates _state)
@@ -48,11 +82,18 @@ public class Enemy_Patrol : EnemyBaseClass
         switch (_state)
         {
             case EnemyStates.IDLE:
+                idleInstance.start();
                 Patrol();
                 break;
 
             case EnemyStates.ALERT:
                 Alert();
+                if (!playedAlertAudio)
+                {
+                    idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(alertEvent, this.gameObject);
+                    playedAlertAudio = true;
+                }
                 isPatrolling = false;
                 break;
 
@@ -74,12 +115,6 @@ public class Enemy_Patrol : EnemyBaseClass
             default:
                 break;
         }
-    }
-
-    private IEnumerator Die()
-    {
-        yield return new WaitForSeconds(1);
-        yield return null;
     }
 
     private void Patrol()
@@ -124,6 +159,16 @@ public class Enemy_Patrol : EnemyBaseClass
         else if (_distanceToPlayer < _temp)
         {
             currentState = EnemyStates.CHASE;
+        }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
+            playerObject.GetComponent<BoyClass>().health -= 8;
+            nextAttack = Time.time + attackRate;
+            FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
         }
     }
 }

@@ -15,18 +15,23 @@ public class Enemy_Lurker : EnemyBaseClass
 
     private Animator anim;
 
-    // FMOD
-    [FMODUnity.EventRef]
-    public string eventRef;
-    private FMOD.Studio.EventInstance instance;
-    private FMOD.Studio.ParameterInstance monsterStatus;
-    private float idle = 0;
-    private float alert = 20;
-    private float attack = 30;
-    private float dead = 50;
-
     private bool teleported = false;
     private bool isContent = false;
+
+    // FMOD
+    [FMODUnity.EventRef]
+    public string alertEvent;
+    private bool playedAlertAudio = false;
+    [FMODUnity.EventRef]
+    public string attackEvent;
+    [FMODUnity.EventRef]
+    public string deathEvent;
+    [FMODUnity.EventRef]
+    public string idleEvent;
+    private FMOD.Studio.EventInstance idleInstance;
+    [FMODUnity.EventRef]
+    public string contentEvent;
+    private bool playedContentAudio = false;
 
     new private void Start()
     {
@@ -35,12 +40,7 @@ public class Enemy_Lurker : EnemyBaseClass
         anim = GetComponentInChildren<Animator>();
 
         // FMOD
-        instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
-        FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, this.gameObject.transform, rigidBody2D);
-        instance.start(); ;
-        instance.getParameter("M1 Status", out monsterStatus);
-        monsterStatus.setValue(idle);
+        idleInstance = FMODUnity.RuntimeManager.CreateInstance(idleEvent);
     }
 
     //does not call base update because of statemachine
@@ -50,7 +50,7 @@ public class Enemy_Lurker : EnemyBaseClass
         StateMachine(currentState);
         SetLight();
 
-        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
+        idleInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
     }
 
     public void SetLight()
@@ -71,7 +71,6 @@ public class Enemy_Lurker : EnemyBaseClass
         {
             if (enemyHealth <= 0)
             {
-                monsterStatus.setValue(dead);
                 Destroy(this.gameObject);
             }
         }
@@ -171,21 +170,30 @@ public class Enemy_Lurker : EnemyBaseClass
         switch (state)
         {
             case EnemyStates.NULL:
-                monsterStatus.setValue(idle);
                 break;
 
             case EnemyStates.IDLE:
-                //perhaps Idle animation
+                idleInstance.start();
                 break;
 
             case EnemyStates.CHASEBAIT:
                 targetTransform = bait.transform;
                 EnemyMovement();
-                monsterStatus.setValue(alert);
+                if (!playedAlertAudio)
+                {
+                    idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(alertEvent, gameObject);
+                    playedAlertAudio = true;
+                }
                 break;
 
             case EnemyStates.ALERT:
-                monsterStatus.setValue(alert);
+                if (!playedAlertAudio)
+                {
+                    idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(alertEvent, gameObject);
+                    playedAlertAudio = true;
+                }
                 break;
 
             case EnemyStates.CHASE:
@@ -196,7 +204,6 @@ public class Enemy_Lurker : EnemyBaseClass
             case EnemyStates.ATTACK:
                 targetTransform = null;
                 Attack();
-                monsterStatus.setValue(attack);
                 break;
 
             case EnemyStates.CONTENT:
@@ -204,11 +211,28 @@ public class Enemy_Lurker : EnemyBaseClass
                 {
                     isContent = true;
                     anim.SetBool("isContent", true);
+                    if (!playedContentAudio)
+                    {
+                        idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                        Debug.Log("Played Content Audio");
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(contentEvent, gameObject);
+                        playedContentAudio = true;
+                    }
                 }
                 break;
 
             default:
                 break;
+        }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
+            playerObject.GetComponent<BoyClass>().health -= 8;
+            nextAttack = Time.time + attackRate;
+            FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
         }
     }
 }

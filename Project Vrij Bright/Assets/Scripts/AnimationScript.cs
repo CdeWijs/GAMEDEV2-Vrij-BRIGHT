@@ -12,9 +12,15 @@ public class AnimationScript : MonoBehaviour
     public bool fadeInOrOut;
     public string scene;
     public Color loadToColor = Color.black;
+
+    // FMOD
+    [FMODUnity.EventRef]
+    public string audioEvent;
+
     private void Start()
     {
         time = aC.length / an.speed;
+        FMODUnity.RuntimeManager.PlayOneShotAttached(audioEvent, this.gameObject);
     }
 
     private void Update()
