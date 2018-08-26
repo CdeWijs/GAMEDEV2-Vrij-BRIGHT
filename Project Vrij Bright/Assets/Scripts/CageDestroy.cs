@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// destroy cage when colliding with ground
@@ -11,13 +12,7 @@ public class CageDestroy : MonoBehaviour
     // FMOD
     [FMODUnity.EventRef]
     public string eventRef;
-    private FMOD.Studio.EventInstance instance;
-
-    private void Start()
-    {
-        instance = FMODUnity.RuntimeManager.CreateInstance(eventRef);
-    }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Ground")
@@ -26,7 +21,6 @@ public class CageDestroy : MonoBehaviour
             brokenCage.SetActive(true);
             this.gameObject.SetActive(false);
             FMODUnity.RuntimeManager.PlayOneShotAttached(eventRef, this.gameObject);
-            instance.start();
         }
     }
 }

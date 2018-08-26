@@ -29,12 +29,14 @@ public class BoyController : BaseController
     float[] raycastPoints = new float[3];
     public Vector2[] raycastLocations = new Vector2[3];
     public Transform raycastpos;
-    // FMOD
 
+    // FMOD
     [FMODUnity.EventRef]
     public string footStepEvent;
     private FMOD.Studio.EventInstance footStepInstance;
     private bool isPlayingFootsteps = false;
+    [FMODUnity.EventRef]
+    public string attackEvent;
 
     public override void Start()
     {
@@ -100,6 +102,7 @@ public class BoyController : BaseController
             }
             if (x_active && Time.time > nextAttack)
             {
+                FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
                 StartCoroutine(PlayAnim("Attacking"));
                 //    BasicAttack();
                 nextAttack = Time.time + attackRate;
@@ -114,6 +117,7 @@ public class BoyController : BaseController
             }
             if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack)
             {
+                FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
                 StartCoroutine(PlayAnim("Attacking"));
                 //BasicAttack();
                 nextAttack = Time.time + attackRate;
@@ -204,7 +208,7 @@ public class BoyController : BaseController
         else if (collision.tag == "GravityWell")
         {
             SetAllInputFalse();
-            PhysicsScript.ResetGravity(this.gameObject);
+            PhysicsScript.ResetGravity(this.gameObject, new Vector3(1, 1, 1));
             currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
         }
         //makes player invisible when leaving in mirrorworld

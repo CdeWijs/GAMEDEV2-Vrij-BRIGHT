@@ -334,7 +334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915816661666042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.1, y: -0.53859, z: 0}
+  m_LocalPosition: {x: -96.38848, y: -1.72, z: 0}
   m_LocalScale: {x: 2.702839, y: 2.702838, z: 2.0021021}
   m_Children:
   - {fileID: 224112997126342594}
@@ -696,6 +696,7 @@ MonoBehaviour:
   x_active: 0
   y_active: 0
   trig_active: 0
+  switchControls: 0
   grounded: 0
   attackLayerMask:
     serializedVersion: 2
@@ -708,13 +709,13 @@ MonoBehaviour:
   timeToJumpApex: 0.4
   gravity: 4
   boyAnimator: {fileID: 95572323118753048}
-  coolingDown: 0
   raycastLocations:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   raycastpos: {fileID: 4941200765432858}
   footStepEvent: event:/Boy/Boy Voetstappen
+  attackEvent: event:/Boy/Zwaard HIT
 --- !u!114 &114551446398634050
 MonoBehaviour:
   m_ObjectHideFlags: 1
