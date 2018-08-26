@@ -2,8 +2,10 @@
 
 public class GuardianController : BaseController
 {
-    public const float NormalSpeed = 7;
-    public const float JumpForce = 5;
+    public float NormalSpeed = 7;
+    public  float JumpForce = 5;
+
+    public bool levelChase;
 
     private int flutterAmount = 5;
 
@@ -34,6 +36,12 @@ public class GuardianController : BaseController
     public override void Update()
     {
         base.Update();
+
+        if (levelChase) {
+            //NormalSpeed += Time.deltaTime * 5;
+            NormalSpeed += 0.3f * Time.deltaTime;
+            //NormalSpeed = currentSpeed;
+        }
 
         if (flutterAmount < 5 && grounded)
         {

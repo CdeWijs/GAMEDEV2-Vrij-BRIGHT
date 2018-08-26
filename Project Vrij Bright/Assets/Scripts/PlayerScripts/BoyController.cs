@@ -13,15 +13,22 @@ public class BoyController : BaseController
 
     public float currentSpeed = 0.5f;
     public float currentJump = 5;
+    public bool levelChase;
     //private string[] jumpableLayers;
 
     public float jumpHeight = 4;
     public float jumpVelocity;
     public float timeToJumpApex = .4f;
     public float gravity = 4f;
+    private Vector3 scale;
 
     //animator settings
     public Animator boyAnimator;
+    private bool Scared = false;
+    private bool Attacking = false;
+    private bool Walking = false;
+    private bool Jumping = false;
+    public bool coolingDown = false;
 
     private float attackRate = 0.8f;
     private float nextAttack;
@@ -64,6 +71,11 @@ public class BoyController : BaseController
     public override void Update()
     {
         base.Update();
+        if (levelChase) {
+            //NormalSpeed += Time.deltaTime * 5;
+            currentSpeed += 0.3f * Time.deltaTime;
+            NormalSpeed = currentSpeed;
+        }
         //transform.Translate(JumpDir() * Time.deltaTime);
     }
 
@@ -173,47 +185,38 @@ public class BoyController : BaseController
     #region Triggers
 
     //Change player properties on trigger enter
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerEnter2D(Collider2D collision) {
         //behaviour for when player is scared
-        if (collision.tag == "Shadow" && this.gameObject.layer != 14)
-        {
+        if (collision.tag == "Shadow" && this.gameObject.layer != 14) {
             SetAnimatorBool("Scared", true);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.5f);
-        }
-        else if (collision.tag == "GravityWell" && this.gameObject.layer != 14)
-        {
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.25f);
+        } else if (collision.tag == "GravityWell" && this.gameObject.layer != 14) {
             SetAllInputFalse();
             PhysicsScript.GravityIncrease(this.gameObject, 0.5f, 1.5f);
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 0.45f);
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 1.5f);
         }
-        //makes player visible when entering mirror in mirrorworld
-        else if (collision.tag == "Mirror" && this.gameObject.layer == 14)
-        {
+          //makes player visible when entering mirror in mirrorworld
+          else if (collision.tag == "Mirror" && this.gameObject.layer == 14) {
             spriteRenderer.enabled = true;
+        } else if (collision.tag == "Inversion") {
+            currentSpeed = PhysicsScript.EffectedFloat(currentSpeed, -1.1f);
         }
     }
 
     //Restore player properties on trigger exit 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Shadow")
-        {
-            Debug.Log("Leaving shadows");
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.transform.tag == "Shadow") {
             SetAnimatorBool("Scared", false);
             SetAllInputFalse();
-            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed, 1);
-        }
-        else if (collision.tag == "GravityWell")
-        {
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+        } else if (collision.tag == "GravityWell") {
             SetAllInputFalse();
-            PhysicsScript.ResetGravity(this.gameObject, new Vector3(1, 1, 1));
+            PhysicsScript.ResetGravity(this.gameObject, scale);
             currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
         }
-        //makes player invisible when leaving in mirrorworld
-        else if (collision.tag == "Mirror" && this.gameObject.layer == 14)
-        {
+          //makes player invisible when leaving in mirrorworld
+          else if (collision.tag == "Mirror" && this.gameObject.layer == 14) {
             spriteRenderer.enabled = false;
         }
     }

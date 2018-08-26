@@ -14,7 +14,9 @@ public class spawnGround : MonoBehaviour {
     public float verticalSpacing;
     public float horizontalSpacing;
     public float amountOfSpacings;
-    public float amountOfSpacingsVertical;
+    public int amountOfSpacingsVertical;
+    public float obstacleAmountOfSpacing;
+    public float obstacleSpacingHorizontal;
 
     public GameObject eraser;
     public GameObject[] obstacles;
@@ -27,6 +29,7 @@ public class spawnGround : MonoBehaviour {
         eraser = GameObject.FindGameObjectWithTag("Eraser");
        
         horizontalSpacing = groundWidth / amountOfSpacings;
+        obstacleSpacingHorizontal = groundWidth / obstacleAmountOfSpacing;
         
         for (int i = 0; i < amountOfSpacings; i++) {
         Debug.Log(horizontalSpacing * i);
@@ -68,15 +71,16 @@ public class spawnGround : MonoBehaviour {
         }
     
     //spawn obstacles up = 1 down = -1;
-    private void SpawnObstacleGuardian( float _spawnPoint, int _amount = 1, int upOrDown = 1) { 
-        for (int i = 0; i < _amount; i++) {
+    private void SpawnObstacleGuardian( float _spawnPoint, int _amount = 1, int upOrDown = 1) {
+        int realAmount = Random.Range(0, _amount);
+        for (int i = 0; i < realAmount; i++) {
+           
             GameObject _obstacle = Instantiate(obstaclesGuardian[Random.Range(0, obstaclesGuardian.Length)]);
-            float height = (i+1 * _obstacle.GetComponent<BoxCollider2D>().bounds.size.y) * upOrDown;
-            _obstacle.transform.position = new Vector3(_spawnPoint, groundTile.transform.position.y + height, 0);
+            float height = (i * _obstacle.GetComponent<BoxCollider2D>().bounds.size.y) * upOrDown;
+            _obstacle.transform.position = new Vector3(_spawnPoint, (groundTile.transform.position.y - (groundHeight))+  height, 0);
             _obstacle.name = _obstacle.name;
             _obstacle.transform.parent = this.gameObject.transform;
             }
-       
         }
 
     private void SpawnGround() {
@@ -92,8 +96,8 @@ public class spawnGround : MonoBehaviour {
                     SpawnObstacle(obstacles[Random.Range(0, obstacles.Length)], (j * horizontalSpacing) + spawnSpoint);
                     }
                 }
-            for (int x = 0; x < amountOfSpacingsVertical; x++) {
-                SpawnObstacleGuardian( (x+1 * verticalSpacing) + spawnSpoint, 5);
+            for (int x = 0; x < obstacleAmountOfSpacing; x++) {
+                SpawnObstacleGuardian( (x * verticalSpacing) + spawnSpoint, amountOfSpacingsVertical);
                 Debug.Log("spawned object");
                 }
             }
