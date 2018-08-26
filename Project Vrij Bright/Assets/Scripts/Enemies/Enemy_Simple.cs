@@ -77,7 +77,7 @@ public class Enemy_Simple : EnemyBaseClass
         }
         currentState = EnemyStates.DEAD;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }
 }

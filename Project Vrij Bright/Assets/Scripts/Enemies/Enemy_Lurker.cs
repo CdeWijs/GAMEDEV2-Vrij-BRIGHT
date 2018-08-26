@@ -29,6 +29,9 @@ public class Enemy_Lurker : EnemyBaseClass
     [FMODUnity.EventRef]
     public string idleEvent;
     private FMOD.Studio.EventInstance idleInstance;
+    [FMODUnity.EventRef]
+    public string contentEvent;
+    private bool playedContentAudio = false;
 
     new private void Start()
     {
@@ -208,6 +211,13 @@ public class Enemy_Lurker : EnemyBaseClass
                 {
                     isContent = true;
                     anim.SetBool("isContent", true);
+                    if (!playedContentAudio)
+                    {
+                        idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                        Debug.Log("Played Content Audio");
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(contentEvent, gameObject);
+                        playedContentAudio = true;
+                    }
                 }
                 break;
 

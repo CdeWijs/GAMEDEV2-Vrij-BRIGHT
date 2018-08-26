@@ -73,7 +73,7 @@ public class Enemy_Patrol : EnemyBaseClass
         }
         currentState = EnemyStates.DEAD;
         GetComponent<SpriteRenderer>().enabled = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }
 

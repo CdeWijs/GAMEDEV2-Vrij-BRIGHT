@@ -36,7 +36,9 @@ public class BoyController : BaseController
     public FMOD.Studio.EventInstance footStepInstance;
     private bool isPlayingFootsteps = false;
     [FMODUnity.EventRef]
-    public string attackEvent;
+    public string attackHitEvent;
+    [FMODUnity.EventRef]
+    public string attackMisEvent;
 
     public override void Start()
     {
@@ -102,7 +104,7 @@ public class BoyController : BaseController
             }
             if (x_active && Time.time > nextAttack)
             {
-                FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(attackMisEvent, this.gameObject);
                 StartCoroutine(PlayAnim("Attacking"));
                 //    BasicAttack();
                 nextAttack = Time.time + attackRate;
@@ -117,7 +119,7 @@ public class BoyController : BaseController
             }
             if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack)
             {
-                FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
+                FMODUnity.RuntimeManager.PlayOneShotAttached(attackMisEvent, this.gameObject);
                 StartCoroutine(PlayAnim("Attacking"));
                 //BasicAttack();
                 nextAttack = Time.time + attackRate;
@@ -137,6 +139,7 @@ public class BoyController : BaseController
 
     private void BasicAttack(GameObject attackObject)
     {
+        FMODUnity.RuntimeManager.PlayOneShotAttached(attackHitEvent, this.gameObject);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.right, out hit, 8.0f, attackLayerMask))
         {
