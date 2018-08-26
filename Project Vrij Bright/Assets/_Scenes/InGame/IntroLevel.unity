@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Bright Soundtrack
+  Event: event:/Bright Soundtrack Level 1
   PlayEvent: 1
   StopEvent: 0
   CollisionTag: 
@@ -1392,6 +1392,11 @@ Prefab:
       propertyPath: textToSay.Array.data[2]
       value: Thank you so much, Bright
       objectReference: {fileID: 0}
+    - target: {fileID: 114494440012688006, guid: 84ecb3383d4e9e041b7d00448469abe1,
+        type: 2}
+      propertyPath: thankYouRef
+      value: event:/Guardian/Speech/Thank you
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 84ecb3383d4e9e041b7d00448469abe1, type: 2}
   m_IsPrefabParent: 0
@@ -1402,6 +1407,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 224518909466147042, guid: f6472017b0bfcbc4380d669f9244a8b5,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -1491,6 +1501,86 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076962173122526, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_Text
+      value: TEXT
+      objectReference: {fileID: 0}
+    - target: {fileID: 114076962173122526, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255999237128376, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: lines.Array.data[0]
+      value: Bright!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: playAudio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.data[0]
+      value: event:/Guardian/Speech/Bright!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.data[1]
+      value: event:/Guardian/Speech/Bright (vraagteken)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.data[2]
+      value: event:/Guardian/Speech/Help me
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.data[3]
+      value: event:/Guardian/Speech/Remember
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: audioEvents.Array.data[4]
+      value: event:/Guardian/Speech/Stuck
+      objectReference: {fileID: 0}
+    - target: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+        type: 2}
+      propertyPath: conversationTime
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6472017b0bfcbc4380d669f9244a8b5, type: 2}
@@ -1717,6 +1807,24 @@ Transform:
   m_Father: {fileID: 373627346}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &917478474 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1826123010601870, guid: 84ecb3383d4e9e041b7d00448469abe1,
+    type: 2}
+  m_PrefabInternal: {fileID: 654741041}
+--- !u!114 &917478478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917478474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397d1aac02bbf7545b540f3daca31bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversation: {fileID: 1202810941}
+  eventRef: event:/Guardian/Speech/Thank you
 --- !u!4 &988379672 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4711726091448354, guid: 4ec8293a7f27d4c7ea1f0b1cebd8250f,
@@ -1813,6 +1921,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1202810941 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114777771986230764, guid: f6472017b0bfcbc4380d669f9244a8b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 658528204}
+  m_Script: {fileID: 11500000, guid: a5eb19c38e5c60346b948c6d98e597be, type: 3}
 --- !u!1 &1240155541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1940,7 @@ GameObject:
   - component: {fileID: 1240155542}
   - component: {fileID: 1240155546}
   - component: {fileID: 1240155547}
+  - component: {fileID: 1240155548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1928,6 +2043,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 280f0870fd9909c41a94bfe5257020f8, type: 2}
+--- !u!114 &1240155548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1240155541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!1 &1267103016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,6 +2461,11 @@ Prefab:
         type: 2}
       propertyPath: attackDamage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114476163156686302, guid: e2bfefccadc50924fac0cebfa9a0659a,
+        type: 2}
+      propertyPath: attackEvent
+      value: event:/Boy/Zwaard HIT
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114903110409143954, guid: e2bfefccadc50924fac0cebfa9a0659a, type: 2}
