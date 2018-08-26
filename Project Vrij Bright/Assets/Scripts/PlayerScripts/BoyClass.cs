@@ -37,6 +37,7 @@ public class BoyClass : MonoBehaviour
         if (collision.tag == "Door")
         {
             Initiate.Fade(nextScene, loadToColor, 0.5f);
+            GetComponent<BoyController>().footStepInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
     }
 }

@@ -191,7 +191,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 846727700}
     m_Modifications:
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_LocalPosition.x
@@ -223,7 +223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 212537376307638422, guid: c9d7e7ed810445443abef42ec8039798,
         type: 2}
@@ -236,7 +236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1.4341426
+      value: 1.4341435
       objectReference: {fileID: 0}
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -267,15 +267,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.382831
+      value: 2.382832
       objectReference: {fileID: 0}
     - target: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
       propertyPath: m_LocalScale.y
-      value: 4.0155993
+      value: 4.015601
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9d7e7ed810445443abef42ec8039798, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &209875569 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4010707974166186, guid: c9d7e7ed810445443abef42ec8039798,
+    type: 2}
+  m_PrefabInternal: {fileID: 209875568}
 --- !u!4 &262203287 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4760114376337090, guid: 9ce1b71a8868a27438cd946349fc509c,
@@ -689,6 +694,7 @@ Transform:
   m_Children:
   - {fileID: 1370746274}
   - {fileID: 1415472725}
+  - {fileID: 209875569}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -877,12 +883,42 @@ Prefab:
     - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
         type: 2}
       propertyPath: alertRadius
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
         type: 2}
       propertyPath: chaseRadius
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: nextAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: alertEvent
+      value: event:/Monsters PM/M5 Alert
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: attackEvent
+      value: event:/Monsters PM/M5 Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: deathEvent
+      value: event:/Monsters PM/M5 Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: idleEvent
+      value: event:/Monsters PM/M5 Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654948633192510, guid: 2ad1dba8ae28b4883b199b39759521ec,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ad1dba8ae28b4883b199b39759521ec, type: 2}
@@ -1162,6 +1198,26 @@ Prefab:
     - target: {fileID: 1827072550072042, guid: 2c5ac6876cc609248a32996e70d712e1, type: 2}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200572345928654, guid: 2c5ac6876cc609248a32996e70d712e1,
+        type: 2}
+      propertyPath: attackEvent
+      value: event:/Monsters PM/M3 attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200572345928654, guid: 2c5ac6876cc609248a32996e70d712e1,
+        type: 2}
+      propertyPath: deathEvent
+      value: event:/Monsters PM/M3 Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200572345928654, guid: 2c5ac6876cc609248a32996e70d712e1,
+        type: 2}
+      propertyPath: idleEvent
+      value: event:/Monsters PM/M3 Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200572345928654, guid: 2c5ac6876cc609248a32996e70d712e1,
+        type: 2}
+      propertyPath: nextAttack
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212929967580001756, guid: 2c5ac6876cc609248a32996e70d712e1, type: 2}

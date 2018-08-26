@@ -15,46 +15,28 @@ public class Enemy_Simple : EnemyBaseClass
 
     private float index;
 
+    // FMOD
+    [FMODUnity.EventRef]
+    public string attackEvent;
+    [FMODUnity.EventRef]
+    public string deathEvent;
+    private bool playedDeathAudio = false;
+    [FMODUnity.EventRef]
+    public string idleEvent;
+    private FMOD.Studio.EventInstance idleInstance;
+
     new public void Start()
     {
         base.Start();
         //sprR = gameObject.GetComponent<SpriteRenderer>();
+        idleInstance = FMODUnity.RuntimeManager.CreateInstance(idleEvent);
+        idleInstance.start();
     }
     new public void Update()
     {
         base.Update();
         //EnemyMovement();
-    }
-    //enemy moves towards target 
-    public override void EnemyMovement()
-    {
-        float distanceToPlayer = Mathf.Abs((playerObject.transform.position.x - transform.position.x));
-
-        if (distanceToPlayer > chaseRadius)
-        {
-            index += Time.deltaTime;
-            float x = amplitudeX * Mathf.Cos(omegaX * index);
-            FlipSprite(x);
-            //float y = Mathf.Abs(amplitudeY * Mathf.Sin(omegaY * index));
-            transform.localPosition = new Vector3(x, transform.position.y, 0);
-        }
-        else
-        {
-            Vector3 moveToPos = new Vector3(playerObject.transform.position.x, transform.position.y, 0);
-            transform.position = Vector2.MoveTowards(transform.position, moveToPos, moveSpeed * Time.deltaTime);
-        }
-    }
-
-    private void FlipSprite(float _x)
-    {
-        if (_x < -4f)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (_x > 4f)
-        {
-            spriteRenderer.flipX = false;
-        }
+        idleInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
     }
 
     public override void FindPlayer() { } // Don't use base function
@@ -63,7 +45,39 @@ public class Enemy_Simple : EnemyBaseClass
     {
         if (collision.transform.tag == "Player")
         {
-            playerObject.GetComponent<BoyClass>().health -= 10;
+            Attack();
         }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
+            playerObject.GetComponent<BoyClass>().health -= 8;
+            nextAttack = Time.time + attackRate;
+            FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
+        }
+    }
+
+    public override void CheckHealth()
+    {
+        if (enemyHealth <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
+
+    private IEnumerator Die()
+    {
+        if (!playedDeathAudio)
+        {
+            idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(deathEvent, gameObject);
+            playedDeathAudio = true;
+        }
+        currentState = EnemyStates.DEAD;
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }

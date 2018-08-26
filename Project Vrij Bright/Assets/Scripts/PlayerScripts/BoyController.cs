@@ -33,7 +33,7 @@ public class BoyController : BaseController
     // FMOD
     [FMODUnity.EventRef]
     public string footStepEvent;
-    private FMOD.Studio.EventInstance footStepInstance;
+    public FMOD.Studio.EventInstance footStepInstance;
     private bool isPlayingFootsteps = false;
     [FMODUnity.EventRef]
     public string attackEvent;

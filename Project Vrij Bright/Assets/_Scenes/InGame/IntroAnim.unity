@@ -134,6 +134,7 @@ MonoBehaviour:
   fadeInOrOut: 0
   scene: IntroLevel
   loadToColor: {r: 0, g: 0, b: 0, a: 1}
+  audioEvent: event:/Interactie/Deur INTRO
   img: {fileID: 468747950}
 --- !u!95 &67685138 stripped
 Animator:
@@ -345,8 +346,8 @@ GameObject:
   - component: {fileID: 1322523179}
   - component: {fileID: 1322523178}
   - component: {fileID: 1322523177}
-  - component: {fileID: 1322523176}
   - component: {fileID: 1322523180}
+  - component: {fileID: 1322523176}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -354,13 +355,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1322523176
-AudioListener:
+--- !u!114 &1322523176
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1322523175}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!124 &1322523177
 Behaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +731,7 @@ Prefab:
     - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -28.100006
+      value: -28.099976
       objectReference: {fileID: 0}
     - target: {fileID: 224346544426603750, guid: f6472017b0bfcbc4380d669f9244a8b5,
         type: 2}

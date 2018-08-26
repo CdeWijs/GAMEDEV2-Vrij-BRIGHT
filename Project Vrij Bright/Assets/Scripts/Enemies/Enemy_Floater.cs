@@ -19,10 +19,24 @@ public class Enemy_Floater : EnemyBaseClass {
     private bool floatUp;
     private bool isFloating;
 
+    // FMOD
+    [FMODUnity.EventRef]
+    public string alertEvent;
+    private bool playedAlertAudio = false;
+    [FMODUnity.EventRef]
+    public string attackEvent;
+    [FMODUnity.EventRef]
+    public string deathEvent;
+    private bool playedDeathAudio = false;
+    [FMODUnity.EventRef]
+    public string idleEvent;
+    private FMOD.Studio.EventInstance idleInstance;
+
     private new void Start() {
         base.Start();
         currentState = EnemyStates.IDLE;
         InitFloatVariables();
+        idleInstance = FMODUnity.RuntimeManager.CreateInstance(idleEvent);
     }
 
     private void InitFloatVariables() {
@@ -40,13 +54,29 @@ public class Enemy_Floater : EnemyBaseClass {
     private new void Update() {
         base.Update();
         StateMachine(currentState);
+        idleInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject, GetComponent<Rigidbody2D>()));
     }
 
-    public override void CheckHealth() {
-        if (enemyHealth <= 0) {
-            Destroy(this.gameObject);
-            currentState = EnemyStates.DEAD;
+    public override void CheckHealth()
+    {
+        if (enemyHealth <= 0)
+        {
+            StartCoroutine(Die());
         }
+    }
+
+    private IEnumerator Die()
+    {
+        if (!playedDeathAudio)
+        {
+            idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            FMODUnity.RuntimeManager.PlayOneShotAttached(deathEvent, gameObject);
+            playedDeathAudio = true;
+        }
+        currentState = EnemyStates.DEAD;
+        GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 
     private void StateMachine(EnemyStates _state) {
@@ -57,6 +87,12 @@ public class Enemy_Floater : EnemyBaseClass {
 
             case EnemyStates.ALERT:
                 Alert();
+                if (!playedAlertAudio)
+                {
+                    idleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    FMODUnity.RuntimeManager.PlayOneShotAttached(alertEvent, this.gameObject);
+                    playedAlertAudio = true;
+                }
                 isFloating = false;
                 break;
 
@@ -142,6 +178,16 @@ public class Enemy_Floater : EnemyBaseClass {
             currentState = EnemyStates.IDLE;
         } else if (_distanceToPlayer < _temp) {
             currentState = EnemyStates.CHASE;
+        }
+    }
+
+    public override void Attack()
+    {
+        if (Time.time > nextAttack)
+        {
+            playerObject.GetComponent<BoyClass>().health -= 8;
+            nextAttack = Time.time + attackRate;
+            FMODUnity.RuntimeManager.PlayOneShotAttached(attackEvent, this.gameObject);
         }
     }
 }

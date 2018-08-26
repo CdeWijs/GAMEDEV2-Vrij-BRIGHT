@@ -110,6 +110,7 @@ public class EnemyBaseClass : MonoBehaviour
         {
             playerObject.GetComponent<BoyClass>().health -= 8;
             nextAttack = Time.time + attackRate;
+
         }
     }
 }
