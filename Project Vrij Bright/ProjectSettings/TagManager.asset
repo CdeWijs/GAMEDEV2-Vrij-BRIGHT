@@ -17,6 +17,9 @@ TagManager:
   - Hint
   - Rope
   - Door
+  - Eraser
+  - Inversion
+  - GuardianObstacle
   layers:
   - Default
   - TransparentFX
@@ -41,8 +44,8 @@ TagManager:
   - Captured
   - Background
   - Puzzle
-  - 
-  - 
+  - Eraser
+  - Guardian Obstacle
   - 
   - 
   - 
