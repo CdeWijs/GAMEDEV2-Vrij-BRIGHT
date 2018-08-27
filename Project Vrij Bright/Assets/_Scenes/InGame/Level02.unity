@@ -1094,6 +1094,12 @@ Prefab:
       propertyPath: targets.Array.data[1]
       value: 
       objectReference: {fileID: 262203287}
+    - target: {fileID: 114883741813130282, guid: eb2c65f4ab5b59947ae0c9456d5c87c5,
+        type: 2}
+      propertyPath: profile
+      value: 
+      objectReference: {fileID: 11400000, guid: a9c6e7eb34af8d24b8cc1cfdbfe612e2,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb2c65f4ab5b59947ae0c9456d5c87c5, type: 2}
   m_IsPrefabParent: 0
@@ -1219,7 +1225,7 @@ Prefab:
     - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}
       propertyPath: attackDamage
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114865717374979596, guid: e2bfefccadc50924fac0cebfa9a0659a,
         type: 2}
@@ -2463,6 +2469,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1364154572 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1040119078345422, guid: eb2c65f4ab5b59947ae0c9456d5c87c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 377529941}
+--- !u!114 &1364154573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1364154572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576b2254a98cba24cb5850be021a5291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ppp: {fileID: 11400000, guid: a9c6e7eb34af8d24b8cc1cfdbfe612e2, type: 2}
+  Up: 0
 --- !u!4 &1370746274 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4012340419530882, guid: 00b54bed1eade934a9449d7b9ba0264b,

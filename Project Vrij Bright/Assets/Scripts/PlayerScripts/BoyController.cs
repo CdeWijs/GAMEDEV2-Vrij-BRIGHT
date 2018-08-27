@@ -53,6 +53,7 @@ public class BoyController : BaseController
         CalculateRayCastPoints();
         gravity = (2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2) * 0.2f;
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        scale = transform.localScale;
 
         // Check if Joystick exists
         if (Input.GetJoystickNames().Length > 0)
@@ -187,6 +188,16 @@ public class BoyController : BaseController
 
     #region Triggers
 
+    public override void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.tag == "BoyCandy") {
+            SetAllInputFalse();
+            Destroy(collision.gameObject);
+            //PhysicsScript.ResetGravity(this.gameObject, scale);
+            //currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+            Debug.Log("working");
+            }
+        }
+
     //Change player properties on trigger enter
     private void OnTriggerEnter2D(Collider2D collision) {
         //behaviour for when player is scared
@@ -205,6 +216,8 @@ public class BoyController : BaseController
         } else if (collision.tag == "Inversion") {
             currentSpeed = PhysicsScript.EffectedFloat(currentSpeed, -1.1f);
         }
+        
+
     }
 
     //Restore player properties on trigger exit 
@@ -213,15 +226,18 @@ public class BoyController : BaseController
             SetAnimatorBool("Scared", false);
             SetAllInputFalse();
             currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
-        } else if (collision.tag == "GravityWell") {
-            SetAllInputFalse();
+            } else if (collision.tag == "GravityWell") {
+
+
             PhysicsScript.ResetGravity(this.gameObject, scale);
             currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
-        }
+            } else if (collision.tag == "Inversion") {
+            currentSpeed = PhysicsScript.EffectedFloat(NormalSpeed);
+            }
           //makes player invisible when leaving in mirrorworld
           else if (collision.tag == "Mirror" && this.gameObject.layer == 14) {
             spriteRenderer.enabled = false;
-        }
+            }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -59,13 +59,14 @@ public class GuardianController : BaseController
     public void FixedUpdate()
     {
 
-        MoveHorizontally(NormalSpeed);
+        MoveHorizontally(NormalSpeed); 
+        
     }
 
     //override collision check so players can jump on eachothers head
     new public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player")
+        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player" || collision.transform.tag == "GuardianObstacle")
         {
             grounded = true;
         }
@@ -75,7 +76,7 @@ public class GuardianController : BaseController
     //override collision check so players can jump on eachothers head
     new public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player")
+        if (collision.transform.tag == "Ground" || collision.transform.tag == "Player" || collision.transform.tag == "GuardianObstacle")
         {
             grounded = false;
         }
@@ -95,7 +96,7 @@ public class GuardianController : BaseController
             }
         }
 
-        if (col.tag == "Bait")
+        if (col.tag == "Bait" || col.tag == "BoyCandy") 
         {
             BaitScript baitScript = col.GetComponent<BaitScript>();
             baitScript.SetButtonActive(true);

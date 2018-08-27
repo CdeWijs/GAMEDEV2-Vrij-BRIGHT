@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/InGame/IntroLevel.unity
     guid: 70cc69c7ea154e54392f310d255ffbba
   - enabled: 1
+    path: Assets/_Scenes/RunnerTest.unity
+    guid: 7dbc0a74279f648458d2561608d185f0
+  - enabled: 1
     path: Assets/_Scenes/InGame/Level01.unity
     guid: cb6b42d94ce3c254cad59be8e815dcf5
   - enabled: 1

@@ -35,7 +35,7 @@ public class PhysicsScript : MonoBehaviour {
          _player.transform.localScale = newSize;
         //_instance.StartCoroutine(LerpUp(_player.transform.localScale, newSize, 0.5f));
         _player.GetComponent<Rigidbody2D>().gravityScale *= _gravityMultiplier;
-        ScreenTearer._Instance.ChangeSettingsChromaticAberration(1);
+        //ScreenTearer._Instance.ChangeSettingsChromaticAberration(1);
         }
 
     //resets gravity and scale of the BOY

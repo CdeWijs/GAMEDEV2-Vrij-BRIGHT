@@ -20,6 +20,7 @@ TagManager:
   - Eraser
   - Inversion
   - GuardianObstacle
+  - BoyCandy
   layers:
   - Default
   - TransparentFX

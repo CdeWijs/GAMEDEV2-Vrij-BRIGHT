@@ -90,7 +90,7 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Ground")
         {
@@ -98,7 +98,7 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    public virtual void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.transform.tag == "Ground")
         {

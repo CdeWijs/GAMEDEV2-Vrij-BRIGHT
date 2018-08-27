@@ -39,10 +39,13 @@ public class GameManager : MonoBehaviour
 
     private void ResetControllers(Scene scene, LoadSceneMode mode)
     {
-        foreach (BaseController con in controllers)
-        {
-            controllers.Remove(con);
-        }
+        for (int i = 0; i < controllers.Count; i++) {
+            controllers.Remove(controllers[i]);
+            }
+       // foreach (BaseController con in controllers)
+        //{
+          //  controllers.Remove(con);
+       // }
     }
 
     private void Update()

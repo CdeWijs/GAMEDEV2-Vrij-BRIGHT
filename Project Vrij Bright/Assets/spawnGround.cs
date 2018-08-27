@@ -17,24 +17,26 @@ public class spawnGround : MonoBehaviour {
     public int amountOfSpacingsVertical;
     public float obstacleAmountOfSpacing;
     public float obstacleSpacingHorizontal;
-
+    public float bottom;
     public GameObject eraser;
     public GameObject[] obstacles;
     public GameObject[] obstaclesGuardian;
 
     private void Start() {
+        bottom =  groundTile.GetComponent<BoxCollider2D>().bounds.extents.x / 2;
+        Debug.Log(bottom + "groundTile");
         groundWidth = groundTile.GetComponent<BoxCollider2D>().bounds.size.x;
         groundHeight = groundTile.GetComponent<BoxCollider2D>().bounds.size.y;
 
         eraser = GameObject.FindGameObjectWithTag("Eraser");
        
-        horizontalSpacing = groundWidth / amountOfSpacings;
+        horizontalSpacing =  (groundWidth / amountOfSpacings)/2;
         obstacleSpacingHorizontal = groundWidth / obstacleAmountOfSpacing;
         
         for (int i = 0; i < amountOfSpacings; i++) {
         Debug.Log(horizontalSpacing * i);
 
-            if (Random.value > 0.33f) {
+            if (i > 2) {
                 SpawnObstacle(obstacles[Random.Range(0, obstacles.Length)], (i * horizontalSpacing) + spawnSpoint);
                 }
             }
@@ -77,7 +79,7 @@ public class spawnGround : MonoBehaviour {
            
             GameObject _obstacle = Instantiate(obstaclesGuardian[Random.Range(0, obstaclesGuardian.Length)]);
             float height = (i * _obstacle.GetComponent<BoxCollider2D>().bounds.size.y) * upOrDown;
-            _obstacle.transform.position = new Vector3(_spawnPoint, (groundTile.transform.position.y - (groundHeight))+  height, 0);
+            _obstacle.transform.position = new Vector3(_spawnPoint, (bottom + (i * height)), 0);
             _obstacle.name = _obstacle.name;
             _obstacle.transform.parent = this.gameObject.transform;
             }
