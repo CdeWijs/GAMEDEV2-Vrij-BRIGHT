@@ -21,6 +21,7 @@ TagManager:
   - Inversion
   - GuardianObstacle
   - BoyCandy
+  - EndSoundtrack
   layers:
   - Default
   - TransparentFX
