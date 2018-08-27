@@ -145,7 +145,7 @@ public class BoyController : BaseController
     {
         a_active = false;
         b_active = false;
-        x_active = false;
+       // x_active = false;
         y_active = false;
         trig_active = false;
     }
@@ -300,15 +300,15 @@ public class BoyController : BaseController
     {
         if (collision.tag == "Monster")
         {
-            if (connectedController != null)
-            {
-                if (x_active && Time.time > nextAttack)
+           
+                if (x_active )//&& Time.time > nextAttack)
                 {
                     StartCoroutine(PlayAnim("Attacking"));
                     BasicAttack(collision.gameObject);
                     nextAttack = Time.time + attackRate;
-                }
-            }
+                    Debug.Log(collision.name);
+                    }
+            
             else
             {
                 if (Input.GetKeyDown(KeyCode.E) && Time.time > nextAttack)
